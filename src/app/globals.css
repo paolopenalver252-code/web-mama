@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/**
+ * PSAI FLOW ACADEMY — Design System
+ * Fuente única de verdad para color, tipografía, sombras y animación.
+ * Cualquier componente nuevo debe consumir estos tokens en lugar de valores sueltos.
+ */
+:root {
+  /* Color */
+  --color-primary: #0f2d52;
+  --color-secondary: #163b67;
+  --color-accent: #c8a35f;
+  --color-accent-hover: #d9b97a;
+  /* Variante accesible del dorado — SOLO para texto y fondos de botón con
+     texto encima sobre fondo claro (el #C8A35F original no cumple 4.5:1
+     de WCAG AA en esos usos). El dorado decorativo original no cambia. */
+  --color-accent-text: #8a6a2e;
+  --color-accent-text-hover: #6f5424;
+  --color-surface: #ffffff;
+  --color-surface-alt: #fafaf8;
+  --color-ink: #2d2d2d;
+
+  /* Tipografía */
+  --font-heading: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Sombras premium — siempre muy suaves, nunca duras */
+  --shadow-soft: 0 1px 2px rgba(15, 45, 82, 0.04), 0 12px 32px rgba(15, 45, 82, 0.06);
+  --shadow-header: 0 1px 0 rgba(15, 45, 82, 0.04), 0 8px 24px rgba(15, 45, 82, 0.05);
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-text: var(--color-accent-text);
+  --color-accent-text-hover: var(--color-accent-text-hover);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-ink: var(--color-ink);
+
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-sans);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-header: var(--shadow-header);
+
+  /* Animaciones suaves — sin efectos llamativos */
+  --animate-fade-in: fade-in 0.7s ease-out both;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* Scroll-reveal (ver components/ui/Reveal.tsx). Sin el atributo (sin JS,
+   o antes de montar) el contenido es visible por defecto — el estado
+   "hidden" solo lo aplica React una vez el observer está activo. */
+[data-reveal] {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variante "scale" del Reveal: además de desplazarse, emerge desde un
+   94% de escala — reservada para momentos de mayor ambición visual. */
+[data-reveal="hidden"][data-reveal-variant="scale"] {
+  opacity: 0;
+  transform: scale(0.94) translateY(16px);
+}
+
+[data-reveal="visible"][data-reveal-variant="scale"] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Foco de teclado consistente con la identidad de marca — sustituye el
+   contorno azul por defecto del navegador por uno en dorado accesible,
+   en cualquier elemento enfocable que no defina ya su propio anillo de foco
+   (los botones de components/ui/Button.tsx ya tienen el suyo). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respeta la preferencia del sistema de reducir el movimiento: las
+   animaciones de entrada y el scroll-reveal se vuelven instantáneas en
+   lugar de desactivar la interfaz. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
