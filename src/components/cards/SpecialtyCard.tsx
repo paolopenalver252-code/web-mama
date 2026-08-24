@@ -29,7 +29,7 @@ export default function SpecialtyCard({
 
   return (
     <div
-      className="group relative h-full min-h-[11.5rem] overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft transition-shadow duration-300 hover:shadow-[0_20px_45px_rgba(15,45,82,0.12)]"
+      className="group relative h-full min-h-[11.5rem] overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft transition-all duration-300 hover:border-accent/30 hover:shadow-[0_20px_45px_rgba(15,45,82,0.12)]"
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >

@@ -32,7 +32,10 @@ export default function CursosPage() {
           ])
         )}
       />
-      <DetailHero course={course} showBackLink={false} />
+      <DetailHero
+        course={{ category: course.category, title: course.title, level: course.level, summary: course.summary }}
+        showBackLink={false}
+      />
       <WhyThisCourse />
       <WhatYouLearn course={course} />
       <CourseInfoBand course={course} />

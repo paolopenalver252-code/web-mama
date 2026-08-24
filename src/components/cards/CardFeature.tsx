@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { cardHover, cardHoverDark } from "@/lib/motion/classNames";
 
 type CardFeatureProps = {
   icon: LucideIcon;
@@ -17,10 +18,8 @@ export default function CardFeature({ icon: Icon, title, description, tone = "li
 
   return (
     <div
-      className={`flex h-full flex-col gap-4 rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
-        isDark
-          ? "border-white/10 bg-white/5 hover:bg-white/[0.08]"
-          : "border-primary/5 bg-surface shadow-soft hover:shadow-[0_20px_45px_rgba(15,45,82,0.1)]"
+      className={`flex h-full flex-col gap-4 rounded-2xl border p-7 ${
+        isDark ? `border-white/10 bg-white/5 ${cardHoverDark}` : `border-primary/5 bg-surface shadow-soft ${cardHover}`
       }`}
     >
       <span

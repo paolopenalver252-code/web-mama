@@ -15,6 +15,10 @@ type PlaceholderImageProps = {
   /** Marcar true solo en la imagen más grande visible al cargar la página (normalmente el Hero). */
   priority?: boolean;
   sizes?: string;
+  /** "corner": el icono+etiqueta se ancla abajo a la derecha en vez de centrarse —
+   * para huecos de imagen de fondo a pantalla completa, donde el centro puede
+   * coincidir con contenido de texto superpuesto. */
+  labelPosition?: "center" | "corner";
 };
 
 /**
@@ -30,6 +34,7 @@ export default function PlaceholderImage({
   alt,
   priority = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 40vw",
+  labelPosition = "center",
 }: PlaceholderImageProps) {
   if (src) {
     return (
@@ -56,12 +61,12 @@ export default function PlaceholderImage({
 
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden rounded-2xl border border-dashed ${
-        tone === "dark" ? "border-white/15" : "border-primary/10"
-      } ${gradient} ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-dashed ${
+        labelPosition === "corner" ? "flex items-end justify-end p-6" : "flex items-center justify-center"
+      } ${tone === "dark" ? "border-white/15" : "border-primary/10"} ${gradient} ${className}`}
     >
-      <div className="flex flex-col items-center gap-2">
-        <ImageIcon className={iconColor} size={28} strokeWidth={1.25} />
+      <div className={`flex ${labelPosition === "corner" ? "flex-row items-center" : "flex-col items-center"} gap-2`}>
+        <ImageIcon className={iconColor} size={labelPosition === "corner" ? 18 : 28} strokeWidth={1.25} />
         <span className={`text-[11px] tracking-wide ${labelColor}`}>{label}</span>
       </div>
     </div>

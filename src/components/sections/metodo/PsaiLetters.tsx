@@ -3,10 +3,10 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 
 const LETTERS = [
-  { letter: "P", icon: Feather, meaning: "Significado pendiente" },
-  { letter: "S", icon: Waves, meaning: "Significado pendiente" },
-  { letter: "A", icon: Sun, meaning: "Significado pendiente" },
-  { letter: "I", icon: Sparkle, meaning: "Significado pendiente" },
+  { letter: "P", icon: Feather, meaning: "Pensamiento" },
+  { letter: "S", icon: Waves, meaning: "Sentimiento" },
+  { letter: "A", icon: Sun, meaning: "Acción" },
+  { letter: "I", icon: Sparkle, meaning: "Iluminada" },
 ];
 
 export default function PsaiLetters() {

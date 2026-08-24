@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { animate } from "animejs";
+import { easeOut, duration, revealTravel, compactDelay } from "@/lib/motion/tokens";
+import { prefersReducedMotion, isCompactViewport } from "@/lib/motion/environment";
 
 type RevealProps = {
   children: ReactNode;
@@ -14,8 +17,8 @@ type RevealProps = {
 
 /**
  * Envuelve contenido que debe aparecer con un fade-up suave al entrar
- * en el viewport (Scroll Reveal del Design System). Una sola aparición,
- * sin rebote ni movimiento brusco.
+ * en el viewport (Scroll Reveal del Design System, sobre Anime.js). Una
+ * sola aparición, sin rebote ni movimiento brusco.
  */
 export default function Reveal({ children, className = "", delay = 0, variant = "up" }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,30 +30,39 @@ export default function Reveal({ children, className = "", delay = 0, variant = 
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return;
+    if (!node || prefersReducedMotion()) return; // sin nodo, o reduced-motion: se queda "pre" = visible, sin animar
 
     setState("hidden");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setState("visible");
-          observer.disconnect();
-        }
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        const compact = isCompactViewport();
+        const travel = revealTravel(compact);
+        animate(node, {
+          opacity: [0, 1],
+          translateY: variant === "scale" ? 0 : [travel, 0],
+          scale: variant === "scale" ? [0.94, 1] : 1,
+          duration: duration.reveal,
+          delay: compactDelay(delay, compact),
+          ease: easeOut,
+          onBegin: () => setState("visible"),
+        });
       },
       { threshold: 0.15 }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [delay, variant]);
 
   return (
     <div
       ref={ref}
       data-reveal={state === "pre" ? undefined : state}
       data-reveal-variant={variant === "scale" ? "scale" : undefined}
-      style={{ transitionDelay: state === "visible" ? `${delay}ms` : "0ms" }}
       className={className}
     >
       {children}

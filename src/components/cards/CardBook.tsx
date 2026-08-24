@@ -1,5 +1,6 @@
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
 import Button from "@/components/ui/Button";
+import { cardHover, cardImageHover } from "@/lib/motion/classNames";
 import type { Book } from "@/lib/books";
 
 type CardBookProps = Book & {
@@ -16,12 +17,12 @@ export default function CardBook({
   purchaseHref = "#",
 }: CardBookProps) {
   return (
-    <div className="flex h-full flex-col gap-4 rounded-2xl border border-primary/5 bg-surface p-5 shadow-soft">
+    <div className={`group flex h-full flex-col gap-4 rounded-2xl border border-primary/5 bg-surface p-5 shadow-soft ${cardHover}`}>
       <PlaceholderImage
         src={cover}
         alt={`Portada del libro ${title}`}
         label="Portada pendiente"
-        className="aspect-[5/8] w-full"
+        className={`aspect-[5/8] w-full ${cardImageHover}`}
       />
       <span className="w-fit rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-text">
         {category}

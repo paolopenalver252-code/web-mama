@@ -16,6 +16,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Solo la Home tiene un Hero oscuro a pantalla completa detrás del header:
+  // ahí el header nace transparente (como en la referencia Holistic) y se
+  // vuelve sólido al hacer scroll. En el resto de páginas, siempre sólido.
+  const transparent = pathname === "/" && !scrolled;
+
   // Cierra el menú móvil al cambiar de página (patrón de ajuste de estado
   // durante el render, sin efecto, para evitar renders en cascada).
   const [prevPathname, setPrevPathname] = useState(pathname);
@@ -40,8 +45,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b bg-surface/80 backdrop-blur-md transition-shadow duration-300 ${
-        scrolled ? "shadow-header border-primary/5" : "border-transparent"
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
+        transparent
+          ? "border-transparent bg-transparent"
+          : `border-primary/5 bg-surface/80 backdrop-blur-md ${scrolled ? "shadow-header" : ""}`
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-6 px-6 lg:px-10">
@@ -50,8 +57,14 @@ export default function Header() {
           href="/"
           className="flex shrink-0 flex-col leading-none transition-opacity duration-300 hover:opacity-75"
         >
-          <span className="font-heading text-2xl text-primary">PSAI FLOW</span>
-          <span className="text-[0.65rem] font-sans uppercase tracking-[0.3em] text-accent-text">
+          <span className={`font-heading text-2xl transition-colors duration-500 ${transparent ? "text-white" : "text-primary"}`}>
+            PSAI FLOW
+          </span>
+          <span
+            className={`text-[0.65rem] font-sans uppercase tracking-[0.3em] transition-colors duration-500 ${
+              transparent ? "text-accent" : "text-accent-text"
+            }`}
+          >
             Academy
           </span>
         </Link>
@@ -73,8 +86,10 @@ export default function Header() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     prefetch={false}
-                    className={`relative whitespace-nowrap text-[13px] font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:text-accent-text hover:after:w-full ${
-                      active ? "text-primary after:w-full" : "text-primary/70 after:w-0"
+                    className={`relative whitespace-nowrap text-[13px] font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
+                      transparent
+                        ? `hover:text-accent ${active ? "text-white after:w-full" : "text-white/75 after:w-0"}`
+                        : `hover:text-accent-text ${active ? "text-primary after:w-full" : "text-primary/70 after:w-0"}`
                     }`}
                   >
                     {item.label}
@@ -104,17 +119,17 @@ export default function Header() {
           className="relative flex h-10 w-10 shrink-0 items-center justify-center xl:hidden"
         >
           <span
-            className={`absolute h-px w-6 bg-primary transition-all duration-300 ${
+            className={`absolute h-px w-6 transition-all duration-300 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
               menuOpen ? "rotate-45" : "-translate-y-2"
             }`}
           />
           <span
-            className={`absolute h-px w-6 bg-primary transition-opacity duration-200 ${
+            className={`absolute h-px w-6 transition-opacity duration-200 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
               menuOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           <span
-            className={`absolute h-px w-6 bg-primary transition-all duration-300 ${
+            className={`absolute h-px w-6 transition-all duration-300 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
               menuOpen ? "-rotate-45" : "translate-y-2"
             }`}
           />

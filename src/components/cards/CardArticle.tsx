@@ -1,6 +1,7 @@
 import { ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
+import { cardHover, cardImageHover } from "@/lib/motion/classNames";
 import type { BlogPost } from "@/lib/blog";
 
 type CardArticleProps = BlogPost & {
@@ -18,10 +19,10 @@ export default function CardArticle({
 }: CardArticleProps) {
   if (featured) {
     return (
-      <div className="group grid grid-cols-1 gap-8 overflow-hidden rounded-3xl border border-primary/5 bg-surface shadow-soft lg:grid-cols-2 lg:gap-0">
+      <div className={`group grid grid-cols-1 gap-8 overflow-hidden rounded-3xl border border-primary/5 bg-surface shadow-soft lg:grid-cols-2 lg:gap-0 ${cardHover}`}>
         <PlaceholderImage
           label="Imagen del artículo pendiente"
-          className="aspect-[16/10] w-full rounded-none lg:aspect-auto lg:h-full"
+          className={`aspect-[16/10] w-full rounded-none lg:aspect-auto lg:h-full ${cardImageHover}`}
         />
         <div className="flex flex-col justify-center gap-4 p-8 lg:p-12">
           <div className="flex items-center gap-3 text-xs uppercase tracking-wide text-ink/50">
@@ -54,10 +55,8 @@ export default function CardArticle({
   }
 
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,45,82,0.1)]">
-      <PlaceholderImage
-        className="aspect-[16/10] w-full rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
-      />
+    <div className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft ${cardHover}`}>
+      <PlaceholderImage className={`aspect-[16/10] w-full rounded-none ${cardImageHover}`} />
       <div className="flex flex-1 flex-col gap-3 p-6">
         <div className="flex items-center gap-3 text-xs uppercase tracking-wide text-ink/50">
           <span className="rounded-full bg-accent/10 px-3 py-1 font-semibold text-accent-text">

@@ -1,9 +1,17 @@
+"use client";
+
+import { useRef } from "react";
 import Button from "@/components/ui/Button";
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
 import Parallax from "@/components/ui/Parallax";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { useHeroEntrance } from "@/hooks/useHeroEntrance";
 
 export default function Hero() {
+  const textRef = useRef<HTMLDivElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  useHeroEntrance({ text: textRef, media: mediaRef });
+
   return (
     <section className="relative overflow-hidden">
       <Parallax
@@ -11,8 +19,8 @@ export default function Hero() {
         className="pointer-events-none absolute -left-32 -top-20 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(200,163,95,0.14),transparent_70%)]"
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-14 lg:px-8">
-        <div className="animate-fade-up mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 py-16 md:grid-cols-2 md:gap-12 lg:px-8 lg:py-24">
+        <div ref={textRef} className="flex flex-col items-start gap-6">
           <Eyebrow>Acompañamiento personalizado</Eyebrow>
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
             Consultas
@@ -22,7 +30,7 @@ export default function Hero() {
             autoconocimiento, adaptado a ti.
           </p>
 
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-2 flex flex-wrap items-center gap-4">
             <Button href="/contacto#formulario-contacto" variant="accent" size="md">
               Reservar una consulta
             </Button>
@@ -32,10 +40,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="animate-fade-in [animation-delay:200ms] mx-auto mt-12 max-w-6xl pb-16 lg:pb-20">
+        <div ref={mediaRef}>
           <PlaceholderImage
-            label="Fotografía de Solimar Rengel pendiente"
-            className="aspect-[21/9] w-full shadow-soft"
+            src="/images/solimar-rengel.jpg"
+            alt="Solimar Rengel, acompañándote en tu proceso de consulta"
+            className="aspect-[4/5] w-full shadow-soft"
           />
         </div>
       </div>

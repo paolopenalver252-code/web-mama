@@ -1,13 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
 import { ArrowLeft } from "lucide-react";
 import Button from "@/components/ui/Button";
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
 import Parallax from "@/components/ui/Parallax";
 import Eyebrow from "@/components/ui/Eyebrow";
-import type { Course } from "@/lib/courses";
+import { useHeroEntrance } from "@/hooks/useHeroEntrance";
 
+// Solo los campos primitivos que este Hero realmente usa (no el Course
+// completo): al ser un Client Component, un array como whatYouLearn —que
+// contiene componentes de icono— no se puede serializar en el límite
+// servidor/cliente.
 type DetailHeroProps = {
-  course: Course;
+  course: {
+    category: string;
+    title: string;
+    level: string;
+    summary: string;
+  };
   showBackLink?: boolean;
 };
 
@@ -16,6 +28,10 @@ type DetailHeroProps = {
  * pantalla): texto centrado y compacto arriba, imagen grande debajo.
  */
 export default function DetailHero({ course, showBackLink = true }: DetailHeroProps) {
+  const textRef = useRef<HTMLDivElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  useHeroEntrance({ text: textRef, media: mediaRef });
+
   return (
     <section className="relative overflow-hidden">
       <Parallax
@@ -34,7 +50,7 @@ export default function DetailHero({ course, showBackLink = true }: DetailHeroPr
           </Link>
         ) : null}
 
-        <div className="animate-fade-up mx-auto mt-6 flex max-w-3xl flex-col items-center gap-5 text-center">
+        <div ref={textRef} className="mx-auto mt-6 flex max-w-3xl flex-col items-center gap-5 text-center">
           <Eyebrow>{course.category}</Eyebrow>
 
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
@@ -55,7 +71,7 @@ export default function DetailHero({ course, showBackLink = true }: DetailHeroPr
           </div>
         </div>
 
-        <div className="animate-fade-in [animation-delay:200ms] mx-auto mt-12 max-w-6xl pb-16 lg:pb-20">
+        <div ref={mediaRef} className="mx-auto mt-12 max-w-6xl pb-16 lg:pb-20">
           <PlaceholderImage
             label="Imagen del curso pendiente"
             className="aspect-[16/9] w-full shadow-soft"

@@ -10,7 +10,8 @@ export default function InstructorSection({ course }: { course: Course }) {
       <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-14 px-6 sm:grid-cols-[auto_1fr] lg:px-8">
         <Reveal>
           <PlaceholderImage
-            label="Fotografía pendiente"
+            src="/images/solimar-rengel.jpg"
+            alt={course.instructor.name}
             className="aspect-square w-40 shrink-0 shadow-soft sm:w-48"
           />
         </Reveal>
