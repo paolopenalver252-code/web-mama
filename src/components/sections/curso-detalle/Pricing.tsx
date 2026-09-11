@@ -14,7 +14,7 @@ export default function Pricing({ course }: { course: Course }) {
           <div className="mt-10 flex flex-col items-center gap-3 rounded-2xl border border-primary/5 bg-surface px-8 py-10 shadow-soft">
             <CreditCard className="text-accent" size={26} strokeWidth={1.5} />
             <p className="font-heading text-2xl text-primary">{course.price}</p>
-            <p className="text-sm text-ink/50">
+            <p className="text-sm text-ink-subtle">
               Facilidades de pago y detalles definitivos, próximamente.
             </p>
           </div>

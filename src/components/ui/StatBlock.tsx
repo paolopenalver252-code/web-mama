@@ -6,7 +6,7 @@ type StatBlockProps = {
 };
 
 export default function StatBlock({ value, label, tone = "light", className = "" }: StatBlockProps) {
-  const labelColor = tone === "dark" ? "text-white/60" : "text-ink/60";
+  const labelColor = tone === "dark" ? "text-mist-subtle" : "text-ink-subtle";
   const valueColor = tone === "dark" ? "text-accent" : "text-accent-text";
 
   return (

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Manrope } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
@@ -17,9 +17,24 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+// Tipografía secundaria del sistema (párrafos, descripciones, labels, UI):
+// solo se cargan los tres pesos realmente usados en el proyecto (400
+// normal, 500 medio para texto descriptivo/labels destacados, 600 para
+// semibold puntual) — igual que con Cormorant, sin peso muerto.
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+// Tipografía de los párrafos secundarios en gris oscuro (text-ink-muted /
+// text-ink-subtle / text-mist / text-mist-subtle, ver globals.css) — solo
+// peso 500 (Medium), el que les da más presencia sin llegar a bold.
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: "500",
   display: "swap",
 });
 
@@ -75,7 +90,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${manrope.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface text-ink font-sans">
         <JsonLd data={jsonLdGraph(organizationSchema(), websiteSchema())} />

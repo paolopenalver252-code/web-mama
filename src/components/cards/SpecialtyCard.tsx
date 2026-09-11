@@ -53,7 +53,7 @@ export default function SpecialtyCard({
       >
         <div className="flex flex-col gap-2">
           <h3 className="font-heading text-base text-white">{title}</h3>
-          <p className="text-xs leading-relaxed text-white/70">{description}</p>
+          <p className="text-xs leading-relaxed text-mist">{description}</p>
         </div>
         <Link
           href={bookingHref}

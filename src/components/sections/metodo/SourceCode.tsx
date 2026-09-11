@@ -17,7 +17,7 @@ export default function SourceCode() {
           </div>
         </Reveal>
         <Reveal delay={200}>
-          <p className="mt-6 text-base italic leading-relaxed text-white/50">
+          <p className="mt-6 text-base italic leading-relaxed text-mist">
             Explicación pendiente de contenido definitivo.
           </p>
         </Reveal>

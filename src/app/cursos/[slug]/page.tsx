@@ -54,7 +54,14 @@ export default async function CourseDetailPage({ params }: Props) {
         )}
       />
       <DetailHero
-        course={{ category: course.category, title: course.title, level: course.level, summary: course.summary }}
+        course={{
+          category: course.category,
+          title: course.title,
+          level: course.level,
+          summary: course.summary,
+          image: course.image,
+          imageAlt: course.imageAlt,
+        }}
       />
       <WhyThisCourse />
       <WhatYouLearn course={course} />

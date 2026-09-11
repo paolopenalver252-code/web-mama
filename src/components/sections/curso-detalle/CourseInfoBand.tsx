@@ -24,7 +24,7 @@ export default function CourseInfoBand({ course }: { course: Course }) {
                   <fact.icon className="text-accent" size={22} strokeWidth={1.5} />
                 </span>
                 <div>
-                  <div className="text-sm uppercase tracking-[0.2em] text-white/50">{fact.label}</div>
+                  <div className="text-sm uppercase tracking-[0.2em] text-mist-subtle">{fact.label}</div>
                   <div className="mt-1 font-heading text-xl text-white">{fact.value}</div>
                 </div>
               </div>
@@ -34,7 +34,7 @@ export default function CourseInfoBand({ course }: { course: Course }) {
 
         <Reveal delay={220}>
           <div className="mt-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-white/50">Incluye</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-mist-subtle">Incluye</p>
             <ul className="mt-5 flex flex-wrap gap-3">
               {course.includes.map((item) => (
                 <li

@@ -113,7 +113,7 @@ export default function ContactForm() {
                 <CheckCircle2 className="text-accent" size={26} strokeWidth={1.5} />
               </span>
               <h2 className="font-heading text-2xl text-primary">Solicitud enviada</h2>
-              <p className="max-w-md text-sm leading-relaxed text-ink/60">
+              <p className="max-w-md text-sm leading-relaxed text-ink-muted">
                 Gracias por escribirnos. Responderemos a tu solicitud lo
                 antes posible.
               </p>
@@ -130,7 +130,7 @@ export default function ContactForm() {
         <Reveal>
           <div className="rounded-3xl border border-primary/10 bg-surface p-8 shadow-soft sm:p-12">
             <h2 className="font-heading text-2xl text-primary sm:text-3xl">Formulario de contacto</h2>
-            <p className="mt-2 text-sm text-ink/60">
+            <p className="mt-2 text-sm text-ink-muted">
               Cuéntanos qué necesitas y te responderemos lo antes posible.
             </p>
 
@@ -198,7 +198,7 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="phone" className={labelClasses}>
-                    Teléfono <span className="font-normal text-ink/40">(opcional)</span>
+                    Teléfono <span className="font-normal text-ink-subtle">(opcional)</span>
                   </label>
                   <input
                     id="phone"

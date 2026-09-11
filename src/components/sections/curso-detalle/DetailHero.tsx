@@ -19,6 +19,8 @@ type DetailHeroProps = {
     title: string;
     level: string;
     summary: string;
+    image?: string;
+    imageAlt?: string;
   };
   showBackLink?: boolean;
 };
@@ -59,7 +61,7 @@ export default function DetailHero({ course, showBackLink = true }: DetailHeroPr
 
           <p className="font-heading text-xl text-secondary">{course.level}</p>
 
-          <p className="max-w-xl text-base leading-relaxed text-ink/70">{course.summary}</p>
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted">{course.summary}</p>
 
           <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contacto" variant="accent" size="md">
@@ -73,7 +75,11 @@ export default function DetailHero({ course, showBackLink = true }: DetailHeroPr
 
         <div ref={mediaRef} className="mx-auto mt-12 max-w-6xl pb-16 lg:pb-20">
           <PlaceholderImage
+            src={course.image}
+            alt={course.imageAlt ?? course.title}
             label="Imagen del curso pendiente"
+            priority
+            sizes="(max-width: 1280px) 100vw, 72rem"
             className="aspect-[16/9] w-full shadow-soft"
           />
         </div>

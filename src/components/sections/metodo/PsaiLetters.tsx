@@ -25,7 +25,7 @@ export default function PsaiLetters() {
                   <item.icon className="text-accent" size={24} strokeWidth={1.5} />
                 </span>
                 <span className="font-heading text-3xl text-primary">{item.letter}</span>
-                <p className="text-sm leading-relaxed text-ink/50">{item.meaning}</p>
+                <p className="text-sm leading-relaxed text-ink-muted">{item.meaning}</p>
               </div>
             </Reveal>
           ))}

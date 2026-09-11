@@ -23,10 +23,6 @@ export default function FounderSpotlight() {
 
             <StatBlock value="35+" label="Años de trayectoria" />
 
-            <p className="max-w-md text-base leading-relaxed text-ink/65">
-              Biografía pendiente de contenido definitivo.
-            </p>
-
             <Button href="/academia#solimar-rengel" variant="outline" size="md">
               Conocer su historia
             </Button>

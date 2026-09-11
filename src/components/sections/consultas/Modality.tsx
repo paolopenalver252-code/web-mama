@@ -31,14 +31,14 @@ export default function Modality() {
                   <modality.icon className="text-accent" size={22} strokeWidth={1.5} />
                 </span>
                 <h3 className="font-heading text-xl text-white">{modality.title}</h3>
-                <p className="text-sm leading-relaxed text-white/60">{modality.description}</p>
+                <p className="text-sm leading-relaxed text-mist">{modality.description}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={200}>
-          <div className="mt-10 flex items-center justify-center gap-3 text-white/70">
+          <div className="mt-10 flex items-center justify-center gap-3 text-mist">
             <Clock size={18} strokeWidth={1.5} className="text-accent" />
             <span className="text-sm">Duración aproximada: 90 minutos</span>
           </div>

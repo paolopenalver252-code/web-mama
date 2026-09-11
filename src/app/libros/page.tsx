@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Hero from "@/components/sections/libros/Hero";
 import Library from "@/components/sections/libros/Library";
 import Philosophy from "@/components/sections/libros/Philosophy";
-import UpcomingReleases from "@/components/sections/libros/UpcomingReleases";
 import FinalCta from "@/components/sections/FinalCta";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildPageMetadata } from "@/lib/seo";
@@ -31,7 +30,6 @@ export default function LibrosPage() {
       <Hero />
       <Library />
       <Philosophy />
-      <UpcomingReleases />
       <FinalCta
         heading="Sigue profundizando en el Método PSAI FLOW®"
         description="Descubre nuestras formaciones o da el primer paso reservando una consulta personalizada."

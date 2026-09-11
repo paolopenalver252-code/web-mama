@@ -13,7 +13,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-white/70">
+    <footer className="bg-primary text-mist">
       <Reveal className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Marca */}
@@ -27,7 +27,7 @@ export default function Footer() {
                 Academy
               </span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-mist">
               {/* TODO: descripción breve pendiente de copy definitivo del cliente. */}
               [Descripción breve de la academia — pendiente de texto definitivo]
             </p>
@@ -37,7 +37,7 @@ export default function Footer() {
                   <a
                     href={social.href}
                     aria-label={social.label}
-                    className="text-sm text-white/60 transition-colors duration-300 hover:text-accent"
+                    className="text-sm text-mist transition-colors duration-300 hover:text-accent"
                   >
                     {social.label}
                   </a>
@@ -54,7 +54,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/60 transition-colors duration-300 hover:text-accent"
+                    className="text-sm text-mist transition-colors duration-300 hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -66,7 +66,7 @@ export default function Footer() {
           {/* Contacto */}
           <div>
             <h3 className="font-heading text-lg text-white">Contacto</h3>
-            <ul className="mt-4 space-y-3 text-sm text-white/60">
+            <ul className="mt-4 space-y-3 text-sm text-mist">
               {/* TODO: datos de contacto reales pendientes del cliente. */}
               <li>[Email pendiente]</li>
               <li>[Teléfono pendiente]</li>
@@ -82,7 +82,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/60 transition-colors duration-300 hover:text-accent"
+                    className="text-sm text-mist transition-colors duration-300 hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -94,7 +94,7 @@ export default function Footer() {
       </Reveal>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-6 text-center text-xs text-white/50 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 py-6 text-center text-xs text-mist-subtle lg:px-8">
           © {year} PSAI FLOW ACADEMY. Todos los derechos reservados.
         </div>
       </div>

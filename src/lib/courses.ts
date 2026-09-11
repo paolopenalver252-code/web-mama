@@ -23,6 +23,8 @@ export type Course = {
   level: string;
   category: string;
   summary: string;
+  image?: string;
+  imageAlt?: string;
   duration: string;
   modality: string;
   includes: string[];
@@ -53,6 +55,9 @@ export const COURSES: Course[] = [
     category: "Formación insignia",
     summary:
       "Una formación profesional estructurada para dominar los fundamentos y la práctica de la Magia Universal Cuántica.",
+    image: "/images/curso-magia-universal-cuantica.jpg",
+    imageAlt:
+      "Escritorio de estudio con libros antiguos, pergamino de Magia Universal Cuántica, cristales y símbolos alquímicos",
     duration: "6 meses",
     modality: "Online",
     includes: ["Vídeos", "Manuales", "Material de estudio", "Tutorías", "Prácticas", "Certificado"],

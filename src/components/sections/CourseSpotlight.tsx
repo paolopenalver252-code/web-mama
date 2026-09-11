@@ -5,10 +5,14 @@ import Reveal from "@/components/ui/Reveal";
 import Watermark from "@/components/ui/Watermark";
 
 const COURSE_FACTS = [
-  { icon: CalendarClock, label: "Duración", value: "Pendiente de confirmar" },
-  { icon: Laptop, label: "Modalidad", value: "Pendiente de confirmar" },
+  { icon: CalendarClock, label: "Duración", value: "6 meses" },
+  { icon: Laptop, label: "Modalidad", value: "Online" },
   { icon: Award, label: "Certificado", value: "Pendiente de confirmar" },
-  { icon: Repeat, label: "Continuidad del programa", value: "Pendiente de confirmar" },
+  {
+    icon: Repeat,
+    label: "Continuidad del programa",
+    value: "Recorrido de tres años de especialización",
+  },
 ];
 
 export default function CourseSpotlight() {
@@ -35,7 +39,7 @@ export default function CourseSpotlight() {
                     <fact.icon className="text-accent" size={20} strokeWidth={1.5} />
                   </span>
                   <div>
-                    <div className="text-sm uppercase tracking-[0.2em] text-white/50">{fact.label}</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-mist-subtle">{fact.label}</div>
                     <div className="mt-1 font-heading text-lg text-white/90">{fact.value}</div>
                   </div>
                 </li>
@@ -49,10 +53,10 @@ export default function CourseSpotlight() {
                 <ListChecks className="text-accent" size={22} strokeWidth={1.5} />
                 <h3 className="font-heading text-xl text-white">Qué aprenderás</h3>
               </div>
-              <p className="text-sm leading-relaxed text-white/60">
-                Temario detallado próximamente. Esta sección está lista para
-                mostrar el listado completo de contenidos en cuanto se
-                confirme el programa definitivo del curso.
+              <p className="text-sm leading-relaxed text-mist">
+                Aprende una metodología integral para armonizar cuerpo, mente,
+                emociones, espacios y conciencia desde una visión ética,
+                profesional y transformadora.
               </p>
               <div className="mt-auto pt-4">
                 <Button href="/cursos/magia-universal-cuantica" variant="accent" size="md">

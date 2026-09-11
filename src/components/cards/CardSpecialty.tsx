@@ -9,20 +9,27 @@ export type Specialty = {
   title: string;
   description: string;
   href: string;
+  image?: string;
+  imageAlt?: string;
 };
 
-export default function CardSpecialty({ icon: Icon, title, description, href }: Specialty) {
+export default function CardSpecialty({ icon: Icon, title, description, href, image, imageAlt }: Specialty) {
   return (
     <div className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft ${cardHover}`}>
       <div className="overflow-hidden">
-        <PlaceholderImage className={`aspect-[4/3] w-full rounded-none ${cardImageHover}`} />
+        <PlaceholderImage
+          src={image}
+          alt={imageAlt ?? title}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className={`aspect-[4/3] w-full rounded-none ${cardImageHover}`}
+        />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-7">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
           <Icon className="text-accent" size={20} strokeWidth={1.5} />
         </span>
         <h3 className="font-heading text-xl text-primary">{title}</h3>
-        <p className="flex-1 text-sm leading-relaxed text-ink/65">{description}</p>
+        <p className="flex-1 text-sm leading-relaxed text-ink-muted">{description}</p>
         <Link
           href={href}
           aria-label={`Más información sobre ${title}`}

@@ -15,7 +15,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Consultas", href: "/consultas" },
   { label: "Limpieza Energética", href: "/limpieza-energetica-proteccion" },
   { label: "Libros", href: "/libros" },
-  { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/contacto" },
 ];
 

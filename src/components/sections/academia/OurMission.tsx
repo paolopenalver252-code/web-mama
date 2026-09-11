@@ -17,8 +17,10 @@ export default function OurMission() {
           </div>
         </Reveal>
         <Reveal delay={200}>
-          <p className="mt-6 text-base italic leading-relaxed text-ink/50">
-            Declaración de misión pendiente de contenido definitivo.
+          <p className="mt-6 text-base leading-relaxed text-ink-muted">
+            Formar, acompañar e inspirar a las personas para que desarrollen una vida más
+            consciente, equilibrada y coherente, integrando conocimiento, experiencia y
+            crecimiento personal.
           </p>
         </Reveal>
       </div>

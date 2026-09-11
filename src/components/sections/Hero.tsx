@@ -127,7 +127,7 @@ export default function Hero() {
             <p className="font-heading text-xl text-white/90 sm:text-2xl">
               Academia Internacional de Psicotransformación Integral
             </p>
-            <p className="max-w-md text-base leading-relaxed text-white/70">
+            <p className="max-w-md text-base leading-relaxed text-mist">
               Especialistas en Magia Universal, Limpieza Energética y Protección.
             </p>
             <p className="border-l-2 border-accent pl-4 font-heading text-lg italic text-white/80">
@@ -157,7 +157,7 @@ export default function Hero() {
           <div className="font-heading text-4xl leading-none text-white sm:text-5xl">
             <CountUp value={35} suffix="+" />
           </div>
-          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60 sm:text-sm">
+          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-mist-subtle sm:text-sm">
             Años transformando vidas
           </div>
         </div>

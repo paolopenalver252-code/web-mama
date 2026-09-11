@@ -84,7 +84,7 @@ export default function PsaiExplainer() {
                 >
                   {item.letter}
                 </span>
-                <span className="max-w-[7rem] text-[11px] leading-relaxed text-ink/45">{item.meaning}</span>
+                <span className="max-w-[7rem] text-[11px] leading-relaxed text-ink-subtle">{item.meaning}</span>
               </div>
               {index < LETTERS.length - 1 ? (
                 <span data-psai-line aria-hidden className="hidden h-px w-6 origin-left bg-accent/30 sm:block" />
@@ -94,9 +94,18 @@ export default function PsaiExplainer() {
         </div>
 
         <Reveal delay={100}>
-          <p className="mx-auto mt-8 max-w-xl text-center text-sm leading-relaxed text-ink/55">
-            Filosofía del método pendiente de contenido definitivo.
-          </p>
+          <div className="mx-auto mt-8 flex max-w-2xl flex-col gap-4 text-center text-sm leading-relaxed text-ink-muted">
+            <p>Creemos que la transformación comienza en el interior.</p>
+            <p>
+              Nuestra filosofía parte de una visión integral de la persona, entendiendo que
+              pensamiento, emociones, acciones y conciencia están conectados.
+            </p>
+            <p>
+              Por eso, el Método PSAI FLOW busca acompañar cada proceso desde el
+              autoconocimiento, la coherencia y el equilibrio, respetando el ritmo y la
+              experiencia única de cada persona.
+            </p>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -29,7 +29,7 @@ export default function CardBook({
       </span>
       <div className="flex-1">
         <h3 className="font-heading text-lg leading-snug text-primary">{title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink/65">{description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-muted">{description}</p>
       </div>
       <div className="flex flex-col gap-2">
         <Button
@@ -50,21 +50,6 @@ export default function CardBook({
         >
           Comprar
         </Button>
-      </div>
-    </div>
-  );
-}
-
-/**
- * Misma silueta de tarjeta que CardBook, para que "Próximamente" se vea
- * como parte del mismo catálogo y no como un componente distinto.
- */
-export function CardBookComingSoon() {
-  return (
-    <div className="flex h-full flex-col gap-4 rounded-2xl border border-dashed border-primary/15 bg-surface-alt p-5">
-      <PlaceholderImage label="Próximamente" className="aspect-[3/4] w-full" tone="light" />
-      <div className="flex flex-1 flex-col items-center justify-center py-4 text-center">
-        <p className="font-heading text-lg text-primary">Próximamente</p>
       </div>
     </div>
   );

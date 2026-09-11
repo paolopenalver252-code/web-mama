@@ -28,7 +28,7 @@ export default function Hero() {
           <p className="font-heading text-xl text-secondary">
             Academia Internacional de Psicotransformación Integral
           </p>
-          <p className="max-w-xl text-base leading-relaxed text-ink/70">
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted">
             Una academia dedicada a la psicotransformación integral, con base
             en el Método PSAI FLOW®.
           </p>

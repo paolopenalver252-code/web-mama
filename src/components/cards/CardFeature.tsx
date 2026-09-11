@@ -31,7 +31,7 @@ export default function CardFeature({ icon: Icon, title, description, tone = "li
       </span>
       <h3 className={`font-heading text-lg ${isDark ? "text-white" : "text-primary"}`}>{title}</h3>
       {description ? (
-        <p className={`text-sm leading-relaxed ${isDark ? "text-white/60" : "text-ink/65"}`}>
+        <p className={`text-sm leading-relaxed ${isDark ? "text-mist" : "text-ink-muted"}`}>
           {description}
         </p>
       ) : null}

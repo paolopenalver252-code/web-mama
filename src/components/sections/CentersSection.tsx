@@ -4,15 +4,28 @@ import EmptyState from "@/components/ui/EmptyState";
 import CardCenter, { type Center } from "@/components/cards/CardCenter";
 import Reveal from "@/components/ui/Reveal";
 
-// Se rellenará con los centros reales en cuanto el cliente los facilite.
-const CENTERS: Center[] = [];
+const CENTERS: Center[] = [
+  {
+    name: "Centro de Seleni",
+    description: "Especializado en bienestar, estética, spa y cuidado corporal.",
+  },
+  {
+    name: "Centro de Carolina",
+    description: "Especializado en Medicina Tradicional China, acupuntura y bienestar integral.",
+    href: "https://centroqiromass.com/",
+  },
+  {
+    name: "Centro de Zaida",
+    description: "Especialización pendiente de confirmar.",
+  },
+];
 
 export default function CentersSection() {
   return (
     <section className="bg-surface-alt py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Red de colaboradores" title="Centros colaboradores" />
+          <SectionHeading eyebrow="Red de colaboradores" title="Nuestros centros colaboradores" />
         </Reveal>
 
         <div className="mt-14">

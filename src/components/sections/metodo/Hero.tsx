@@ -24,7 +24,7 @@ export default function Hero() {
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
             Método PSAI FLOW®
           </h1>
-          <p className="max-w-xl text-base leading-relaxed text-ink/70">
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted">
             La base de todo lo que ocurre en PSAI FLOW ACADEMY: el hilo
             conductor que sostiene cada curso, consulta y tratamiento.
           </p>
@@ -32,8 +32,11 @@ export default function Hero() {
 
         <div ref={mediaRef} className="mx-auto mt-14 max-w-4xl">
           <PlaceholderImage
-            label="Imagen del Método PSAI FLOW pendiente"
-            className="aspect-[21/9] w-full shadow-soft"
+            src="/images/metodo-psai-flow-academy.jpg"
+            alt="PSAI FLOW ACADEMY — Academia Internacional de Psicotransformación Integral"
+            priority
+            sizes="(max-width: 1024px) 100vw, 56rem"
+            className="aspect-[16/9] w-full shadow-soft"
           />
         </div>
       </div>

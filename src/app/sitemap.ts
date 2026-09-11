@@ -4,9 +4,9 @@ import { COURSES } from "@/lib/courses";
 
 /**
  * Solo incluye rutas que existen de verdad hoy (devuelven 200). Páginas
- * todavía no construidas (p. ej. /reserva, /blog/[slug], /legal/*) se
- * añadirán aquí en el mismo cambio que las cree, para no listar en el
- * sitemap URLs que un rastreador encontraría rotas.
+ * todavía no construidas (p. ej. /reserva, /legal/*) se añadirán aquí en
+ * el mismo cambio que las cree, para no listar en el sitemap URLs que un
+ * rastreador encontraría rotas.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -18,8 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/cursos", changeFrequency: "weekly", priority: 0.9 },
     { path: "/consultas", changeFrequency: "monthly", priority: 0.9 },
     { path: "/limpieza-energetica-proteccion", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/psicotarot-astrologia-feng-shui", changeFrequency: "monthly", priority: 0.9 },
     { path: "/libros", changeFrequency: "monthly", priority: 0.7 },
-    { path: "/blog", changeFrequency: "weekly", priority: 0.6 },
     { path: "/contacto", changeFrequency: "yearly", priority: 0.6 },
   ];
 

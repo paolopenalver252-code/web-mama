@@ -33,7 +33,14 @@ export default function CursosPage() {
         )}
       />
       <DetailHero
-        course={{ category: course.category, title: course.title, level: course.level, summary: course.summary }}
+        course={{
+          category: course.category,
+          title: course.title,
+          level: course.level,
+          summary: course.summary,
+          image: course.image,
+          imageAlt: course.imageAlt,
+        }}
         showBackLink={false}
       />
       <WhyThisCourse />

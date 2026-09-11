@@ -36,7 +36,7 @@ export default function WhatItConsists() {
                   <step.icon className="text-accent" size={24} strokeWidth={1.5} />
                 </span>
                 <h3 className="font-heading text-lg text-primary">{step.title}</h3>
-                <p className="max-w-xs text-sm leading-relaxed text-ink/65">{step.description}</p>
+                <p className="max-w-xs text-sm leading-relaxed text-ink-muted">{step.description}</p>
               </div>
             </Reveal>
           ))}

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/academia/Hero";
-import OurHistory from "@/components/sections/academia/OurHistory";
 import MeetSolimar from "@/components/sections/academia/MeetSolimar";
 import OurMission from "@/components/sections/academia/OurMission";
-import OurVision from "@/components/sections/academia/OurVision";
 import ValuesGrid from "@/components/sections/academia/ValuesGrid";
 import WhyChooseAcademy from "@/components/sections/academia/WhyChooseAcademy";
 import FinalCta from "@/components/sections/FinalCta";
@@ -31,10 +29,8 @@ export default function AcademiaPage() {
         )}
       />
       <Hero />
-      <OurHistory />
       <MeetSolimar />
       <OurMission />
-      <OurVision />
       <ValuesGrid />
       <WhyChooseAcademy />
       <FinalCta

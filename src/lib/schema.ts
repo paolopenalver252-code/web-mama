@@ -37,17 +37,6 @@ export function organizationSchema() {
   };
 }
 
-export function blogSchema() {
-  return {
-    "@type": "Blog",
-    "@id": `${SITE_URL}/blog/#blog`,
-    name: "Blog PSAI FLOW ACADEMY",
-    url: `${SITE_URL}/blog`,
-    publisher: { "@id": ORGANIZATION_ID },
-    inLanguage: "es",
-  };
-}
-
 export function websiteSchema() {
   return {
     "@type": "WebSite",

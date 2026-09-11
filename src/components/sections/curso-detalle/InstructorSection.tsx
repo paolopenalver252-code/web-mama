@@ -19,7 +19,7 @@ export default function InstructorSection({ course }: { course: Course }) {
           <div className="flex flex-col items-start gap-3">
             <Eyebrow>Tu instructora</Eyebrow>
             <h2 className="font-heading text-2xl text-primary">{course.instructor.name}</h2>
-            <p className="text-sm text-ink/60">{course.instructor.role}</p>
+            <p className="text-sm text-ink-subtle">{course.instructor.role}</p>
             <Button href="/academia#solimar-rengel" variant="outline" size="sm" className="mt-2">
               Conocer su historia
             </Button>
