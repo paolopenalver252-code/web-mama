@@ -18,7 +18,7 @@ export default function CardComingSoon({ icon: Icon, title, description }: CardC
         <Icon className="text-accent" size={22} strokeWidth={1.5} />
       </span>
       <p className="font-heading text-lg text-primary">{title}</p>
-      <p className="max-w-xs text-sm leading-relaxed text-ink-muted">{description}</p>
+      <p className="max-w-xs text-sm leading-relaxed text-ink-muted text-body">{description}</p>
     </div>
   );
 }

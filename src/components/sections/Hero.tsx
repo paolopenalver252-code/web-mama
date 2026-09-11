@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { animate } from "animejs";
+import { ChevronDown } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CountUp from "@/components/ui/CountUp";
@@ -127,7 +128,7 @@ export default function Hero() {
             <p className="font-heading text-xl text-white/90 sm:text-2xl">
               Academia Internacional de Psicotransformación Integral
             </p>
-            <p className="max-w-md text-base leading-relaxed text-mist">
+            <p className="max-w-md text-base leading-relaxed text-mist text-body">
               Especialistas en Magia Universal, Limpieza Energética y Protección.
             </p>
             <p className="border-l-2 border-accent pl-4 font-heading text-lg italic text-white/80">
@@ -152,14 +153,25 @@ export default function Hero() {
 
         {/* Estadística — el único dato real que tenemos, con el mismo
             tratamiento tipográfico (cifra grande + etiqueta) que la fila de
-            estadísticas de la referencia, sin tarjeta ni cristal encima. */}
-        <div ref={statRef} className="mt-auto pt-16">
-          <div className="font-heading text-4xl leading-none text-white sm:text-5xl">
-            <CountUp value={35} suffix="+" />
+            estadísticas de la referencia, sin tarjeta ni cristal encima.
+            La marca de scroll comparte fila y entrada con la estadística:
+            un gesto discreto que invita a seguir, sin animación en bucle
+            (aparece una vez con el resto del Hero y queda estático). */}
+        <div ref={statRef} className="mt-auto flex items-end justify-between gap-6 pt-16">
+          <div>
+            <div className="font-heading text-4xl leading-none text-white sm:text-5xl">
+              <CountUp value={35} suffix="+" />
+            </div>
+            <div className="mt-2 text-xs uppercase tracking-[0.2em] text-mist-subtle sm:text-sm">
+              Años transformando vidas
+            </div>
           </div>
-          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-mist-subtle sm:text-sm">
-            Años transformando vidas
-          </div>
+          <span
+            aria-hidden
+            className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors duration-300 sm:flex"
+          >
+            <ChevronDown size={18} strokeWidth={1.5} />
+          </span>
         </div>
       </div>
     </section>

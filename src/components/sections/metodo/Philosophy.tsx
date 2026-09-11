@@ -10,7 +10,7 @@ export default function Philosophy() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-10 flex flex-col gap-5 text-base leading-relaxed text-ink-muted">
+          <div className="mt-10 flex flex-col gap-5 text-base leading-relaxed text-ink-muted text-body">
             <p>
               En PSAI FLOW ACADEMY creemos en una visión verdaderamente integral del
               bienestar.

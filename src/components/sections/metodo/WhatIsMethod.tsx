@@ -9,7 +9,7 @@ export default function WhatIsMethod() {
           <SectionHeading eyebrow="El método" title="¿Qué es el Método PSAI FLOW?" />
         </Reveal>
         <Reveal delay={100}>
-          <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-ink-muted">
+          <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-ink-muted text-body">
             <p className="font-heading text-xl text-primary">
               Una metodología propia de Psicotransformación Integral
             </p>

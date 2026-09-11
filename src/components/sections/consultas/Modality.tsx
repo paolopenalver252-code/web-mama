@@ -31,7 +31,7 @@ export default function Modality() {
                   <modality.icon className="text-accent" size={22} strokeWidth={1.5} />
                 </span>
                 <h3 className="font-heading text-xl text-white">{modality.title}</h3>
-                <p className="text-sm leading-relaxed text-mist">{modality.description}</p>
+                <p className="text-sm leading-relaxed text-mist text-body">{modality.description}</p>
               </div>
             </Reveal>
           ))}

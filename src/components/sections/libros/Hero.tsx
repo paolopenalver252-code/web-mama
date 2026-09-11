@@ -25,7 +25,7 @@ export default function Hero() {
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
             Libros de Solimar Rengel
           </h1>
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted">
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted text-body">
             Más de 35 años de investigación, aprendizaje y experiencia
             reunidos en publicaciones orientadas al desarrollo personal, la
             Psicotransformación Integral y el Método PSAI FLOW®.

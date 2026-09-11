@@ -29,7 +29,7 @@ export default function EmptyState({ icon: Icon, title, description, tone = "lig
         <Icon className="text-accent" size={22} strokeWidth={1.5} />
       </span>
       <p className={`font-heading text-xl ${isDark ? "text-white" : "text-primary"}`}>{title}</p>
-      <p className={`max-w-md text-sm leading-relaxed ${isDark ? "text-mist" : "text-ink-muted"}`}>
+      <p className={`max-w-md text-sm leading-relaxed ${isDark ? "text-mist text-body" : "text-ink-muted text-body"}`}>
         {description}
       </p>
     </div>

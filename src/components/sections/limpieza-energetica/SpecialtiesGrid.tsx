@@ -11,7 +11,7 @@ import {
   Wand2,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CardFeature from "@/components/cards/CardFeature";
+import FeatureTags from "@/components/ui/FeatureTags";
 import Reveal from "@/components/ui/Reveal";
 
 const SPECIALTIES = [
@@ -35,13 +35,11 @@ export default function SpecialtiesGrid() {
           <SectionHeading eyebrow="Alcance" title="Especialidades" />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {SPECIALTIES.map((item, index) => (
-            <Reveal key={item.title} delay={index * 60} className="h-full">
-              <CardFeature icon={item.icon} title={item.title} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto mt-14 max-w-4xl">
+            <FeatureTags items={SPECIALTIES} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

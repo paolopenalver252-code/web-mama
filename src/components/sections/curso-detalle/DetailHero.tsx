@@ -61,7 +61,7 @@ export default function DetailHero({ course, showBackLink = true }: DetailHeroPr
 
           <p className="font-heading text-xl text-secondary">{course.level}</p>
 
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted">{course.summary}</p>
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted text-body">{course.summary}</p>
 
           <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contacto" variant="accent" size="md">

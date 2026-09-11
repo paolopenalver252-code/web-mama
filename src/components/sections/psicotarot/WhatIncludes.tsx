@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CardFeature from "@/components/cards/CardFeature";
+import FeatureTags from "@/components/ui/FeatureTags";
 import Reveal from "@/components/ui/Reveal";
 
 const TOOLS = [
@@ -44,13 +44,11 @@ export default function WhatIncludes() {
           />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TOOLS.map((tool, index) => (
-            <Reveal key={tool.title} delay={index * 60} className="h-full">
-              <CardFeature icon={tool.icon} title={tool.title} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto mt-14 max-w-4xl">
+            <FeatureTags items={TOOLS} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ export default function ForWhom() {
         <Reveal>
           <SectionHeading eyebrow="Perfiles" title="¿Para quién son estas consultas?" />
         </Reveal>
-        <div className="mt-10 flex flex-col gap-5 text-base leading-relaxed text-ink-muted">
+        <div className="mt-10 flex flex-col gap-5 text-base leading-relaxed text-ink-muted text-body">
           <Reveal>
             <p>
               Para personas que buscan comprender mejor lo que viven, superar bloqueos y

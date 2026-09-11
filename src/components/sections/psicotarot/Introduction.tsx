@@ -18,7 +18,7 @@ export default function Introduction() {
           />
         </Reveal>
 
-        <div className="mt-10 flex flex-col gap-5 text-base leading-relaxed text-ink-muted">
+        <div className="mt-10 flex flex-col gap-5 text-base leading-relaxed text-ink-muted text-body">
           {PARAGRAPHS.map((paragraph, index) => (
             <Reveal key={paragraph} delay={index * 100}>
               <p>{paragraph}</p>

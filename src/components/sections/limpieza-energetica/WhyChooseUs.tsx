@@ -1,6 +1,6 @@
 import { Award, Fingerprint, HeartHandshake, Layers, Scale, ShieldCheck } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CardFeature from "@/components/cards/CardFeature";
+import FeatureTags from "@/components/ui/FeatureTags";
 import Reveal from "@/components/ui/Reveal";
 
 const REASONS = [
@@ -20,13 +20,11 @@ export default function WhyChooseUs() {
           <SectionHeading eyebrow="La confianza" title="¿Por qué elegir PSAI FLOW?" />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3">
-          {REASONS.map((reason, index) => (
-            <Reveal key={reason.title} delay={index * 80} className="h-full">
-              <CardFeature icon={reason.icon} title={reason.title} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto mt-14 max-w-3xl">
+            <FeatureTags items={REASONS} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

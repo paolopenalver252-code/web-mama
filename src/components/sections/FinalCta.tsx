@@ -32,7 +32,7 @@ export default function FinalCta({ heading, description, primaryCta, secondaryCt
           <h2 className="font-heading text-3xl leading-tight text-white sm:text-4xl">{heading}</h2>
         </Reveal>
         <Reveal delay={100}>
-          <p className="max-w-xl text-base leading-relaxed text-mist">{description}</p>
+          <p className="max-w-xl text-base leading-relaxed text-mist text-body">{description}</p>
         </Reveal>
         <Reveal delay={200}>
           <div className="flex flex-wrap items-center justify-center gap-4">

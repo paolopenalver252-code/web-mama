@@ -113,7 +113,7 @@ export default function ContactForm() {
                 <CheckCircle2 className="text-accent" size={26} strokeWidth={1.5} />
               </span>
               <h2 className="font-heading text-2xl text-primary">Solicitud enviada</h2>
-              <p className="max-w-md text-sm leading-relaxed text-ink-muted">
+              <p className="max-w-md text-sm leading-relaxed text-ink-muted text-body">
                 Gracias por escribirnos. Responderemos a tu solicitud lo
                 antes posible.
               </p>
@@ -130,7 +130,7 @@ export default function ContactForm() {
         <Reveal>
           <div className="rounded-3xl border border-primary/10 bg-surface p-8 shadow-soft sm:p-12">
             <h2 className="font-heading text-2xl text-primary sm:text-3xl">Formulario de contacto</h2>
-            <p className="mt-2 text-sm text-ink-muted">
+            <p className="mt-2 text-sm text-ink-muted text-body">
               Cuéntanos qué necesitas y te responderemos lo antes posible.
             </p>
 

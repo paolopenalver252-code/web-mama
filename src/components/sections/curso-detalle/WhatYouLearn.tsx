@@ -1,5 +1,5 @@
 import SectionHeading from "@/components/ui/SectionHeading";
-import CardFeature from "@/components/cards/CardFeature";
+import FeatureTags from "@/components/ui/FeatureTags";
 import Reveal from "@/components/ui/Reveal";
 import type { Course } from "@/lib/courses";
 
@@ -11,13 +11,11 @@ export default function WhatYouLearn({ course }: { course: Course }) {
           <SectionHeading eyebrow="Contenidos" title="¿Qué aprenderás?" />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {course.whatYouLearn.map((point, index) => (
-            <Reveal key={point.title} delay={index * 60} className="h-full">
-              <CardFeature icon={point.icon} title={point.title} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto mt-14 max-w-4xl">
+            <FeatureTags items={course.whatYouLearn} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

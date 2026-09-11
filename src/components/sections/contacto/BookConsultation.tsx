@@ -23,7 +23,7 @@ export default function BookConsultation() {
           </h2>
         </Reveal>
         <Reveal delay={150}>
-          <p className="max-w-lg text-base leading-relaxed text-mist">
+          <p className="max-w-lg text-base leading-relaxed text-mist text-body">
             Si ya sabes que quieres una consulta personalizada, reserva tu
             plaza directamente, sin esperar respuesta al formulario.
           </p>

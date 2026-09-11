@@ -24,7 +24,7 @@ export default function Hero() {
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
             Contacto
           </h1>
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted">
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted text-body">
             Estamos aquí para acompañarte en tu proceso de transformación
             personal y ayudarte a encontrar la formación o consulta más
             adecuada para ti.

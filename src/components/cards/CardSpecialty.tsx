@@ -29,7 +29,7 @@ export default function CardSpecialty({ icon: Icon, title, description, href, im
           <Icon className="text-accent" size={20} strokeWidth={1.5} />
         </span>
         <h3 className="font-heading text-xl text-primary">{title}</h3>
-        <p className="flex-1 text-sm leading-relaxed text-ink-muted">{description}</p>
+        <p className="flex-1 text-sm leading-relaxed text-ink-muted text-body">{description}</p>
         <Link
           href={href}
           aria-label={`Más información sobre ${title}`}

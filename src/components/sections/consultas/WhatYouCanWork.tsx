@@ -9,7 +9,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CardFeature from "@/components/cards/CardFeature";
+import FeatureTags from "@/components/ui/FeatureTags";
 import Reveal from "@/components/ui/Reveal";
 
 const TOPICS = [
@@ -31,13 +31,11 @@ export default function WhatYouCanWork() {
           <SectionHeading eyebrow="En sesión" title="¿Qué puedes trabajar durante una consulta?" />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-4">
-          {TOPICS.map((item, index) => (
-            <Reveal key={item.title} delay={index * 60} className="h-full">
-              <CardFeature icon={item.icon} title={item.title} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto mt-14 max-w-3xl">
+            <FeatureTags items={TOPICS} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

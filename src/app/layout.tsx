@@ -28,13 +28,12 @@ const manrope = Manrope({
   display: "swap",
 });
 
-// Tipografía de los párrafos secundarios en gris oscuro (text-ink-muted /
-// text-ink-subtle / text-mist / text-mist-subtle, ver globals.css) — solo
-// peso 500 (Medium), el que les da más presencia sin llegar a bold.
+// Tipografía de los párrafos y textos descriptivos largos (clase
+// .text-body, ver globals.css) — solo peso 400, el único que usa.
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: "500",
+  weight: "400",
   display: "swap",
 });
 

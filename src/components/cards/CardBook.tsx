@@ -29,7 +29,7 @@ export default function CardBook({
       </span>
       <div className="flex-1">
         <h3 className="font-heading text-lg leading-snug text-primary">{title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink-muted">{description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-muted text-body">{description}</p>
       </div>
       <div className="flex flex-col gap-2">
         <Button

@@ -24,7 +24,7 @@ export default function Hero() {
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
             Método PSAI FLOW®
           </h1>
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted">
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted text-body">
             La base de todo lo que ocurre en PSAI FLOW ACADEMY: el hilo
             conductor que sostiene cada curso, consulta y tratamiento.
           </p>

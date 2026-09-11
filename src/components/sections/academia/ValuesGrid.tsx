@@ -11,7 +11,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CardFeature from "@/components/cards/CardFeature";
+import FeatureTags from "@/components/ui/FeatureTags";
 import Reveal from "@/components/ui/Reveal";
 
 const VALUES = [
@@ -35,13 +35,11 @@ export default function ValuesGrid() {
           <SectionHeading eyebrow="Lo que nos guía" title="Nuestros Valores" />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {VALUES.map((value, index) => (
-            <Reveal key={value.title} delay={index * 60} className="h-full">
-              <CardFeature icon={value.icon} title={value.title} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto mt-14 max-w-3xl">
+            <FeatureTags items={VALUES} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -53,7 +53,7 @@ export default function CourseSpotlight() {
                 <ListChecks className="text-accent" size={22} strokeWidth={1.5} />
                 <h3 className="font-heading text-xl text-white">Qué aprenderás</h3>
               </div>
-              <p className="text-sm leading-relaxed text-mist">
+              <p className="text-sm leading-relaxed text-mist text-body">
                 Aprende una metodología integral para armonizar cuerpo, mente,
                 emociones, espacios y conciencia desde una visión ética,
                 profesional y transformadora.

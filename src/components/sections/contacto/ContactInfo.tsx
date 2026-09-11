@@ -25,7 +25,7 @@ export default function ContactInfo() {
                   <card.icon className="text-accent" size={20} strokeWidth={1.5} />
                 </span>
                 <h3 className="font-heading text-lg text-primary">{card.title}</h3>
-                <p className="text-sm text-ink-muted">{card.value}</p>
+                <p className="text-sm text-ink-muted text-body">{card.value}</p>
               </div>
             </Reveal>
           ))}

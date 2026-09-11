@@ -35,7 +35,7 @@ export default function Hero() {
           <h1 className="font-heading text-4xl leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
             Consultas de Psicotarot y Astrología Cabalística
           </h1>
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted">
+          <p className="max-w-xl text-base leading-relaxed text-ink-muted text-body">
             Un espacio de autoconocimiento y acompañamiento para comprender tu momento,
             descubrir tu potencial y tomar decisiones con mayor claridad y conciencia.
           </p>

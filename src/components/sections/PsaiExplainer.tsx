@@ -94,7 +94,7 @@ export default function PsaiExplainer() {
         </div>
 
         <Reveal delay={100}>
-          <div className="mx-auto mt-8 flex max-w-2xl flex-col gap-4 text-center text-sm leading-relaxed text-ink-muted">
+          <div className="mx-auto mt-8 flex max-w-2xl flex-col gap-4 text-center text-sm leading-relaxed text-ink-muted text-body">
             <p>Creemos que la transformación comienza en el interior.</p>
             <p>
               Nuestra filosofía parte de una visión integral de la persona, entendiendo que

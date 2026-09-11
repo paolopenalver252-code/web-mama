@@ -17,9 +17,11 @@ export default function FounderSpotlight() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-7">
             <Eyebrow>Fundadora</Eyebrow>
-            <h2 className="font-heading text-3xl text-primary sm:text-4xl">Conoce a Solimar</h2>
+            <h2 className="font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
+              Conoce a Solimar
+            </h2>
 
             <StatBlock value="35+" label="Años de trayectoria" />
 

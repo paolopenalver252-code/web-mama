@@ -17,7 +17,7 @@ export default function OurMission() {
           </div>
         </Reveal>
         <Reveal delay={200}>
-          <p className="mt-6 text-base leading-relaxed text-ink-muted">
+          <p className="mt-6 text-base leading-relaxed text-ink-muted text-body">
             Formar, acompañar e inspirar a las personas para que desarrollen una vida más
             consciente, equilibrada y coherente, integrando conocimiento, experiencia y
             crecimiento personal.

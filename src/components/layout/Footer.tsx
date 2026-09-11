@@ -27,7 +27,7 @@ export default function Footer() {
                 Academy
               </span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-mist">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-mist text-body">
               {/* TODO: descripción breve pendiente de copy definitivo del cliente. */}
               [Descripción breve de la academia — pendiente de texto definitivo]
             </p>

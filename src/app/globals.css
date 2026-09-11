@@ -38,9 +38,8 @@
      labels y UI. Los títulos (h1-h6 y cualquier elemento con font-heading)
      siguen usando exclusivamente --font-heading, sin tocar. */
   --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
-  /* Tipografía de los párrafos "grises" en tono oscuro (ver los 4 colores
-     ink-muted/ink-subtle/mist/mist-subtle arriba): DM Sans, aplicada más
-     abajo a esas mismas clases de color para no tocar cada componente. */
+  /* Tipografía de párrafos y textos descriptivos largos — ver la clase
+     .text-body más abajo, que es quien la aplica (no los 4 colores). */
   --font-body-muted: var(--font-dm-sans), "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
   /* Sombras premium — siempre muy suaves, nunca duras */
@@ -86,17 +85,22 @@ h6 {
   font-family: var(--font-heading);
 }
 
-/* Los párrafos secundarios en gris oscuro usan DM Sans en vez de la
-   tipografía sans por defecto del sistema, en peso medio (500) para que
-   tengan más presencia como información relevante sin llegar a negrita —
-   una sola regla aquí cubre las ~45 apariciones de estas clases en toda
-   la web, sin tocar componente por componente. */
-.text-ink-muted,
-.text-ink-subtle,
-.text-mist,
-.text-mist-subtle {
-  font-family: var(--font-body-muted);
-  font-weight: 500;
+/* Tipografía de párrafos y textos descriptivos largos — SOLO se añade a
+   los elementos que son claramente un párrafo (junto a text-ink-muted o
+   text-mist, que aportan el color). No se usa en títulos, tarjetas-título,
+   botones, labels, badges, navegación ni footer headings: esos siguen con
+   la tipografía y tamaño que ya tenían. */
+.text-body {
+  font-family: var(--font-body-muted); /* DM Sans */
+  font-weight: 400;
+  font-size: 1rem; /* 16px en móvil */
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  .text-body {
+    font-size: 1.0625rem; /* 17px en tablet y escritorio */
+  }
 }
 
 /* Scroll-reveal (ver components/ui/Reveal.tsx). Sin el atributo (sin JS,

@@ -30,7 +30,9 @@ export default function MeetSolimar() {
         <Reveal delay={120}>
           <div className="flex flex-col items-start gap-6">
             <Eyebrow>Fundadora</Eyebrow>
-            <h2 className="font-heading text-3xl text-primary sm:text-4xl">Conoce a Solimar Rengel</h2>
+            <h2 className="font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
+              Conoce a Solimar Rengel
+            </h2>
 
             <StatBlock value="35+" label="Años de experiencia" />
 
@@ -45,7 +47,7 @@ export default function MeetSolimar() {
               ))}
             </ul>
 
-            <div className="flex max-w-xl flex-col gap-4 text-base leading-relaxed text-ink-muted">
+            <div className="flex max-w-xl flex-col gap-4 text-base leading-relaxed text-ink-muted text-body">
               {BIO.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -55,7 +57,7 @@ export default function MeetSolimar() {
               <p className="font-heading text-lg uppercase tracking-wide text-primary">
                 Más de 35 años de experiencia
               </p>
-              <p className="mt-2 max-w-xl text-base leading-relaxed text-ink-muted">
+              <p className="mt-2 max-w-xl text-base leading-relaxed text-ink-muted text-body">
                 Una vida dedicada al conocimiento, la transformación y la conciencia.
               </p>
             </div>
