@@ -1,17 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { brandEase } from "@/lib/motion/classNames";
 
 type Variant = "accent" | "primary" | "outline" | "ghost";
 type Size = "sm" | "md";
 
-// Misma curva que motion/tokens.ts (easeOut) y motion/classNames.ts
-// (cardHover): el hover de los botones debe sentirse como el mismo
-// movimiento que el resto de microinteracciones de la web.
-const brandEase = "ease-[cubic-bezier(0.23,1,0.32,1)]";
-
+// Propiedades nombradas explícitamente: solo lo que cambia en hover en
+// alguna variante (transform, color de fondo, de borde y de texto).
 const base =
-  `group relative inline-flex items-center justify-center gap-3 rounded-full font-medium tracking-wide transition-all duration-300 ${brandEase} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2`;
+  `group relative inline-flex items-center justify-center gap-3 rounded-full font-medium tracking-wide transition-[transform,background-color,border-color,color] duration-300 ${brandEase} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2`;
 
 const variants: Record<Variant, string> = {
   // bg-accent-text (no bg-accent): el dorado decorativo #C8A35F no cumple
@@ -39,7 +37,7 @@ const capSize: Record<Size, string> = {
 function ArrowCap({ size }: { size: Size }) {
   return (
     <span
-      className={`inline-flex ${capSize[size]} shrink-0 items-center justify-center rounded-full bg-white/15 transition-all duration-300 ${brandEase} group-hover:rotate-45 group-hover:bg-white/25`}
+      className={`inline-flex ${capSize[size]} shrink-0 items-center justify-center rounded-full bg-white/15 transition-[transform,background-color] duration-300 ${brandEase} group-hover:rotate-45 group-hover:bg-white/25`}
     >
       <ArrowUpRight size={size === "sm" ? 14 : 16} strokeWidth={2} />
     </span>

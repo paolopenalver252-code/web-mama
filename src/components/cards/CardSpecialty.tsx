@@ -2,7 +2,8 @@ import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PlaceholderImage from "@/components/ui/PlaceholderImage";
-import { cardHover, cardImageHover } from "@/lib/motion/classNames";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import { brandEase, cardHover, cardImageHover } from "@/lib/motion/classNames";
 
 export type Specialty = {
   icon: LucideIcon;
@@ -15,7 +16,10 @@ export type Specialty = {
 
 export default function CardSpecialty({ icon: Icon, title, description, href, image, imageAlt }: Specialty) {
   return (
-    <div className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft ${cardHover}`}>
+    <SpotlightCard
+      spotlightColor="rgba(200, 163, 95, 0.16)"
+      className={`group flex h-full flex-col rounded-2xl border border-primary/5 bg-surface shadow-soft ${cardHover}`}
+    >
       <div className="overflow-hidden">
         <PlaceholderImage
           src={image}
@@ -36,9 +40,9 @@ export default function CardSpecialty({ icon: Icon, title, description, href, im
           className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors duration-300 group-hover:text-accent-text"
         >
           Más información
-          <ArrowRight size={16} strokeWidth={1.75} className="transition-transform duration-300 group-hover:translate-x-1" />
+          <ArrowRight size={16} strokeWidth={1.75} className={`transition-transform duration-300 ${brandEase} group-hover:translate-x-1`} />
         </Link>
       </div>
-    </div>
+    </SpotlightCard>
   );
 }

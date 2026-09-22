@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { brandEase } from "@/lib/motion/classNames";
 
 type SpecialtyCardProps = {
   // Recibe el icono ya renderizado (no el componente): al ser este un
@@ -29,9 +30,15 @@ export default function SpecialtyCard({
 
   return (
     <div
-      className="group relative h-full min-h-[11.5rem] overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-accent/30 hover:shadow-[0_20px_45px_rgba(15,45,82,0.12)]"
+      className={`group relative h-full min-h-[11.5rem] overflow-hidden rounded-2xl border border-primary/5 bg-surface shadow-soft transition-[border-color,box-shadow] duration-300 ${brandEase} hover:border-accent/30 hover:shadow-[0_20px_45px_rgba(15,45,82,0.12)]`}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
+      onFocus={() => setActive(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+          setActive(false);
+        }
+      }}
     >
       <button
         type="button"
@@ -47,7 +54,7 @@ export default function SpecialtyCard({
 
       <div
         onClick={() => setActive(false)}
-        className={`absolute inset-0 flex flex-col items-start justify-between gap-4 rounded-2xl bg-primary p-6 text-left transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`absolute inset-0 flex flex-col items-start justify-between gap-4 overflow-y-auto rounded-2xl bg-primary p-6 text-left transition-[transform,opacity] duration-300 ${brandEase} ${
           active ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"
         }`}
       >

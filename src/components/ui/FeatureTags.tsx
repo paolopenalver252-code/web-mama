@@ -32,7 +32,7 @@ export default function FeatureTags({ items, tone = "light", align = "center" }:
               isDark ? "border-white/15 bg-white/5 text-white/90" : "border-primary/10 bg-surface-alt text-primary"
             }`}
           >
-            <item.icon className="text-accent" size={16} strokeWidth={1.5} />
+            <item.icon className={isDark ? "text-accent" : "text-accent-text"} size={16} strokeWidth={1.5} />
             {item.title}
           </span>
         </li>

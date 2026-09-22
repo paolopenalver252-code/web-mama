@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { prefersReducedMotion } from "@/lib/motion/environment";
 
 type ParallaxProps = {
   children?: ReactNode;
@@ -22,7 +23,7 @@ export default function Parallax({ children, className = "", speed = 10 }: Paral
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
 
     let ticking = false;
     let scrollAttached = false;

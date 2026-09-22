@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { brandEase } from "@/lib/motion/classNames";
 
 export type FaqItem = {
   question: string;
@@ -45,7 +46,11 @@ export default function FaqAccordion({ items }: FaqAccordionProps) {
                 isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
               }`}
             >
-              <div className="overflow-hidden">
+              <div
+                className={`overflow-hidden transition-opacity duration-300 ${brandEase} ${
+                  isOpen ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <p className="px-6 pb-5 text-sm leading-relaxed text-ink-muted text-body">{item.answer}</p>
               </div>
             </div>

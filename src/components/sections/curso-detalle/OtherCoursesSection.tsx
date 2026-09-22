@@ -23,7 +23,7 @@ export default function OtherCoursesSection() {
 
         <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {PLACEHOLDERS.map((item, index) => (
-            <Reveal key={index} delay={index * 100} className="h-full">
+            <Reveal key={`${item.title}-${index}`} delay={index * 100} className="h-full">
               <CardComingSoon icon={item.icon} title={item.title} description={item.description} />
             </Reveal>
           ))}

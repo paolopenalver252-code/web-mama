@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "@/lib/navigation";
 import Button from "@/components/ui/Button";
+import { brandEase } from "@/lib/motion/classNames";
 
 /**
  * Header global — fijo (sticky), fondo blanco con efecto glass y sombra
@@ -45,7 +46,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
+      className={`sticky top-0 z-50 w-full border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ${
         transparent
           ? "border-transparent bg-transparent"
           : `border-primary/5 bg-surface/80 backdrop-blur-md ${scrolled ? "shadow-header" : ""}`
@@ -86,10 +87,10 @@ export default function Header() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     prefetch={false}
-                    className={`relative whitespace-nowrap text-[13px] font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
+                    className={`relative whitespace-nowrap text-[13px] font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-accent after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.23,1,0.32,1)] hover:after:scale-x-100 ${
                       transparent
-                        ? `hover:text-accent ${active ? "text-white after:w-full" : "text-white/75 after:w-0"}`
-                        : `hover:text-accent-text ${active ? "text-primary after:w-full" : "text-primary/70 after:w-0"}`
+                        ? `hover:text-accent ${active ? "text-white after:scale-x-100" : "text-white/75 after:scale-x-0"}`
+                        : `hover:text-accent-text ${active ? "text-primary after:scale-x-100" : "text-primary/70 after:scale-x-0"}`
                     }`}
                   >
                     {item.label}
@@ -119,7 +120,7 @@ export default function Header() {
           className="relative flex h-10 w-10 shrink-0 items-center justify-center xl:hidden"
         >
           <span
-            className={`absolute h-px w-6 transition-all duration-300 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
+            className={`absolute h-px w-6 transition-[transform,background-color] duration-300 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
               menuOpen ? "rotate-45" : "-translate-y-2"
             }`}
           />
@@ -129,21 +130,25 @@ export default function Header() {
             }`}
           />
           <span
-            className={`absolute h-px w-6 transition-all duration-300 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
+            className={`absolute h-px w-6 transition-[transform,background-color] duration-300 ${transparent && !menuOpen ? "bg-white" : "bg-primary"} ${
               menuOpen ? "-rotate-45" : "translate-y-2"
             }`}
           />
         </button>
       </div>
 
-      {/* Panel móvil */}
+      {/* Panel móvil — mismo truco de grid-template-rows que FaqAccordion.tsx
+          (en vez de animar max-height, propiedad de layout): la fila de grid
+          pasa de 0fr a 1fr, así que no hace falta inventar un tope como el
+          antiguo max-h-[36rem]. Requiere overflow-hidden tanto en el
+          contenedor como en su único hijo para poder comprimirse a 0. */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden bg-surface/95 backdrop-blur-md transition-[max-height,opacity] duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] xl:hidden ${
-          menuOpen ? "max-h-[36rem] opacity-100" : "max-h-0 opacity-0"
+        className={`grid overflow-hidden bg-surface/95 backdrop-blur-md transition-[grid-template-rows,opacity] duration-300 ${brandEase} xl:hidden ${
+          menuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <nav aria-label="Principal (móvil)" className="px-6 pb-8 pt-2">
+        <nav aria-label="Principal (móvil)" className="overflow-hidden px-6 pb-8 pt-2">
           <ul className="flex flex-col divide-y divide-primary/10">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>

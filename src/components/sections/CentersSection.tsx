@@ -13,6 +13,7 @@ const CENTERS: Center[] = [
   {
     name: "Centro de Seleni",
     description: "Especializado en bienestar, estética, spa y cuidado corporal.",
+    href: "https://tubellezaholistica.com/",
   },
   {
     name: "Centro de Carolina",

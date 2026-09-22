@@ -119,7 +119,7 @@ export default function Hero() {
           <SplitText
             as="h1"
             delay={450}
-            className="mt-6 block font-heading text-5xl leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-[5rem]"
+            className="mt-6 block font-heading text-5xl leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-[5.75rem]"
           >
             PSAI FLOW ACADEMY
           </SplitText>

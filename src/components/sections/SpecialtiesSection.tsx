@@ -17,7 +17,8 @@ const SPECIALTIES: Specialty[] = [
   {
     icon: Compass,
     title: "Método PSAI FLOW® – Código Fuente",
-    description: "Descripción pendiente de contenido definitivo.",
+    description:
+      "Un método de psicotransformación integral creado para acompañarte en procesos de transformación profunda, trabajando de forma consciente sobre cuerpo, mente, emociones y energía.",
     href: "/metodo-psai-flow",
     image: "/images/metodo-psai-flow-codigo-fuente.jpg",
     imageAlt:

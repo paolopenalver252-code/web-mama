@@ -37,13 +37,12 @@ export type Course = {
     name: string;
     role: string;
   };
-  price: string;
 };
 
 /**
  * Catálogo de cursos. Por ahora solo contiene el curso confirmado como
- * insignia (Curso de Magia Universal Cuántica) — los campos sin dato
- * confirmado por el cliente usan "Pendiente de confirmar". Añadir aquí un
+ * insignia (Curso de Magia Universal Cuántica). No incluye precio: la
+ * inversión se trata en consulta privada (ver Pricing.tsx). Añadir aquí un
  * curso nuevo lo hace aparecer automáticamente en /cursos y genera su
  * propia ficha en /cursos/[slug].
  */
@@ -81,7 +80,6 @@ export const COURSES: Course[] = [
       name: "Solimar Rengel",
       role: "Fundadora de PSAI FLOW ACADEMY",
     },
-    price: "Pendiente de confirmar",
   },
 ];
 

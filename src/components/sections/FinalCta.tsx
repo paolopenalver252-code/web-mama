@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import StarField from "@/components/ui/StarField";
 import Watermark from "@/components/ui/Watermark";
 
 type CtaLink = {
@@ -26,6 +27,7 @@ export default function FinalCta({ heading, description, primaryCta, secondaryCt
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,163,95,0.15),transparent_60%)]"
       />
+      <StarField />
       <Watermark className="-bottom-20 -right-10 z-0" />
       <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-8 px-6 text-center lg:px-8">
         <Reveal>

@@ -3,10 +3,11 @@ import { SITE_URL } from "@/lib/seo";
 import { COURSES } from "@/lib/courses";
 
 /**
- * Solo incluye rutas que existen de verdad hoy (devuelven 200). Páginas
- * todavía no construidas (p. ej. /reserva, /legal/*) se añadirán aquí en
- * el mismo cambio que las cree, para no listar en el sitemap URLs que un
- * rastreador encontraría rotas.
+ * Solo incluye rutas indexables con contenido real hoy. Las páginas
+ * /legal/* ya existen (devuelven 200, para que el footer no enlace a un
+ * 404) pero muestran un aviso de "contenido pendiente" con `noIndex: true`
+ * mientras no haya texto legal definitivo del cliente — se añadirán aquí
+ * en el mismo cambio que reciban su contenido final.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

@@ -39,7 +39,13 @@ export default function Hero() {
         </div>
 
         <div ref={mediaRef} className="mx-auto mt-12 max-w-6xl pb-16 lg:pb-20">
-          <PlaceholderImage label="Imagen de libros pendiente" className="aspect-[21/9] w-full shadow-soft" />
+          <PlaceholderImage
+            src="/images/libros-biblioteca.jpg"
+            alt="Libros abiertos sobre un escritorio, rodeados de cartas de tarot, cristales y una vela encendida"
+            priority
+            sizes="(max-width: 1280px) 100vw, 72rem"
+            className="aspect-[16/9] w-full shadow-soft"
+          />
         </div>
       </div>
     </section>

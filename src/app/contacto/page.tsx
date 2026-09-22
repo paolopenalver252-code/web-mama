@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/sections/contacto/Hero";
 import ContactForm from "@/components/sections/contacto/ContactForm";
 import ContactInfo from "@/components/sections/contacto/ContactInfo";
+import SocialLinks from "@/components/sections/contacto/SocialLinks";
 import BookConsultation from "@/components/sections/contacto/BookConsultation";
 import FaqSection from "@/components/sections/FaqSection";
 import FinalCta from "@/components/sections/FinalCta";
@@ -30,6 +31,7 @@ export default function ContactoPage() {
       <Hero />
       <ContactForm />
       <ContactInfo />
+      <SocialLinks />
       <BookConsultation />
       <FaqSection />
       <FinalCta

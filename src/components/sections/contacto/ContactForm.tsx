@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CheckCircle2 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import { WhatsappIcon } from "@/components/icons/SocialIcons";
+
+const WHATSAPP_NUMBER = "34601174247";
 
 const SERVICE_OPTIONS = [
   "Método PSAI FLOW",
@@ -38,33 +40,61 @@ const INITIAL_VALUES: FormValues = {
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_PATTERN = /^[+\d][\d\s-]{5,}$/;
 
 function validate(values: FormValues): FormErrors {
   const errors: FormErrors = {};
 
   if (!values.fullName.trim()) {
-    errors.fullName = "Indica tu nombre completo.";
+    errors.fullName = "Introduce tu nombre.";
   }
 
-  if (!values.email.trim()) {
-    errors.email = "Indica tu correo electrónico.";
-  } else if (!EMAIL_PATTERN.test(values.email.trim())) {
+  if (!values.phone.trim()) {
+    errors.phone = "Introduce tu número de teléfono.";
+  } else if (!PHONE_PATTERN.test(values.phone.trim())) {
+    errors.phone = "Introduce un número de teléfono válido.";
+  }
+
+  if (values.email.trim() && !EMAIL_PATTERN.test(values.email.trim())) {
     errors.email = "Introduce un correo electrónico válido.";
-  }
-
-  if (!values.reason.trim()) {
-    errors.reason = "Cuéntanos brevemente el motivo de tu consulta.";
   }
 
   if (!values.service) {
     errors.service = "Selecciona el servicio que te interesa.";
   }
 
+  if (!values.reason.trim()) {
+    errors.reason = "Cuéntanos brevemente el motivo de tu consulta.";
+  }
+
   if (!values.message.trim()) {
-    errors.message = "Escribe tu mensaje.";
+    errors.message = "Cuéntanos brevemente en qué podemos ayudarte.";
   }
 
   return errors;
+}
+
+function buildWhatsappMessage(values: FormValues): string {
+  const lines = [
+    `Hola, soy ${values.fullName.trim()}.`,
+    "",
+    "Me pongo en contacto con PSAI FLOW ACADEMY porque estoy interesado/a en:",
+    values.service,
+    "",
+    "Motivo de la consulta:",
+    values.reason.trim(),
+    "",
+    "Mi teléfono:",
+    values.phone.trim(),
+  ];
+
+  if (values.email.trim()) {
+    lines.push("", "Mi email:", values.email.trim());
+  }
+
+  lines.push("", "Mi mensaje:", values.message.trim(), "", "Gracias.");
+
+  return lines.join("\n");
 }
 
 const inputClasses =
@@ -76,7 +106,7 @@ const errorTextClasses = "text-xs text-red-500";
 export default function ContactForm() {
   const [values, setValues] = useState<FormValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sent">("idle");
 
   const setField = <K extends keyof FormValues>(field: K, value: FormValues[K]) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -96,11 +126,18 @@ export default function ContactForm() {
       return;
     }
 
-    setStatus("submitting");
-    // TODO: conectar con un servicio real de envío de email (API route + Resend/SendGrid/etc.).
-    window.setTimeout(() => {
-      setStatus("sent");
-    }, 600);
+    const message = buildWhatsappMessage(values);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    // window.open() abre WhatsApp Web/escritorio en una pestaña nueva, o la
+    // app de WhatsApp en móvil. Si el navegador bloquea el popup, se cae a
+    // navegar en la misma pestaña para que el enlace siempre funcione.
+    const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    if (!opened) {
+      window.location.href = whatsappUrl;
+    }
+
+    setStatus("sent");
   };
 
   if (status === "sent") {
@@ -110,12 +147,12 @@ export default function ContactForm() {
           <Reveal>
             <div className="flex flex-col items-center gap-4 rounded-3xl border border-primary/10 bg-surface p-12 text-center shadow-soft">
               <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/10">
-                <CheckCircle2 className="text-accent" size={26} strokeWidth={1.5} />
+                <WhatsappIcon className="text-accent" size={26} strokeWidth={1.5} />
               </span>
-              <h2 className="font-heading text-2xl text-primary">Solicitud enviada</h2>
+              <h2 className="font-heading text-2xl text-primary">Mensaje preparado en WhatsApp</h2>
               <p className="max-w-md text-sm leading-relaxed text-ink-muted text-body">
-                Gracias por escribirnos. Responderemos a tu solicitud lo
-                antes posible.
+                Se ha preparado tu mensaje en WhatsApp. Solo tienes que enviarlo para contactar con
+                nosotros.
               </p>
             </div>
           </Reveal>
@@ -131,7 +168,7 @@ export default function ContactForm() {
           <div className="rounded-3xl border border-primary/10 bg-surface p-8 shadow-soft sm:p-12">
             <h2 className="font-heading text-2xl text-primary sm:text-3xl">Formulario de contacto</h2>
             <p className="mt-2 text-sm text-ink-muted text-body">
-              Cuéntanos qué necesitas y te responderemos lo antes posible.
+              Cuéntanos qué necesitas y te responderemos lo antes posible por WhatsApp.
             </p>
 
             <form onSubmit={handleSubmit} noValidate className="mt-8 flex flex-col gap-6">
@@ -173,13 +210,36 @@ export default function ContactForm() {
                 </div>
 
                 <div className="flex flex-col gap-2">
+                  <label htmlFor="phone" className={labelClasses}>
+                    Teléfono
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    required
+                    autoComplete="tel"
+                    value={values.phone}
+                    onChange={(event) => setField("phone", event.target.value)}
+                    aria-invalid={Boolean(errors.phone)}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
+                    className={`${inputClasses} ${errors.phone ? errorInputClasses : ""}`}
+                  />
+                  {errors.phone ? (
+                    <p id="phone-error" className={errorTextClasses}>
+                      {errors.phone}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div className="flex flex-col gap-2">
                   <label htmlFor="email" className={labelClasses}>
-                    Correo electrónico
+                    Correo electrónico <span className="font-normal text-ink-subtle">(opcional)</span>
                   </label>
                   <input
                     id="email"
                     type="email"
-                    required
                     autoComplete="email"
                     value={values.email}
                     onChange={(event) => setField("email", event.target.value)}
@@ -192,22 +252,6 @@ export default function ContactForm() {
                       {errors.email}
                     </p>
                   ) : null}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="phone" className={labelClasses}>
-                    Teléfono <span className="font-normal text-ink-subtle">(opcional)</span>
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    value={values.phone}
-                    onChange={(event) => setField("phone", event.target.value)}
-                    className={inputClasses}
-                  />
                 </div>
 
                 <div className="flex flex-col gap-2">
@@ -282,15 +326,13 @@ export default function ContactForm() {
                 ) : null}
               </div>
 
-              <Button
-                type="submit"
-                variant="accent"
-                size="md"
-                disabled={status === "submitting"}
-                className="mt-2 disabled:opacity-60"
-              >
-                {status === "submitting" ? "Enviando..." : "Enviar solicitud"}
+              <Button type="submit" variant="accent" size="md" className="mt-2 w-full !gap-2 !pl-5 !pr-2">
+                <WhatsappIcon size={16} strokeWidth={1.5} />
+                Enviar por WhatsApp
               </Button>
+              <p className="text-xs text-ink-subtle">
+                Al continuar, se abrirá WhatsApp para que puedas revisar y enviar tu mensaje.
+              </p>
             </form>
           </div>
         </Reveal>

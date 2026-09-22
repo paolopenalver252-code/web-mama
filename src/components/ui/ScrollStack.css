@@ -1,0 +1,41 @@
+/*
+ * Reglas estructurales mínimas necesarias para que el mecanismo de
+ * ScrollStack.tsx funcione (los selectores por clase son requeridos por el
+ * componente). El aspecto visual (color, borde, sombra, radio) NO se define
+ * aquí: lo aporta el propio contenido (CardFeature) que se pasa como children
+ * de cada ScrollStackItem, para heredar la identidad visual del proyecto tal
+ * cual, sin introducir un estilo nuevo.
+ *
+ * `overscroll-behavior: auto` (valor por defecto del navegador, explícito
+ * aquí para que quede documentado) permite que, al agotar el scroll nativo
+ * de este contenedor, el gesto encadene con normalidad hacia el resto de la
+ * página en vez de quedar contenido dentro de este bloque.
+ */
+
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+}
+
+.scroll-stack-inner {
+  padding: 0.5rem 0 2.5rem;
+}
+
+.scroll-stack-card {
+  position: relative;
+  box-sizing: border-box;
+  transform-origin: top center;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+}
+
+.scroll-stack-end {
+  width: 100%;
+  height: 1px;
+}

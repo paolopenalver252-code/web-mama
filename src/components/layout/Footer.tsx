@@ -2,11 +2,10 @@ import Link from "next/link";
 import { LEGAL_ITEMS, NAV_ITEMS } from "@/lib/navigation";
 import Reveal from "@/components/ui/Reveal";
 
-// TODO: sustituir por las URLs reales de los perfiles del cliente.
 const SOCIAL_LINKS = [
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "YouTube", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/Solimar_Rengel" },
+  { label: "Facebook", href: "https://www.facebook.com/janice.rengel/" },
+  { label: "YouTube", href: "https://www.youtube.com/@solimarrengel8473" },
 ];
 
 export default function Footer() {
@@ -37,6 +36,8 @@ export default function Footer() {
                   <a
                     href={social.href}
                     aria-label={social.label}
+                    target={social.href !== "#" ? "_blank" : undefined}
+                    rel={social.href !== "#" ? "noopener noreferrer" : undefined}
                     className="text-sm text-mist transition-colors duration-300 hover:text-accent"
                   >
                     {social.label}
@@ -67,10 +68,17 @@ export default function Footer() {
           <div>
             <h3 className="font-heading text-lg text-white">Contacto</h3>
             <ul className="mt-4 space-y-3 text-sm text-mist">
-              {/* TODO: datos de contacto reales pendientes del cliente. */}
-              <li>[Email pendiente]</li>
-              <li>[Teléfono pendiente]</li>
-              <li>[Ciudad / país pendiente]</li>
+              <li>
+                <a href="mailto:Soymillonaria520@gmail.com" className="transition-colors duration-300 hover:text-accent">
+                  Soymillonaria520@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+34601174247" className="transition-colors duration-300 hover:text-accent">
+                  +34 601 174 247
+                </a>
+              </li>
+              <li>Mallorca, España</li>
             </ul>
           </div>
 

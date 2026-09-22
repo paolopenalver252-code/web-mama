@@ -36,7 +36,7 @@ export default function CardBook({
           href={moreInfoHref}
           variant="outline"
           size="sm"
-          className="w-full"
+          className="w-full !px-4"
           aria-label={`Más información sobre ${title}`}
         >
           Más información
@@ -45,7 +45,7 @@ export default function CardBook({
           href={purchaseHref}
           variant="accent"
           size="sm"
-          className="w-full"
+          className="w-full !pl-4 !pr-1.5"
           aria-label={`Comprar ${title}`}
         >
           Comprar

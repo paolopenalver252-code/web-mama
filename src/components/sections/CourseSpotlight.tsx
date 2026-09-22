@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import Watermark from "@/components/ui/Watermark";
+import { getFeaturedCourse } from "@/lib/courses";
 
 const COURSE_FACTS = [
   { icon: CalendarClock, label: "Duración", value: "6 meses" },
@@ -16,6 +17,8 @@ const COURSE_FACTS = [
 ];
 
 export default function CourseSpotlight() {
+  const course = getFeaturedCourse();
+
   return (
     <section className="relative overflow-hidden bg-primary py-24">
       <Watermark className="-bottom-24 -right-6 z-0" />
@@ -59,7 +62,7 @@ export default function CourseSpotlight() {
                 profesional y transformadora.
               </p>
               <div className="mt-auto pt-4">
-                <Button href="/cursos/magia-universal-cuantica" variant="accent" size="md">
+                <Button href={`/cursos/${course.slug}`} variant="accent" size="md">
                   Inscribirme
                 </Button>
               </div>

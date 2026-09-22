@@ -68,7 +68,7 @@ export default async function CourseDetailPage({ params }: Props) {
       <CourseInfoBand course={course} />
       <ContinuityTimeline course={course} />
       <InstructorSection course={course} />
-      <Pricing course={course} />
+      <Pricing />
       <OtherCoursesSection />
       <FinalCta
         heading={`Empieza ${course.title}`}

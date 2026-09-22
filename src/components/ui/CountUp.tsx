@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { prefersReducedMotion } from "@/lib/motion/environment";
 
 type CountUpProps = {
   value: number;
@@ -23,7 +24,7 @@ export default function CountUp({ value, prefix = "", suffix = "", duration = 16
     const node = ref.current;
     if (!node) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (prefersReducedMotion()) {
       // El estado ya inicia en `value` — no hace falta tocarlo.
       return;
     }

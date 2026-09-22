@@ -11,7 +11,7 @@ export default function Library() {
           <SectionHeading eyebrow="Catálogo" title="Biblioteca" />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-8 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {BOOKS.map((book, index) => (
             <Reveal key={book.slug} delay={index * 100} className="h-full">
               <CardBook {...book} />

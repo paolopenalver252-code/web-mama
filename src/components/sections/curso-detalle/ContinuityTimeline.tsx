@@ -33,12 +33,13 @@ export default function ContinuityTimeline({ course }: { course: Course }) {
                 </div>
               </Reveal>
               {index < steps.length - 1 ? (
-                <ArrowRight
-                  aria-hidden
-                  className="hidden shrink-0 text-accent sm:block"
-                  size={22}
-                  strokeWidth={1.5}
-                />
+                // Mismo Reveal que las tarjetas, a mitad de camino entre los
+                // delays de la anterior y la siguiente: la flecha se asienta
+                // justo entre "Ahora" y "Continuidad" en vez de estar ya ahí
+                // desde el primer frame — un latido que conecta ambas.
+                <Reveal delay={index * 150 + 75} className="hidden shrink-0 sm:block">
+                  <ArrowRight aria-hidden className="text-accent" size={22} strokeWidth={1.5} />
+                </Reveal>
               ) : null}
             </div>
           ))}

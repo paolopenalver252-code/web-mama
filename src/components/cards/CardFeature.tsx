@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { cardHover, cardHoverDark } from "@/lib/motion/classNames";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 type CardFeatureProps = {
   icon: LucideIcon;
@@ -17,7 +18,8 @@ export default function CardFeature({ icon: Icon, title, description, tone = "li
   const isDark = tone === "dark";
 
   return (
-    <div
+    <SpotlightCard
+      spotlightColor={isDark ? "rgba(200, 163, 95, 0.28)" : "rgba(200, 163, 95, 0.14)"}
       className={`flex h-full flex-col gap-4 rounded-2xl border p-7 ${
         isDark ? `border-white/10 bg-white/5 ${cardHoverDark}` : `border-primary/5 bg-surface shadow-soft ${cardHover}`
       }`}
@@ -35,6 +37,6 @@ export default function CardFeature({ icon: Icon, title, description, tone = "li
           {description}
         </p>
       ) : null}
-    </div>
+    </SpotlightCard>
   );
 }

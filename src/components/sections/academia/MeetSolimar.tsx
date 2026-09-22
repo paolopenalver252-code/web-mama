@@ -11,7 +11,7 @@ const BIO = [
   "A los 17 años inició una etapa decisiva de aprendizaje junto a quien fue su primer maestro, un chamán y médico homeópata perteneciente a una familia de tradición chamánica del Perú.",
   "Desde entonces, ha continuado estudiando e integrando diferentes disciplinas, entre ellas Psicología Holística, Parapsicología, Coaching, Reiki, Medicina Holística, Medicina Tradicional China, Naturopatía, Astrología, Psicotarot, Cábala, Numerología, Radiestesia, Péndulo Hebreo, Feng Shui, diferentes corrientes de magia, técnicas energéticas y espirituales, entre muchas otras.",
   "Toda esta experiencia y formación han dado lugar a una visión propia e integradora de la transformación personal y energética.",
-  "Es creadora de Psicotransformación Método PSAI Flow®️ – Código Origen y de Magia Universal Cuántica, así como del curso Limpieza, Magia y Protección.",
+  "Es creadora de Psicotransformación Método PSAI Flow® – Código Origen y de Magia Universal Cuántica, así como del curso Limpieza, Magia y Protección.",
   "Su trabajo nace de la unión entre experiencia, conocimiento, práctica y conciencia, integrando diferentes caminos de aprendizaje en metodologías propias orientadas al crecimiento, la transformación y el equilibrio integral de la persona.",
 ];
 

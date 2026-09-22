@@ -26,7 +26,7 @@ export default function EmptyState({ icon: Icon, title, description, tone = "lig
           isDark ? "bg-white/10" : "bg-accent/10"
         }`}
       >
-        <Icon className="text-accent" size={22} strokeWidth={1.5} />
+        <Icon className={isDark ? "text-accent" : "text-accent-text"} size={22} strokeWidth={1.5} />
       </span>
       <p className={`font-heading text-xl ${isDark ? "text-white" : "text-primary"}`}>{title}</p>
       <p className={`max-w-md text-sm leading-relaxed ${isDark ? "text-mist text-body" : "text-ink-muted text-body"}`}>

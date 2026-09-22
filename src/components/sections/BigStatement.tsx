@@ -1,5 +1,6 @@
 import CountUp from "@/components/ui/CountUp";
 import Reveal from "@/components/ui/Reveal";
+import StarField from "@/components/ui/StarField";
 import Watermark from "@/components/ui/Watermark";
 
 /**
@@ -14,6 +15,7 @@ export default function BigStatement() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(200,163,95,0.14),transparent_60%)]"
       />
+      <StarField />
       <Watermark className="-left-16 -top-24 z-0" />
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 text-center lg:px-8">

@@ -3,8 +3,8 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 
 const INFO_CARDS = [
-  { icon: Mail, title: "Email", value: "[Email pendiente]" },
-  { icon: Phone, title: "Teléfono", value: "[Teléfono pendiente]" },
+  { icon: Mail, title: "Email", value: "Soymillonaria520@gmail.com", href: "mailto:Soymillonaria520@gmail.com" },
+  { icon: Phone, title: "Teléfono", value: "+34 601 174 247", href: "tel:+34601174247" },
   { icon: MapPin, title: "Ubicación", value: "Mallorca, España" },
   { icon: Globe, title: "Atención Online", value: "Alcance internacional" },
 ];
@@ -25,7 +25,16 @@ export default function ContactInfo() {
                   <card.icon className="text-accent" size={20} strokeWidth={1.5} />
                 </span>
                 <h3 className="font-heading text-lg text-primary">{card.title}</h3>
-                <p className="text-sm text-ink-muted text-body">{card.value}</p>
+                {card.href ? (
+                  <a
+                    href={card.href}
+                    className="text-sm text-ink-muted text-body transition-colors duration-300 hover:text-accent"
+                  >
+                    {card.value}
+                  </a>
+                ) : (
+                  <p className="text-sm text-ink-muted text-body">{card.value}</p>
+                )}
               </div>
             </Reveal>
           ))}

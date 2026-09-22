@@ -18,7 +18,10 @@ export default function SourceCode() {
         </Reveal>
         <Reveal delay={200}>
           <p className="mt-6 text-base italic leading-relaxed text-mist text-body">
-            Explicación pendiente de contenido definitivo.
+            Dentro de la visión de la Psicotransformación Método PSAI Flow®, la fecha de
+            nacimiento es contemplada como el Código Fuente, una clave personal que permite
+            entrar en las capas más profundas de la conciencia y explorar los programas,
+            patrones, creencias y memorias que pueden estar condicionando nuestra experiencia.
           </p>
         </Reveal>
       </div>

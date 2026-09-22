@@ -1,297 +1,324 @@
 # Animation Recipes
 
-Ready-to-build implementations for the cases that come up constantly. Start from these instead of a blank file — adjust tokens/timing to match the codebase's existing scale before shipping. Every recipe follows `SKILL.md`: `transform`/`opacity` only, no approximated curves, reduced-motion and hover-gating included.
+Ready-to-build implementations for the cases that come up most. Start from the recipe, then adapt — don't rebuild from scratch.
 
-Tokens assumed (define once, reuse everywhere):
-
-```css
-:root {
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-}
-```
+Curves are the `--ease-out`, `--ease-in-out`, and `--ease-drawer` tokens defined in SKILL.md.
 
 ---
 
 ## Button press
 
-**Purpose:** feedback. **Tool:** CSS transition. **Duration:** 100–160ms.
+Any pressable element. Instant feedback that the interface heard the user.
 
 ```css
 .button {
-  transition: transform 120ms var(--ease-out), background-color 120ms var(--ease-out);
+  transition: transform 160ms var(--ease-out);
 }
+
 .button:active {
   transform: scale(0.97);
 }
 ```
 
-No keyframes — a rapid double-click must retarget mid-transition, not restart.
+`scale()` scales children too — the label and icons come along, which is what makes it read as a physical press.
+
+No hover gating needed here: `:active` is a real press on touch. Gate any `:hover` styling separately.
 
 ---
 
-## Dropdown / select menu
+## Dropdown, popover, menu, select
 
-**Purpose:** spatial consistency (anchored to trigger). **Tool:** CSS transition + `@starting-style`, or Motion if state is already JS-driven. **Duration:** 150–250ms.
+Scales out of its trigger, not out of thin air.
 
 ```css
-.dropdown {
-  transform-origin: var(--transform-origin, top center);
-  transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
+.popover {
+  transform-origin: var(--transform-origin); /* Base UI supplies this */
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
 }
-.dropdown[data-state="closed"] {
-  transform: scale(0.96) translateY(-4px);
+
+.popover[data-starting-style],
+.popover[data-ending-style] {
   opacity: 0;
-}
-.dropdown[data-state="open"] {
-  transform: scale(1) translateY(0);
-  opacity: 1;
+  transform: scale(0.95);
 }
 ```
 
-Set `--transform-origin` inline from the trigger's position — never hardcode `center` on an anchored menu.
+The `transform-origin` is the whole point — the panel should look like it came out of the thing you clicked.
 
 ---
 
 ## Tooltip
 
-**Purpose:** explanation. **Tool:** CSS transition. **Duration:** 125–200ms, with a short open delay (~300ms) so it doesn't fire on every incidental hover.
+Same shape as a popover, faster, plus the detail most implementations miss.
 
 ```css
 .tooltip {
-  transform: scale(0.94) translateY(2px);
-  opacity: 0;
-  transition: transform 150ms var(--ease-out), opacity 150ms var(--ease-out);
-  transition-delay: 0ms;
+  transform-origin: var(--transform-origin);
+  transition:
+    transform 125ms var(--ease-out),
+    opacity 125ms var(--ease-out);
 }
-.tooltip[data-state="visible"] {
-  transform: scale(1) translateY(0);
-  opacity: 1;
+
+.tooltip[data-starting-style],
+.tooltip[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+/* Once one tooltip is open, neighbours open instantly */
+.tooltip[data-instant] {
+  transition-duration: 0ms;
 }
 ```
 
-```css
-@media (hover: hover) and (pointer: fine) {
-  .trigger:hover ~ .tooltip { --show-delay: 300ms; }
-}
-```
+The initial delay prevents accidental activation. After that, skipping both the delay and the animation makes the whole toolbar feel faster.
 
 ---
 
 ## Modal
 
-**Purpose:** preventing a jarring change (focus moving to a new context). **Tool:** CSS transition or Motion. **Duration:** 200–350ms. **Exempt from `transform-origin` anchoring** — stays centered.
+The one popover that stays centered.
 
 ```css
-.modal-backdrop {
-  transition: opacity 250ms var(--ease-out);
-  opacity: 0;
-}
-.modal-backdrop[data-state="open"] { opacity: 1; }
-
 .modal {
-  transform: scale(0.96);
-  opacity: 0;
-  transition: transform 250ms var(--ease-out), opacity 250ms var(--ease-out);
+  transform-origin: center; /* exempt — not anchored to a trigger */
+  transition:
+    opacity 250ms var(--ease-out),
+    transform 250ms var(--ease-out);
 }
-.modal[data-state="open"] {
-  transform: scale(1);
-  opacity: 1;
+
+.modal[data-starting-style],
+.modal[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.backdrop {
+  transition: opacity 250ms var(--ease-out);
 }
 ```
 
-Exit mirrors entry (same curve family, roughly 0.7× the duration — exits can be quicker since the user isn't waiting on new content).
+Animate the backdrop's opacity alongside it so they read as one surface.
 
 ---
 
 ## Drawer / sheet
 
-**Purpose:** spatial consistency (content lives off-screen in that direction). **Tool:** CSS transition or Motion. **Duration:** 250–400ms. **Curve:** `--ease-drawer`.
-
 ```css
 .drawer {
-  transform: translateY(100%);
-  transition: transform 320ms var(--ease-drawer);
-}
-.drawer[data-state="open"] {
   transform: translateY(0);
+  transition: transform 500ms var(--ease-drawer);
+}
+
+.drawer[data-closed] {
+  transform: translateY(100%);
 }
 ```
 
-Use `translateY(100%)` (percentage, not px) so it works regardless of content height. If it's drag-dismissible, see **Drag-to-dismiss** below instead — a plain transition can't carry gesture velocity.
+This is how Vaul hides a drawer before animating it in.
+
+Add drag and it becomes a gesture problem — see **Drag to dismiss** below.
 
 ---
 
 ## Toast
 
-**Purpose:** feedback. **Tool:** CSS transition (never keyframes — toasts fire repeatedly and must retarget). **Duration:** 200–300ms enter, matched on exit, same axis.
-
 ```css
 .toast {
-  transform: translateY(100%);
-  opacity: 0;
-  transition: transform 240ms var(--ease-out), opacity 240ms var(--ease-out);
-}
-.toast[data-state="open"] {
-  transform: translateY(0);
   opacity: 1;
-}
-.toast[data-state="closed"] {
-  transform: translateY(100%);
-  opacity: 0;
-  transition-duration: 180ms; /* exit a touch snappier than entry */
+  transform: translateY(0);
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(100%);
+  }
 }
 ```
 
-Entered from the bottom → dismiss through the bottom (or via swipe on the same axis). Never cross-fade a toast that slid in.
+- `ease` rather than `ease-out`, slightly slower than typical UI: Sonner reads as elegant partly because its motion is tuned to the component's personality rather than to the generic UI budget.
+- If `@starting-style` isn't available, fall back to the mount flag:
+
+```jsx
+useEffect(() => { setMounted(true); }, []);
+// <div data-mounted={mounted}>
+```
+
+When toasts stack and the list reflows, the opacity change has to work against the height change. There's no formula for that pair — adjust until it feels right, then check it again the next day.
 
 ---
 
-## Accordion
-
-**Purpose:** state indication. **Tool:** CSS `grid-template-rows` trick (the sanctioned way to fake a `height: auto` transition without measuring) — this is the one place `height`-adjacent animation is tolerated.
+## Accordion / collapse
 
 ```css
-.accordion-row {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms var(--ease-in-out);
-}
-.accordion-row[data-state="open"] {
-  grid-template-rows: 1fr;
-}
-.accordion-row > .accordion-content {
+.content {
   overflow: hidden;
+  transition:
+    height 200ms var(--ease-out),
+    opacity 200ms var(--ease-out);
 }
 ```
 
-No JS height measurement, no layout thrash. Pair the chevron/caret rotation with `transform: rotate()`, same duration.
+Keep it short — this is one of the few animations that costs layout on every frame, so a long duration is expensive as well as sluggish. Measure the content height in JS (or use a headless primitive that supplies it) rather than animating to `auto`.
 
 ---
 
-## Stagger (list / grid entrance)
+## Stagger a group entrance
 
-**Purpose:** preventing a jarring change — everything popping in at once reads as a glitch, not a list. **Tool:** CSS `animation-delay` per item, or Motion `staggerChildren`. **Stagger interval:** 30–80ms, capped — don't stagger 40 items linearly or the last one lands a full second late.
+For a list or grid the user sees occasionally — not for a list they scroll past all day.
 
 ```css
-.list-item {
-  animation: fade-up 400ms var(--ease-out) both;
-  animation-delay: calc(var(--i) * 50ms);
+.item {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeIn 300ms var(--ease-out) forwards;
 }
-@keyframes fade-up {
-  from { transform: translateY(8px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+
+.item:nth-child(2) { animation-delay: 50ms; }
+.item:nth-child(3) { animation-delay: 100ms; }
+.item:nth-child(4) { animation-delay: 150ms; }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 ```
 
-```css
-/* cap total stagger so long lists don't crawl in */
-.list-item:nth-child(n+8) { animation-delay: 400ms; }
-```
-
-Set `--i` inline (`style={{ '--i': index }}`) or via `nth-child`. Trigger with an `IntersectionObserver` adding a class, not on mount, if the list is below the fold.
+Stagger is decorative — it must never block interaction while it plays.
 
 ---
 
-## Hold-to-confirm
+## Hold to confirm
 
-**Purpose:** feedback with intentional friction (prevents accidental destructive actions). **Tool:** CSS animation for the fill, driven by a held pointer state. **Asymmetric timing:** slow linear hold, snappy release.
+For destructive actions where a plain click is too easy to fire by accident.
 
 ```css
-.confirm-fill {
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 2000ms linear;
+.overlay {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 200ms var(--ease-out); /* release: snappy */
 }
-.confirm-btn:active .confirm-fill {
-  transform: scaleX(1);
+
+.button:active .overlay {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 2s linear;             /* press: slow and deliberate */
 }
-.confirm-btn:not(:active) .confirm-fill {
-  transition: transform 200ms var(--ease-out); /* snap back fast on release */
+
+.button:active {
+  transform: scale(0.97);
 }
 ```
 
-The 2s hold is the deliberate phase — linear, so progress reads honestly. The release/reset is a system response — fast `ease-out`.
+`linear` is correct here — the fill is a progress indicator, and progress shouldn't ease.
 
 ---
 
-## Tab indicator
+## Tab indicator with a color transition
 
-**Purpose:** spatial consistency (showing which tab is active and where the previous one was). **Tool:** CSS transition on `transform`, measured via `offsetLeft`/`offsetWidth` of the active tab; or Motion `layoutId` if already using Motion.
+Timing individual color transitions across a tab list never quite lands. Clip instead.
+
+Duplicate the tab list. Style the copy as the active state — different background, different text color. Clip the copy so only the active tab shows, and animate the clip on change:
 
 ```css
-.tab-indicator {
-  position: absolute;
-  transition: transform 250ms var(--ease-in-out), width 250ms var(--ease-in-out);
-  transform: translateX(var(--tab-x));
-  width: var(--tab-w);
+.tabs-active-copy {
+  clip-path: inset(0 60% 0 20%); /* driven by the active tab's position */
+  transition: clip-path 250ms var(--ease-in-out);
 }
 ```
 
-`width` here is the one non-transform property worth the exception — a tab indicator that only translates looks wrong when tab widths differ. If tabs are equal width, drop `width` entirely and it's a pure transform animation.
+The text and background change together, in perfect sync, because they're one element being revealed rather than two colors being interpolated.
 
 ---
 
 ## Scroll reveal
 
-**Purpose:** preventing a jarring change as content enters the viewport. **Tool:** `IntersectionObserver` toggling a data-attribute + CSS transition (not a scroll-linked JS loop — that runs every frame for no reason).
+Marketing surfaces only. Don't do this to functional UI a user visits daily.
 
 ```css
-[data-reveal="hidden"] {
-  opacity: 0;
-  transform: translateY(24px);
+.reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 600ms var(--ease-in-out);
 }
-[data-reveal="visible"] {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+
+.reveal[data-visible] {
+  clip-path: inset(0 0 0 0);
 }
 ```
 
-Observe once, disconnect after the element reveals — this shouldn't re-trigger on scroll-back. Default content to visible (no `data-reveal` attribute) until JS confirms the hidden state, so a slow script never leaves content invisible.
+Trigger with `IntersectionObserver`, or Motion's `useInView` with `{ once: true, margin: "-100px" }`. Fire it once — re-animating on every scroll-by is an interface fighting its reader.
 
 ---
 
-## Drag-to-dismiss
+## Drag to dismiss
 
-**Purpose:** delight / gesture. **Tool:** Motion — this is the case a spring exists for. Needs velocity carried through interruption, which CSS transitions cannot do.
+The gesture recipe. Springs, not durations, because the user can reverse mid-motion.
 
-```jsx
-<motion.div
-  drag="y"
-  dragConstraints={{ top: 0, bottom: 0 }}
-  dragElastic={0.5}
-  onDragEnd={(_, info) => {
-    if (info.offset.y > 100 || info.velocity.y > 500) {
-      controls.start({
-        transform: "translateY(100%)",
-        transition: { type: "spring", stiffness: 300, damping: 30 },
-      });
-    } else {
-      controls.start({
-        transform: "translateY(0px)",
-        transition: { type: "spring", duration: 0.5, bounce: 0.2 },
-      });
-    }
-  }}
-/>
-```
+```js
+// Dismiss on a flick, not just on distance
+const timeTaken = Date.now() - dragStartTime.current;
+const velocity = Math.abs(swipeAmount) / timeTaken;
 
-Check both distance and velocity — a fast short flick should dismiss even if it didn't cross the distance threshold. Snap-back uses the same spring family as the dismiss, just a different target, so an interrupted gesture never feels like it switched physics mid-flight.
-
----
-
-## Reduced motion, once, for all of the above
-
-```css
-@media (prefers-reduced-motion: reduce) {
-  .button, .dropdown, .tooltip, .modal, .drawer, .toast,
-  .accordion-row, .list-item, .tab-indicator, [data-reveal] {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+if (Math.abs(swipeAmount) >= SWIPE_THRESHOLD || velocity > 0.11) {
+  dismiss();
 }
 ```
 
-Keep the opacity/color transitions if they aid comprehension (a toast still needs to visually appear); it's the movement that gets stripped, not the whole animation.
+```js
+// Set transform on the dragged element directly.
+// Driving it through a CSS variable on the parent recalcs styles for every child.
+element.style.transform = `translateY(${distance}px)`;
+```
+
+Four details that separate a good drag from a bad one:
+
+- **Pointer capture** once the drag starts, so it continues when the pointer leaves the element's bounds.
+- **Multi-touch protection** — `if (isDragging) return` on new touch points, or switching fingers mid-drag makes the element jump.
+- **Damping past boundaries** — dragging beyond a natural edge moves the element less the further it goes. Real things slow before they stop.
+- **Friction, not a wall** — allow the over-drag with rising resistance rather than refusing it.
+
+Settle with a spring so an interrupted drag keeps its velocity:
+
+```js
+{ type: "spring", duration: 0.5, bounce: 0.2 }
+```
+
+---
+
+## Masking a crossfade that won't settle
+
+When two states overlap visibly during a transition and no amount of easing or duration tuning fixes it, blur the seam:
+
+```css
+.content {
+  transition:
+    filter 200ms ease,
+    opacity 200ms ease;
+}
+
+.content.transitioning {
+  filter: blur(2px);
+  opacity: 0.7;
+}
+```
+
+Without blur the eye reads two distinct objects swapping. Blur blends them into one perceived transformation. Keep it under 20px — heavy blur is expensive, especially in Safari.
+
+---
+
+## Programmatic, without a library
+
+When the motion needs JS control but not a dependency, WAAPI gives you CSS-grade performance:
+
+```js
+element.animate(
+  [{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }],
+  { duration: 1000, fill: 'forwards', easing: 'cubic-bezier(0.77, 0, 0.175, 1)' }
+);
+```
+
+Hardware-accelerated, interruptible, no bundle cost.
