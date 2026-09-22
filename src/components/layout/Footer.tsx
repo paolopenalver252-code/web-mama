@@ -38,7 +38,7 @@ export default function Footer() {
                     aria-label={social.label}
                     target={social.href !== "#" ? "_blank" : undefined}
                     rel={social.href !== "#" ? "noopener noreferrer" : undefined}
-                    className="text-sm text-mist transition-colors duration-300 hover:text-accent"
+                    className="inline-block py-2.5 text-sm text-mist transition-colors duration-300 hover:text-accent"
                   >
                     {social.label}
                   </a>

@@ -148,7 +148,10 @@ export default function Header() {
           menuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <nav aria-label="Principal (móvil)" className="overflow-hidden px-6 pb-8 pt-2">
+        <nav
+          aria-label="Principal (móvil)"
+          className="max-h-[calc(100dvh-5rem)] overflow-y-auto px-6 pb-8 pt-2"
+        >
           <ul className="flex flex-col divide-y divide-primary/10">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>

@@ -42,8 +42,9 @@ export default function Hero() {
 
         <div ref={mediaRef} className="mx-auto mt-12 max-w-6xl pb-16 lg:pb-20">
           <PlaceholderImage
-            label="Fotografía de Solimar Rengel pendiente"
-            className="aspect-[21/9] w-full shadow-soft"
+            src="/images/solimar-rengel.jpg"
+            alt="Solimar Rengel, fundadora de PSAI FLOW ACADEMY"
+            className="mx-auto aspect-[4/5] w-full max-w-md shadow-soft"
           />
         </div>
       </div>

@@ -37,7 +37,7 @@ export default function CardSpecialty({ icon: Icon, title, description, href, im
         <Link
           href={href}
           aria-label={`Más información sobre ${title}`}
-          className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors duration-300 group-hover:text-accent-text"
+          className="-my-2 inline-flex items-center gap-2 py-2 text-sm font-medium text-primary transition-colors duration-300 group-hover:text-accent-text"
         >
           Más información
           <ArrowRight size={16} strokeWidth={1.75} className={`transition-transform duration-300 ${brandEase} group-hover:translate-x-1`} />

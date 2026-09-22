@@ -4,10 +4,10 @@ import { COURSES } from "@/lib/courses";
 
 /**
  * Solo incluye rutas indexables con contenido real hoy. Las páginas
- * /legal/* ya existen (devuelven 200, para que el footer no enlace a un
- * 404) pero muestran un aviso de "contenido pendiente" con `noIndex: true`
- * mientras no haya texto legal definitivo del cliente — se añadirán aquí
- * en el mismo cambio que reciban su contenido final.
+ * /legal/* y /blog ya existen (devuelven 200, para que el footer/menú no
+ * enlacen a un 404) pero muestran un aviso de "contenido pendiente" con
+ * `noIndex: true` mientras no haya texto definitivo del cliente — se
+ * añadirán aquí en el mismo cambio que reciban su contenido final.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

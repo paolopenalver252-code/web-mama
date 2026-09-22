@@ -9,12 +9,13 @@ export type NavItem = {
  */
 export const NAV_ITEMS: NavItem[] = [
   { label: "Inicio", href: "/" },
-  { label: "Método PSAI FLOW", href: "/metodo-psai-flow" },
+  { label: "Método PSAI Flow", href: "/metodo-psai-flow" },
   { label: "La Academia", href: "/academia" },
   { label: "Cursos", href: "/cursos" },
   { label: "Consultas", href: "/consultas" },
-  { label: "Limpieza Energética", href: "/limpieza-energetica-proteccion" },
+  { label: "Tratamientos", href: "/limpieza-energetica-proteccion" },
   { label: "Libros", href: "/libros" },
+  { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/contacto" },
 ];
 

@@ -64,7 +64,7 @@ export default function SpecialtyCard({
         </div>
         <Link
           href={bookingHref}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-accent transition-colors duration-300 hover:text-accent-text-hover"
+          className="-my-2 inline-flex items-center gap-1.5 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition-colors duration-300 hover:text-accent-text-hover"
         >
           Reservar esta consulta
           <ArrowUpRight size={14} strokeWidth={2} />
