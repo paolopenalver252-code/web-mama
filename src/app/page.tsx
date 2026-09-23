@@ -26,7 +26,7 @@ export default function Home() {
       <FinalCta
         heading="Transformando cuerpo, mente, emociones y conciencia."
         description="Da el siguiente paso: reserva una consulta o descubre todo lo que PSAI FLOW ACADEMY tiene preparado para ti."
-        primaryCta={{ label: "Reservar una consulta", href: "/consultas" }}
+        primaryCta={{ label: "Reservar una consulta", href: "/contacto#formulario-contacto" }}
         secondaryCta={{ label: "Conocer la Academia", href: "/academia" }}
       />
     </>

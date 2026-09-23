@@ -145,7 +145,7 @@ export default function Hero() {
           </div>
 
           <div ref={ctasRef} className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
-            <Button href="/consultas" variant="accent" size="md">
+            <Button href="/contacto#formulario-contacto" variant="accent" size="md">
               Reservar una consulta
             </Button>
             <Button

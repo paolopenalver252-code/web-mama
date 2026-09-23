@@ -39,7 +39,7 @@ export default function MetodoPsaiFlowPage() {
       <FinalCta
         heading="Vive el Método PSAI FLOW®"
         description="Reserva una consulta para experimentarlo de forma personalizada o descubre las formaciones que lo desarrollan en profundidad."
-        primaryCta={{ label: "Reservar una consulta", href: "/consultas" }}
+        primaryCta={{ label: "Reservar una consulta", href: "/contacto#formulario-contacto" }}
         secondaryCta={{ label: "Ver cursos", href: "/cursos" }}
       />
     </>

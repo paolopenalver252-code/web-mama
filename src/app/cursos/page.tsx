@@ -52,7 +52,7 @@ export default function CursosPage() {
         heading="Da el siguiente paso"
         description="Solicita información o reserva una entrevista antes de inscribirte: te ayudamos a resolver cualquier duda."
         primaryCta={{ label: "Solicitar información", href: "/contacto" }}
-        secondaryCta={{ label: "Reservar una entrevista", href: "/consultas" }}
+        secondaryCta={{ label: "Reservar una entrevista", href: "/contacto#formulario-contacto" }}
       />
     </>
   );

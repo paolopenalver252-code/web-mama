@@ -37,7 +37,7 @@ export default function AcademiaPage() {
         heading="Sigue conociendo PSAI FLOW ACADEMY"
         description="Descubre nuestras formaciones o da el primer paso reservando una consulta personalizada."
         primaryCta={{ label: "Ver Cursos", href: "/cursos" }}
-        secondaryCta={{ label: "Reservar Consulta", href: "/consultas" }}
+        secondaryCta={{ label: "Reservar Consulta", href: "/contacto#formulario-contacto" }}
       />
     </>
   );

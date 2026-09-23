@@ -105,7 +105,7 @@ export default function Header() {
             1:1), coherente con el CTA principal del Hero de la Home. Antes
             era "Contacto", genérico; ver docs/estrategia-comunicacion.md §6. */}
         <div className="hidden shrink-0 xl:block">
-          <Button href="/consultas" variant="accent" size="sm">
+          <Button href="/contacto#formulario-contacto" variant="accent" size="sm">
             Reservar consulta
           </Button>
         </div>
@@ -166,7 +166,7 @@ export default function Header() {
             ))}
           </ul>
           <div className="mt-7">
-            <Button href="/consultas" variant="accent" size="sm" className="w-full">
+            <Button href="/contacto#formulario-contacto" variant="accent" size="sm" className="w-full">
               Reservar una consulta
             </Button>
           </div>
