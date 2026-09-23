@@ -4,7 +4,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function SourceCode() {
   return (
-    <section className="bg-primary py-24">
+    <section className="bg-primary py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
         <Reveal>
           <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/10">

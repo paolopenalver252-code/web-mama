@@ -16,7 +16,7 @@ const PROFILES = [
 
 export default function ForWhom() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Perfiles" title="¿Para quién está dirigida?" />

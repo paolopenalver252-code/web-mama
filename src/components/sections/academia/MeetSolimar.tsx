@@ -3,7 +3,7 @@ import StatBlock from "@/components/ui/StatBlock";
 import Reveal from "@/components/ui/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
 
-const ROLES = ["Escritora", "Formadora", "Investigadora", "Creadora del Método PSAI FLOW®"];
+export const ROLES = ["Escritora", "Formadora", "Investigadora", "Creadora del Método PSAI FLOW®"];
 
 const BIO = [
   "Solimar Rengel es terapeuta holística, formadora y creadora de metodologías propias, con más de 35 años de experiencia en el ámbito de la conciencia, la espiritualidad, la energía y la transformación personal.",
@@ -17,9 +17,9 @@ const BIO = [
 
 export default function MeetSolimar() {
   return (
-    <section id="solimar-rengel" className="scroll-mt-24 bg-surface py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-14 px-6 md:grid-cols-2 md:gap-12 lg:px-8">
-        <Reveal>
+    <section id="solimar-rengel" className="scroll-mt-24 bg-surface py-16 sm:py-24">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-6 md:grid-cols-2 md:gap-12 lg:px-8">
+        <Reveal className="-mx-6 md:mx-0">
           <PlaceholderImage
             src="/images/solimar-rengel.jpg"
             alt="Solimar Rengel, fundadora de PSAI FLOW ACADEMY"
@@ -28,7 +28,7 @@ export default function MeetSolimar() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-5 sm:gap-6">
             <Eyebrow>Fundadora</Eyebrow>
             <h2 className="font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
               Conoce a Solimar Rengel
@@ -36,11 +36,11 @@ export default function MeetSolimar() {
 
             <StatBlock value="35+" label="Años de experiencia" />
 
-            <ul className="flex flex-wrap gap-3">
+            <ul className="block sm:flex sm:flex-wrap sm:gap-3">
               {ROLES.map((role) => (
                 <li
                   key={role}
-                  className="rounded-full border border-primary/10 bg-surface-alt px-4 py-2 text-sm text-primary/80"
+                  className="inline text-xs uppercase tracking-[0.15em] text-ink-subtle after:mx-2 after:text-accent-text after:content-['·'] last:after:content-none sm:inline-block sm:rounded-full sm:border sm:border-primary/10 sm:bg-surface-alt sm:px-4 sm:py-2 sm:text-sm sm:normal-case sm:tracking-normal sm:text-primary/80 sm:after:content-none"
                 >
                   {role}
                 </li>
@@ -53,7 +53,7 @@ export default function MeetSolimar() {
               ))}
             </div>
 
-            <div className="mt-2 border-t border-primary/10 pt-6">
+            <div className="mt-1 border-l-2 border-accent pl-4 sm:mt-2 sm:border-l-0 sm:border-t sm:border-primary/10 sm:pl-0 sm:pt-6">
               <p className="font-heading text-lg uppercase tracking-wide text-primary">
                 Más de 35 años de experiencia
               </p>

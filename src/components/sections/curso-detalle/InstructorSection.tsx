@@ -6,7 +6,7 @@ import type { Course } from "@/lib/courses";
 
 export default function InstructorSection({ course }: { course: Course }) {
   return (
-    <section className="bg-surface py-24">
+    <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-14 px-6 sm:grid-cols-[auto_1fr] lg:px-8">
         <Reveal>
           <PlaceholderImage

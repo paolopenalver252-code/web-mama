@@ -10,7 +10,7 @@ export default function CourseInfoBand({ course }: { course: Course }) {
   ];
 
   return (
-    <section className="bg-primary py-24">
+    <section className="bg-primary py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Información del curso" title="Lo esencial, de un vistazo" tone="dark" />

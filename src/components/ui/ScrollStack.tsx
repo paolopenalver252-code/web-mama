@@ -63,7 +63,6 @@ export default function ScrollStack({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const stackCompletedRef = useRef(false);
   const rafRef = useRef<number | null>(null);
-  const tickingRef = useRef(false);
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map<number, CardTransform>());
 
@@ -99,7 +98,11 @@ export default function ScrollStack({
       const pinEnd = endElementTop - containerHeight / 2;
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
-      const targetScale = baseScale + i * itemScale;
+      // Math.min(1, ...): sin este tope, las últimas tarjetas (targetScale
+      // pasado 1 para índices altos) se agrandaban en vez de encogerse al
+      // asentarse — un pequeño "pop" visual. Ninguna tarjeta debe superar su
+      // tamaño natural.
+      const targetScale = Math.min(1, baseScale + i * itemScale);
       const scale = 1 - scaleProgress * (1 - targetScale);
       const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
 
@@ -193,25 +196,41 @@ export default function ScrollStack({
       card.style.backfaceVisibility = "hidden";
     });
 
-    const onScroll = () => {
-      if (tickingRef.current) return;
-      tickingRef.current = true;
-      rafRef.current = requestAnimationFrame(() => {
-        updateCardTransforms();
-        tickingRef.current = false;
-      });
+    // Bucle continuo de rAF en vez de recalcular solo en el evento "scroll":
+    // en scroll nativo (momentum/inercia táctil) el navegador no siempre
+    // dispara "scroll" en cada frame, lo que puede notarse como pequeños
+    // "escalones". Leer scrollTop en cada frame mantiene la pila
+    // perfectamente sincronizada con el dedo. Solo corre mientras la
+    // sección está cerca del viewport (IntersectionObserver, igual que
+    // Parallax.tsx), así que no consume nada fuera de esta pantalla.
+    const loop = () => {
+      updateCardTransforms();
+      rafRef.current = requestAnimationFrame(loop);
     };
 
-    scroller.addEventListener("scroll", onScroll, { passive: true });
+    const startLoop = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    const stopLoop = () => {
+      if (rafRef.current === null) return;
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? startLoop() : stopLoop()),
+      { rootMargin: "50% 0px" }
+    );
+    observer.observe(scroller);
     updateCardTransforms();
 
     return () => {
-      scroller.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      observer.disconnect();
+      stopLoop();
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
-      tickingRef.current = false;
     };
   }, [itemDistance, updateCardTransforms]);
 

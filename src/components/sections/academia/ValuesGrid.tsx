@@ -29,7 +29,7 @@ const VALUES = [
 
 export default function ValuesGrid() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Lo que nos guía" title="Nuestros Valores" />

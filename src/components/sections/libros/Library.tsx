@@ -5,7 +5,7 @@ import { BOOKS } from "@/lib/books";
 
 export default function Library() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Catálogo" title="Biblioteca" />

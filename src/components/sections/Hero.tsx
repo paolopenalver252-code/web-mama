@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CountUp from "@/components/ui/CountUp";
 import SplitText from "@/components/ui/SplitText";
+import StarField from "@/components/ui/StarField";
 import { playEntranceTimeline } from "@/lib/motion/timeline";
 import { easeOut } from "@/lib/motion/tokens";
 import { prefersReducedMotion } from "@/lib/motion/environment";
@@ -92,7 +93,14 @@ export default function Hero() {
             preload="metadata"
             aria-hidden
           />
-        ) : null}
+        ) : (
+          // Sin vídeo (móvil, por peso de datos): un cielo estrellado muy
+          // sutil da profundidad y protagonismo cinematográfico al fondo en
+          // vez de un degradado plano — mismo componente ya usado en
+          // FinalCta.tsx/BigStatement.tsx, coherente con la identidad
+          // "Magia Universal" de la marca.
+          <StarField count={36} />
+        )}
       </div>
 
       {/* Degradados azul profundo — muy sutiles: el propio vídeo (silueta a
@@ -110,7 +118,7 @@ export default function Hero() {
         className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,rgba(11,27,49,0.4)_0%,transparent_100%)]"
       />
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col px-6 pb-12 pt-32 sm:px-10 lg:px-16 lg:pb-16 lg:pt-40">
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center px-6 pb-14 pt-32 sm:justify-start sm:px-10 sm:pb-12 lg:px-16 lg:pb-16 lg:pt-40">
         <div className="max-w-xl">
           <div ref={eyebrowRef}>
             <Eyebrow tone="dark">Academia Internacional</Eyebrow>
@@ -119,24 +127,24 @@ export default function Hero() {
           <SplitText
             as="h1"
             delay={450}
-            className="mt-6 block font-heading text-5xl leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-[5.75rem]"
+            className="mt-5 block font-heading text-[2.75rem] leading-[1.05] tracking-tight text-white sm:mt-6 sm:text-6xl lg:text-[5.75rem]"
           >
             PSAI FLOW ACADEMY
           </SplitText>
 
-          <div ref={metaRef} className="mt-7 flex flex-col gap-4">
-            <p className="font-heading text-xl text-white/90 sm:text-2xl">
+          <div ref={metaRef} className="mt-5 flex flex-col gap-3 sm:mt-7 sm:gap-4">
+            <p className="font-heading text-lg text-white/90 sm:text-2xl">
               Academia Internacional de Psicotransformación Integral
             </p>
-            <p className="max-w-md text-base leading-relaxed text-mist text-body">
+            <p className="hidden max-w-md text-base leading-relaxed text-mist text-body sm:block">
               Especialistas en Magia Universal, Limpieza Energética y Protección.
             </p>
-            <p className="border-l-2 border-accent pl-4 font-heading text-lg italic text-white/80">
+            <p className="border-l-2 border-accent pl-4 font-heading text-base italic text-white/80 sm:text-lg">
               Transformando cuerpo, mente, emociones y conciencia.
             </p>
           </div>
 
-          <div ref={ctasRef} className="mt-9 flex flex-wrap items-center gap-4">
+          <div ref={ctasRef} className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
             <Button href="/consultas" variant="accent" size="md">
               Reservar una consulta
             </Button>
@@ -156,8 +164,11 @@ export default function Hero() {
             estadísticas de la referencia, sin tarjeta ni cristal encima.
             La marca de scroll comparte fila y entrada con la estadística:
             un gesto discreto que invita a seguir, sin animación en bucle
-            (aparece una vez con el resto del Hero y queda estático). */}
-        <div ref={statRef} className="mt-auto flex items-end justify-between gap-6 pt-16">
+            (aparece una vez con el resto del Hero y queda estático).
+            Oculta en móvil: la composición mobile prioriza eyebrow + H1 +
+            un único subtítulo + CTA, sin elementos adicionales compitiendo
+            por la atención en una pantalla pequeña. */}
+        <div ref={statRef} className="mt-auto hidden items-end justify-between gap-6 pt-16 sm:flex">
           <div>
             <div className="font-heading text-4xl leading-none text-white sm:text-5xl">
               <CountUp value={35} suffix="+" />
@@ -168,7 +179,7 @@ export default function Hero() {
           </div>
           <span
             aria-hidden
-            className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors duration-300 sm:flex"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors duration-300"
           >
             <ChevronDown size={18} strokeWidth={1.5} />
           </span>

@@ -19,7 +19,7 @@ const BG_CLASS = {
  */
 export default function ProcessSteps({ eyebrow, title, steps, bg = "surface-alt" }: ProcessStepsProps) {
   return (
-    <section className={`${BG_CLASS[bg]} py-24`}>
+    <section className={`${BG_CLASS[bg]} py-16 sm:py-24`}>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow={eyebrow} title={title} />

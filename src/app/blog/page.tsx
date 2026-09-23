@@ -20,7 +20,7 @@ export const metadata: Metadata = buildPageMetadata({
  */
 export default function BlogPage() {
   return (
-    <section className="bg-surface py-32">
+    <section className="bg-surface py-20 sm:py-32">
       <div className="mx-auto max-w-2xl px-6 text-center lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Blog" title="Blog de PSAI FLOW ACADEMY" />

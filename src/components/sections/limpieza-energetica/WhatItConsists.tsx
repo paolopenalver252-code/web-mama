@@ -22,7 +22,7 @@ const STEPS = [
 
 export default function WhatItConsists() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="El proceso" title="¿En qué consiste?" />

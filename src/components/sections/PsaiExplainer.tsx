@@ -74,17 +74,22 @@ export default function PsaiExplainer() {
           </div>
         </Reveal>
 
-        <div ref={rowRef} className="mt-8 flex flex-col items-center gap-0 sm:flex-row sm:justify-center sm:gap-0">
+        <div ref={rowRef} className="mt-10 flex flex-col sm:mt-8 sm:flex-row sm:items-center sm:justify-center">
           {LETTERS.map((item, index) => (
-            <div key={item.letter} className="flex items-center">
-              <div className="flex flex-col items-center gap-2 px-4 py-2 text-center">
+            <div
+              key={item.letter}
+              className="flex items-center border-t border-accent/15 py-5 first:border-t-0 sm:border-t-0 sm:py-0"
+            >
+              <div className="flex flex-1 items-baseline gap-5 px-1 sm:flex-none sm:flex-col sm:items-center sm:gap-2 sm:px-4 sm:py-2 sm:text-center">
                 <span
                   data-psai-letter
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/30 bg-accent/5 font-heading text-lg font-semibold text-primary"
+                  className="font-heading text-4xl leading-none text-accent-text sm:flex sm:h-10 sm:w-10 sm:items-center sm:justify-center sm:rounded-full sm:border sm:border-accent/30 sm:bg-accent/5 sm:text-lg sm:font-semibold sm:text-primary"
                 >
                   {item.letter}
                 </span>
-                <span className="max-w-[7rem] text-[11px] leading-relaxed text-ink-subtle">{item.meaning}</span>
+                <span className="font-heading text-lg uppercase leading-snug tracking-[0.18em] text-primary sm:max-w-[7rem] sm:font-sans sm:text-[11px] sm:font-normal sm:normal-case sm:leading-relaxed sm:tracking-normal sm:text-ink-subtle">
+                  {item.meaning}
+                </span>
               </div>
               {index < LETTERS.length - 1 ? (
                 <span data-psai-line aria-hidden className="hidden h-px w-6 origin-left bg-accent/30 sm:block" />

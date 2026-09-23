@@ -36,7 +36,7 @@ const CENTERS: Center[] = [
  */
 export default function CentersSection() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Red de colaboradores" title="Nuestros centros colaboradores" />

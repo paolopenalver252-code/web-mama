@@ -10,7 +10,7 @@ export default function ContinuityTimeline({ course }: { course: Course }) {
   ];
 
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="El camino continúa" title="Continuidad" />

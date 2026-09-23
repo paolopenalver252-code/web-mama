@@ -13,8 +13,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary text-mist">
-      <Reveal className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal className="mx-auto max-w-7xl px-6 py-14 sm:py-16 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4">
           {/* Marca */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link

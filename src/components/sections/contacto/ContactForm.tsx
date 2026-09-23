@@ -142,7 +142,7 @@ export default function ContactForm() {
 
   if (status === "sent") {
     return (
-      <section id="formulario-contacto" className="scroll-mt-24 bg-surface-alt py-24">
+      <section id="formulario-contacto" className="scroll-mt-24 bg-surface-alt py-16 sm:py-24">
         <div className="mx-auto max-w-2xl px-6 lg:px-8">
           <Reveal>
             <div className="flex flex-col items-center gap-4 rounded-3xl border border-primary/10 bg-surface p-12 text-center shadow-soft">
@@ -162,7 +162,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="formulario-contacto" className="scroll-mt-24 bg-surface-alt py-24">
+    <section id="formulario-contacto" className="scroll-mt-24 bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
         <Reveal>
           <div className="rounded-3xl border border-primary/10 bg-surface p-8 shadow-soft sm:p-12">

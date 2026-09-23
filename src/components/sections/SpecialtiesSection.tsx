@@ -38,7 +38,7 @@ const SPECIALTIES: Specialty[] = [
 
 export default function SpecialtiesSection() {
   return (
-    <section id="especialidades" className="scroll-mt-24 bg-surface-alt py-24">
+    <section id="especialidades" className="scroll-mt-24 bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -48,10 +48,10 @@ export default function SpecialtiesSection() {
           />
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-10 sm:mt-14 sm:gap-8 md:grid-cols-3">
           {SPECIALTIES.map((specialty, index) => (
             <Reveal key={specialty.title} delay={index * 120} className="h-full">
-              <CardSpecialty {...specialty} />
+              <CardSpecialty {...specialty} number={String(index + 1).padStart(2, "0")} />
             </Reveal>
           ))}
         </div>

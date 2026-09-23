@@ -38,7 +38,7 @@ const TOOLS = [
 
 export default function WhatIncludes() {
   return (
-    <section className="bg-surface py-24">
+    <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading

@@ -4,7 +4,7 @@ import Watermark from "@/components/ui/Watermark";
 
 export default function ClosingQuote() {
   return (
-    <section className="relative overflow-hidden bg-primary py-24">
+    <section className="relative overflow-hidden bg-primary py-16 sm:py-24">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,163,95,0.15),transparent_60%)]"

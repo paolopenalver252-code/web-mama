@@ -158,16 +158,16 @@ export default function Header() {
                 <Link
                   href={item.href}
                   prefetch={false}
-                  className="block py-3 text-base font-medium text-primary transition-colors duration-300 hover:text-accent-text"
+                  className="block py-3.5 font-heading text-lg text-primary transition-colors duration-300 hover:text-accent-text"
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-6">
+          <div className="mt-7">
             <Button href="/consultas" variant="accent" size="sm" className="w-full">
-              Reservar consulta
+              Reservar una consulta
             </Button>
           </div>
         </nav>

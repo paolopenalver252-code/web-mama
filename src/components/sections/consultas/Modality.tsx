@@ -17,7 +17,7 @@ const MODALITIES = [
 
 export default function Modality() {
   return (
-    <section className="bg-primary py-24">
+    <section className="bg-primary py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Modalidad" title="Cómo prefieras vivirla" tone="dark" />

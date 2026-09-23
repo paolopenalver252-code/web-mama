@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 
 export default function Pricing() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-2xl px-6 text-center lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="Inversión" title="Precio y modalidad de pago" />

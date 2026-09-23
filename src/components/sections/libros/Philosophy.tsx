@@ -3,7 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function Philosophy() {
   return (
-    <section className="bg-surface py-24">
+    <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto max-w-2xl px-6 text-center lg:px-8">
         <Reveal>
           <SectionHeading

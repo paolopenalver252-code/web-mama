@@ -14,7 +14,7 @@ const PROCESS_POINTS = [
 
 export default function ProcessGrid() {
   return (
-    <section className="bg-surface-alt py-24">
+    <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="El proceso" title="¿Qué se trabaja durante el proceso?" />

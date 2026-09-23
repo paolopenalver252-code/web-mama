@@ -20,7 +20,7 @@ export default function CourseSpotlight() {
   const course = getFeaturedCourse();
 
   return (
-    <section className="relative overflow-hidden bg-primary py-24">
+    <section className="relative overflow-hidden bg-primary py-16 sm:py-24">
       <Watermark className="-bottom-24 -right-6 z-0" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>

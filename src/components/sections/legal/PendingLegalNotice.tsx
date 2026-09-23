@@ -9,7 +9,7 @@ import Button from "@/components/ui/Button";
  */
 export default function PendingLegalNotice({ title }: { title: string }) {
   return (
-    <section className="bg-surface py-32">
+    <section className="bg-surface py-20 sm:py-32">
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 text-center lg:px-8">
         <Eyebrow>Legal</Eyebrow>
         <h1 className="font-heading text-4xl leading-tight text-primary sm:text-5xl">{title}</h1>
