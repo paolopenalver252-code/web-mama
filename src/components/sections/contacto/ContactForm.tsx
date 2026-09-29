@@ -8,7 +8,7 @@ import { WhatsappIcon } from "@/components/icons/SocialIcons";
 const WHATSAPP_NUMBER = "34601174247";
 
 const SERVICE_OPTIONS = [
-  "Método PSAI FLOW",
+  "Método PSAI FLOW®",
   "Cursos",
   "Consultas",
   "Limpieza Energética y Protección",

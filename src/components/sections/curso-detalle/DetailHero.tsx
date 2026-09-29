@@ -64,7 +64,7 @@ export default function DetailHero({ course, showBackLink = true }: DetailHeroPr
           <p className="max-w-xl text-base leading-relaxed text-ink-muted text-body">{course.summary}</p>
 
           <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/contacto" variant="accent" size="md">
+            <Button href="/contacto#formulario-contacto" variant="accent" size="md">
               Inscribirme
             </Button>
             <Button href="/contacto" variant="outline" size="md">

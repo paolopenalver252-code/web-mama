@@ -3,7 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 
 const PARAGRAPHS = [
   "Te ofrece una visión integral de ti mismo para comprender mejor lo que piensas, sientes y haces, y avanzar hacia una mayor coherencia, equilibrio y propósito.",
-  "El Método PSAI FLOW reúne diferentes herramientas y disciplinas de desarrollo personal dentro de una metodología estructurada, ayudándote a identificar patrones, comprender tus procesos internos, potenciar tus recursos personales y afrontar tus objetivos desde una perspectiva más consciente.",
+  "El Método PSAI FLOW® reúne diferentes herramientas y disciplinas de desarrollo personal dentro de una metodología estructurada, ayudándote a identificar patrones, comprender tus procesos internos, potenciar tus recursos personales y afrontar tus objetivos desde una perspectiva más consciente.",
   "Un camino de Psicotransformación Integral diseñado para acompañarte desde el autoconocimiento hacia una transformación más profunda y consciente.",
 ];
 

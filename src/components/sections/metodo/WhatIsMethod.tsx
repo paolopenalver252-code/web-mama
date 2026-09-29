@@ -6,7 +6,7 @@ export default function WhatIsMethod() {
     <section className="bg-surface-alt py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
         <Reveal>
-          <SectionHeading eyebrow="El método" title="¿Qué es el Método PSAI FLOW?" />
+          <SectionHeading eyebrow="El método" title="¿Qué es el Método PSAI FLOW®?" />
         </Reveal>
         <Reveal delay={100}>
           <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-ink-muted text-body">
@@ -14,7 +14,7 @@ export default function WhatIsMethod() {
               Una metodología propia de Psicotransformación Integral
             </p>
             <p>
-              El Método PSAI FLOW nace con el propósito de acompañar a las personas en su
+              El Método PSAI FLOW® nace con el propósito de acompañar a las personas en su
               proceso de transformación desde una visión integral.
             </p>
             <p>

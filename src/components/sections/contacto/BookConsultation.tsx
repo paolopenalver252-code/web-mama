@@ -30,7 +30,7 @@ export default function BookConsultation() {
         </Reveal>
         <Reveal delay={200}>
           <Button href="#formulario-contacto" variant="accent" size="md">
-            Reservar consulta
+            Reservar una consulta
           </Button>
         </Reveal>
       </div>

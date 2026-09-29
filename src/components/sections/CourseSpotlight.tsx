@@ -1,14 +1,15 @@
-import { Award, CalendarClock, ListChecks, Repeat, Laptop } from "lucide-react";
+import { CalendarClock, ListChecks, Repeat, Laptop } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import Watermark from "@/components/ui/Watermark";
 import { getFeaturedCourse } from "@/lib/courses";
 
+// Sin dato de "Certificado" (pendiente de confirmar por la clienta): se omite
+// el hecho en vez de mostrar "Pendiente de confirmar" en la web.
 const COURSE_FACTS = [
   { icon: CalendarClock, label: "Duración", value: "6 meses" },
   { icon: Laptop, label: "Modalidad", value: "Online" },
-  { icon: Award, label: "Certificado", value: "Pendiente de confirmar" },
   {
     icon: Repeat,
     label: "Continuidad del programa",

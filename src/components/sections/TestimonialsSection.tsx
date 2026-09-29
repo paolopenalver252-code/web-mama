@@ -1,6 +1,5 @@
 import { Quote } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import EmptyState from "@/components/ui/EmptyState";
 import Reveal from "@/components/ui/Reveal";
 
 export type Testimonial = {
@@ -9,10 +8,16 @@ export type Testimonial = {
   role?: string;
 };
 
-// Se rellenará con opiniones reales en cuanto el cliente las facilite.
+// Se rellenará con opiniones reales en cuanto la clienta las facilite. Hasta
+// entonces, el componente no renderiza nada (ver más abajo) en vez de mostrar
+// un aviso de "Próximamente" en plena Home — un bloque vacío entero es más
+// perceptible como "inacabado" que en /blog o /legal/*, páginas dedicadas
+// donde ese aviso sí tiene sentido.
 const TESTIMONIALS: Testimonial[] = [];
 
 export default function TestimonialsSection() {
+  if (TESTIMONIALS.length === 0) return null;
+
   return (
     <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -21,34 +26,24 @@ export default function TestimonialsSection() {
         </Reveal>
 
         <div className="mt-14">
-          {TESTIMONIALS.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              {TESTIMONIALS.map((testimonial, index) => (
-                <Reveal key={testimonial.name} delay={index * 100}>
-                  <div className="flex h-full flex-col gap-4 rounded-2xl border border-primary/5 bg-surface-alt p-8 shadow-soft">
-                    <Quote className="text-accent" size={22} strokeWidth={1.5} />
-                    <p className="flex-1 text-pretty text-sm leading-relaxed text-ink-muted text-body">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </p>
-                    <div>
-                      <div className="font-heading text-base text-primary">{testimonial.name}</div>
-                      {testimonial.role ? (
-                        <div className="text-xs text-ink-subtle">{testimonial.role}</div>
-                      ) : null}
-                    </div>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <Reveal key={testimonial.name} delay={index * 100}>
+                <div className="flex h-full flex-col gap-4 rounded-2xl border border-primary/5 bg-surface-alt p-8 shadow-soft">
+                  <Quote className="text-accent" size={22} strokeWidth={1.5} />
+                  <p className="flex-1 text-pretty text-sm leading-relaxed text-ink-muted text-body">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
+                  <div>
+                    <div className="font-heading text-base text-primary">{testimonial.name}</div>
+                    {testimonial.role ? (
+                      <div className="text-xs text-ink-subtle">{testimonial.role}</div>
+                    ) : null}
                   </div>
-                </Reveal>
-              ))}
-            </div>
-          ) : (
-            <Reveal>
-              <EmptyState
-                icon={Quote}
-                title="Próximamente"
-                description="Esta sección está lista para mostrar las opiniones de quienes ya han vivido la experiencia PSAI FLOW."
-              />
-            </Reveal>
-          )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

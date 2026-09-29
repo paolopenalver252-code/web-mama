@@ -106,7 +106,7 @@ export default function Header() {
             era "Contacto", genérico; ver docs/estrategia-comunicacion.md §6. */}
         <div className="hidden shrink-0 xl:block">
           <Button href="/contacto#formulario-contacto" variant="accent" size="sm">
-            Reservar consulta
+            Reservar una consulta
           </Button>
         </div>
 

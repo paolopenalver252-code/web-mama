@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Newspaper } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Eyebrow from "@/components/ui/Eyebrow";
 import EmptyState from "@/components/ui/EmptyState";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
@@ -22,8 +22,16 @@ export default function BlogPage() {
   return (
     <section className="bg-surface py-20 sm:py-32">
       <div className="mx-auto max-w-2xl px-6 text-center lg:px-8">
+        {/* h1 propio en vez de SectionHeading (que renderiza h2): esta página
+            no tiene un Hero separado, así que su título es el único h1 de
+            la página. */}
         <Reveal>
-          <SectionHeading eyebrow="Blog" title="Blog de PSAI FLOW ACADEMY" />
+          <div className="flex flex-col items-center gap-5">
+            <Eyebrow>Blog</Eyebrow>
+            <h1 className="font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
+              Blog de PSAI FLOW ACADEMY
+            </h1>
+          </div>
         </Reveal>
         <Reveal delay={100}>
           <div className="mt-10">

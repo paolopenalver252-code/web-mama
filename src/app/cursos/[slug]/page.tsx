@@ -73,7 +73,7 @@ export default async function CourseDetailPage({ params }: Props) {
       <FinalCta
         heading={`Empieza ${course.title}`}
         description="Reserva tu plaza o resuelve tus dudas antes de inscribirte."
-        primaryCta={{ label: "Inscribirme", href: "/contacto" }}
+        primaryCta={{ label: "Inscribirme", href: "/contacto#formulario-contacto" }}
         secondaryCta={{ label: "Ver otros cursos", href: "/cursos" }}
       />
     </>

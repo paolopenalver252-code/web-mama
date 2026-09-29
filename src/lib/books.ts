@@ -12,30 +12,29 @@ export type Book = {
  * sitios automáticamente.
  *
  * Los enlaces de "Más información" y "Comprar" aún no tienen destino real
- * (pendientes de portada definitiva y de la tienda/enlace de venta), así
- * que de momento se gestionan como "#" en los componentes que consumen
- * este catálogo.
+ * (pendientes de la tienda/enlace de venta definitivo), así que de momento
+ * apuntan al formulario de contacto — ver DEFAULT_BOOK_HREF en CardBook.tsx.
  */
 export const BOOKS: Book[] = [
   {
     slug: "curso-de-autocontrol-metodo-psai",
     title: "Curso de Auto-Control – Método PSAI",
     description: "Potencia tu Inteligencia Emocional.",
-    category: "Método PSAI FLOW",
+    category: "Método PSAI FLOW®",
     cover: "/images/libro-autocontrol.jpg",
   },
   {
     slug: "psico-transformacion-codigo-cuantico",
     title: "Psico-Transformación – Método PSAI",
     description: "El Código de Transformación Cuántica.",
-    category: "Método PSAI FLOW",
+    category: "Método PSAI FLOW®",
     cover: "/images/libro-curso-sanacion.jpg",
   },
   {
     slug: "psico-transformacion-codigo",
     title: "Psico-Transformación – Método PSAI",
     description: "El Código de Transformación.",
-    category: "Método PSAI FLOW",
+    category: "Método PSAI FLOW®",
     cover: "/images/libro-codigo-cuantico.jpg",
   },
   {

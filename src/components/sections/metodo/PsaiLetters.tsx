@@ -23,7 +23,11 @@ export default function PsaiLetters() {
         <div className="mt-10 flex flex-col divide-y divide-accent/15 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-6 sm:divide-y-0 lg:grid-cols-4">
           {LETTERS.map((item, index) => (
             <Reveal key={item.letter} delay={index * 100} className="sm:h-full">
-              <div className="flex items-center gap-5 py-6 first:pt-0 sm:h-full sm:flex-col sm:items-center sm:gap-4 sm:rounded-2xl sm:border sm:border-primary/5 sm:bg-surface-alt sm:p-8 sm:text-center sm:shadow-soft">
+              <div
+                className={`flex items-center gap-5 py-6 sm:h-full sm:flex-col sm:items-center sm:gap-4 sm:rounded-2xl sm:border sm:border-primary/5 sm:bg-surface-alt sm:p-8 sm:text-center sm:shadow-soft ${
+                  index === 0 ? "pt-0" : ""
+                }`}
+              >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/10 sm:h-14 sm:w-14">
                   <item.icon className="text-accent" size={22} strokeWidth={1.5} />
                 </span>

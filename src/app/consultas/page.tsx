@@ -41,7 +41,7 @@ export default function ConsultasPage() {
       <FinalCta
         heading="Reserva tu consulta personalizada"
         description="Un espacio pensado para ti: acompañamiento cercano, profesional y adaptado a tu momento."
-        primaryCta={{ label: "Reservar consulta", href: "/contacto#formulario-contacto" }}
+        primaryCta={{ label: "Reservar una consulta", href: "/contacto#formulario-contacto" }}
         secondaryCta={{ label: "Solicitar información", href: "/contacto" }}
       />
     </>

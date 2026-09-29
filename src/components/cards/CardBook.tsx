@@ -8,13 +8,18 @@ type CardBookProps = Book & {
   purchaseHref?: string;
 };
 
+// Sin tienda/enlace de venta aún confirmado por la clienta (ver lib/books.ts):
+// en vez de un href="#" que no hace nada al pulsar, ambos botones llevan de
+// forma honesta al formulario de contacto (WhatsApp) para consultar el libro.
+const DEFAULT_BOOK_HREF = "/contacto#formulario-contacto";
+
 export default function CardBook({
   title,
   description,
   category,
   cover,
-  moreInfoHref = "#",
-  purchaseHref = "#",
+  moreInfoHref = DEFAULT_BOOK_HREF,
+  purchaseHref = DEFAULT_BOOK_HREF,
 }: CardBookProps) {
   return (
     <div className={`group flex h-full flex-col gap-4 rounded-2xl border border-primary/5 bg-surface p-5 shadow-soft ${cardHover}`}>

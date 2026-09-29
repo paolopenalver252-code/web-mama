@@ -154,7 +154,7 @@ export default function Hero() {
               size="md"
               className="border-white/40 text-white hover:border-accent hover:text-accent"
             >
-              Conocer el Método PSAI FLOW
+              Conocer el Método PSAI FLOW®
             </Button>
           </div>
         </div>

@@ -35,7 +35,7 @@ export default function Hero() {
 
           <div className="mt-2">
             <Button href="/metodo-psai-flow" variant="accent" size="md">
-              Conocer el Método PSAI FLOW
+              Conocer el Método PSAI FLOW®
             </Button>
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function Pricing() {
             <p className="text-sm leading-relaxed text-ink-subtle">
               La inversión y las facilidades de pago se personalizan en una consulta privada.
             </p>
-            <Button href="/consultas" variant="accent" size="md">
+            <Button href="/contacto#formulario-contacto" variant="accent" size="md">
               Consultar precio
             </Button>
           </div>

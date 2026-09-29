@@ -26,11 +26,10 @@ export default function Footer() {
                 Academy
               </span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-mist text-body">
-              {/* TODO: descripción breve pendiente de copy definitivo del cliente. */}
-              [Descripción breve de la academia — pendiente de texto definitivo]
-            </p>
-            <ul className="mt-6 flex gap-4">
+            {/* Sin descripción breve: pendiente de copy definitivo de la
+                clienta. Se omite en vez de mostrar un texto entre corchetes,
+                que delataría la web como inacabada. */}
+            <ul className="mt-5 flex gap-4">
               {SOCIAL_LINKS.map((social) => (
                 <li key={social.label}>
                   <a
@@ -68,17 +67,25 @@ export default function Footer() {
           <div>
             <h3 className="font-heading text-lg text-white">Contacto</h3>
             <ul className="mt-4 space-y-3 text-sm text-mist">
+              {/* WhatsApp primero: canal de contacto principal (mismo número
+                  que ContactForm.tsx y ContactInfo.tsx) — la clienta no
+                  quiere depender del email. */}
+              <li>
+                <a
+                  href="https://wa.me/34601174247"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-300 hover:text-accent"
+                >
+                  WhatsApp: +34 601 174 247
+                </a>
+              </li>
+              <li>Mallorca, España</li>
               <li>
                 <a href="mailto:Soymillonaria520@gmail.com" className="transition-colors duration-300 hover:text-accent">
                   Soymillonaria520@gmail.com
                 </a>
               </li>
-              <li>
-                <a href="tel:+34601174247" className="transition-colors duration-300 hover:text-accent">
-                  +34 601 174 247
-                </a>
-              </li>
-              <li>Mallorca, España</li>
             </ul>
           </div>
 

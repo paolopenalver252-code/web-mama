@@ -106,7 +106,7 @@ export default function PsaiExplainer() {
               pensamiento, emociones, acciones y conciencia están conectados.
             </p>
             <p>
-              Por eso, el Método PSAI FLOW busca acompañar cada proceso desde el
+              Por eso, el Método PSAI FLOW® busca acompañar cada proceso desde el
               autoconocimiento, la coherencia y el equilibrio, respetando el ritmo y la
               experiencia única de cada persona.
             </p>

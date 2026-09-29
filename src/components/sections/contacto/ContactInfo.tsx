@@ -1,12 +1,17 @@
-import { Globe, Mail, MapPin, Phone } from "lucide-react";
+import { Globe, Mail, MapPin } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import { WhatsappIcon } from "@/components/icons/SocialIcons";
+
+// Mismo número que ya usa el formulario (ContactForm.tsx) como canal
+// principal: la clienta prioriza WhatsApp frente al email.
+const WHATSAPP_NUMBER = "34601174247";
 
 const INFO_CARDS = [
-  { icon: Mail, title: "Email", value: "Soymillonaria520@gmail.com", href: "mailto:Soymillonaria520@gmail.com" },
-  { icon: Phone, title: "Teléfono", value: "+34 601 174 247", href: "tel:+34601174247" },
+  { icon: WhatsappIcon, title: "WhatsApp", value: "+34 601 174 247", href: `https://wa.me/${WHATSAPP_NUMBER}` },
   { icon: MapPin, title: "Ubicación", value: "Mallorca, España" },
   { icon: Globe, title: "Atención Online", value: "Alcance internacional" },
+  { icon: Mail, title: "Email", value: "Soymillonaria520@gmail.com", href: "mailto:Soymillonaria520@gmail.com" },
 ];
 
 export default function ContactInfo() {
@@ -28,6 +33,8 @@ export default function ContactInfo() {
                 {card.href ? (
                   <a
                     href={card.href}
+                    target={card.href.startsWith("https://") ? "_blank" : undefined}
+                    rel={card.href.startsWith("https://") ? "noopener noreferrer" : undefined}
                     className="text-sm text-ink-muted text-body transition-colors duration-300 hover:text-accent"
                   >
                     {card.value}

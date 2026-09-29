@@ -7,8 +7,8 @@ import SpecialtyCard from "@/components/cards/SpecialtyCard";
 import Reveal from "@/components/ui/Reveal";
 import { SPECIALTIES } from "./specialtiesData";
 
-// Carga diferida y solo en cliente: el Scroll Stack (y su dependencia Lenis)
-// nunca se descarga en tablet/desktop, donde se usa la cuadrícula de siempre.
+// Carga diferida y solo en cliente: el Scroll Stack nunca se descarga en
+// tablet/desktop, donde se usa la cuadrícula de siempre.
 const SpecialtiesStackMobile = dynamic(() => import("./SpecialtiesStackMobile"), { ssr: false });
 
 export default function SpecialtiesGrid() {
