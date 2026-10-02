@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 
 /**
- * Dominio real pendiente de confirmación del cliente. En cuanto se
- * despliegue en el dominio definitivo, basta con definir la variable de
- * entorno NEXT_PUBLIC_SITE_URL (o cambiar el valor por defecto aquí) — todo
- * lo demás (metadataBase, canonical, sitemap, robots, JSON-LD) lo consume
- * desde este único sitio.
+ * Dominio real de la clienta. Se puede sobrescribir con la variable de
+ * entorno NEXT_PUBLIC_SITE_URL (por ejemplo, en un entorno de previsualización)
+ * sin tocar este archivo — todo lo demás (metadataBase, canonical, sitemap,
+ * robots, JSON-LD) lo consume desde este único sitio.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.psaiflowacademy.com").replace(
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://psaiflow.com").replace(
   /\/$/,
   ""
 );
