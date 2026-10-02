@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LEGAL_ITEMS, NAV_ITEMS } from "@/lib/navigation";
 import Reveal from "@/components/ui/Reveal";
@@ -19,11 +20,20 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="flex flex-col leading-none transition-opacity duration-300 hover:opacity-75"
+              className="flex items-center gap-2.5 transition-opacity duration-300 hover:opacity-75"
             >
-              <span className="font-heading text-2xl text-white">PSAI FLOW</span>
-              <span className="text-[0.65rem] font-sans uppercase tracking-[0.3em] text-accent">
-                Academy
+              <Image
+                src="/logo-psai-flow.png"
+                alt=""
+                width={44}
+                height={44}
+                className="h-10 w-10 object-contain"
+              />
+              <span className="flex flex-col leading-none">
+                <span className="font-heading text-2xl text-white">PSAI FLOW</span>
+                <span className="text-[0.65rem] font-sans uppercase tracking-[0.3em] text-accent">
+                  Academy
+                </span>
               </span>
             </Link>
             {/* Sin descripción breve: pendiente de copy definitivo de la

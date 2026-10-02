@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "@/lib/navigation";
@@ -53,20 +54,32 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-6 px-6 lg:px-10">
-        {/* Logo — wordmark de texto en tanto no se reciba el logotipo definitivo */}
+        {/* Logo — emblema real de la marca (fondo transparente, se ve bien
+            tanto sobre el header sólido como sobre el hero oscuro) junto al
+            wordmark de texto. */}
         <Link
           href="/"
-          className="flex shrink-0 flex-col leading-none transition-opacity duration-300 hover:opacity-75"
+          className="flex shrink-0 items-center gap-2.5 transition-opacity duration-300 hover:opacity-75"
         >
-          <span className={`font-heading text-2xl transition-colors duration-500 ${transparent ? "text-white" : "text-primary"}`}>
-            PSAI FLOW
-          </span>
-          <span
-            className={`text-[0.65rem] font-sans uppercase tracking-[0.3em] transition-colors duration-500 ${
-              transparent ? "text-accent" : "text-accent-text"
-            }`}
-          >
-            Academy
+          <Image
+            src="/logo-psai-flow.png"
+            alt=""
+            width={44}
+            height={44}
+            priority
+            className="h-9 w-9 object-contain sm:h-10 sm:w-10"
+          />
+          <span className="flex flex-col leading-none">
+            <span className={`font-heading text-2xl transition-colors duration-500 ${transparent ? "text-white" : "text-primary"}`}>
+              PSAI FLOW
+            </span>
+            <span
+              className={`text-[0.65rem] font-sans uppercase tracking-[0.3em] transition-colors duration-500 ${
+                transparent ? "text-accent" : "text-accent-text"
+              }`}
+            >
+              Academy
+            </span>
           </span>
         </Link>
 
