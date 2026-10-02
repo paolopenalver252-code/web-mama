@@ -4,6 +4,8 @@ export type Book = {
   description: string;
   category: string;
   cover: string;
+  /** Si no se indica, "Comprar" lleva al formulario de contacto (ver CardBook.tsx). */
+  purchaseHref?: string;
 };
 
 /**
@@ -22,6 +24,7 @@ export const BOOKS: Book[] = [
     description: "Potencia tu Inteligencia Emocional.",
     category: "Método PSAI FLOW®",
     cover: "/images/libro-autocontrol.jpg",
+    purchaseHref: "https://www.amazon.es/dp/1326810111",
   },
   {
     slug: "psico-transformacion-codigo-cuantico",

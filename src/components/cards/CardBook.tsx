@@ -21,6 +21,8 @@ export default function CardBook({
   moreInfoHref = DEFAULT_BOOK_HREF,
   purchaseHref = DEFAULT_BOOK_HREF,
 }: CardBookProps) {
+  const isExternal = (href: string) => href.startsWith("http");
+
   return (
     <div className={`group flex h-full flex-col gap-4 rounded-2xl border border-primary/5 bg-surface p-5 shadow-soft ${cardHover}`}>
       <PlaceholderImage
@@ -39,6 +41,8 @@ export default function CardBook({
       <div className="flex flex-col gap-2">
         <Button
           href={moreInfoHref}
+          target={isExternal(moreInfoHref) ? "_blank" : undefined}
+          rel={isExternal(moreInfoHref) ? "noopener noreferrer" : undefined}
           variant="outline"
           size="sm"
           className="w-full !px-4"
@@ -48,6 +52,8 @@ export default function CardBook({
         </Button>
         <Button
           href={purchaseHref}
+          target={isExternal(purchaseHref) ? "_blank" : undefined}
+          rel={isExternal(purchaseHref) ? "noopener noreferrer" : undefined}
           variant="accent"
           size="sm"
           className="w-full !pl-4 !pr-1.5"
