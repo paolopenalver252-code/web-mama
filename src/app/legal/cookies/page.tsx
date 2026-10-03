@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import PendingLegalNotice from "@/components/sections/legal/PendingLegalNotice";
+import CookiesContent from "@/components/sections/legal/CookiesContent";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Política de cookies",
-  description: "Política de cookies de PSAI FLOW ACADEMY — próximamente disponible.",
+  description: "psaiflow.com no utiliza cookies de analítica ni de publicidad. Consulta aquí qué tecnologías usa realmente el sitio.",
   path: "/legal/cookies",
-  noIndex: true,
 });
 
 export default function CookiesPage() {
-  return <PendingLegalNotice title="Política de cookies" />;
+  return <CookiesContent />;
 }

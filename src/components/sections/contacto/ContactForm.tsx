@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { WhatsappIcon } from "@/components/icons/SocialIcons";
@@ -332,6 +333,11 @@ export default function ContactForm() {
               </Button>
               <p className="text-xs text-ink-subtle">
                 Al continuar, se abrirá WhatsApp para que puedas revisar y enviar tu mensaje.
+                Consulta cómo tratamos tus datos en nuestra{" "}
+                <Link href="/legal/privacidad" className="underline underline-offset-2 hover:text-accent-text">
+                  Política de Privacidad
+                </Link>
+                .
               </p>
             </form>
           </div>
