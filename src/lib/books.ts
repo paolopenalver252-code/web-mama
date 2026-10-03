@@ -48,5 +48,6 @@ export const BOOKS: Book[] = [
     description: "Decretos Mágicos.",
     category: "Publicación",
     cover: "/images/libro-codigo-de-jesus.jpg",
+    purchaseHref: "https://www.amazon.es/dp/1326792113",
   },
 ];
