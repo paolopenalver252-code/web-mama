@@ -28,7 +28,7 @@ export const BOOKS: Book[] = [
   },
   {
     slug: "psico-transformacion-codigo-cuantico",
-    title: "Psico-Transformación – Método PSAI",
+    title: "Psico-Transformación Método PSAI- El código de transformación",
     description: "El Código de Transformación Cuántica.",
     category: "Método PSAI FLOW®",
     cover: "/images/libro-curso-sanacion.jpg",
