@@ -1,5 +1,6 @@
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import Button from "@/components/ui/Button";
 import { cardHover } from "@/lib/motion/classNames";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
 
@@ -35,19 +36,18 @@ export default function SocialLinks() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {SOCIALS.map((social, index) => (
             <Reveal key={social.label} delay={index * 100} className="h-full">
-              <a
-                href={social.href}
-                aria-label={`Síguenos en ${social.label}`}
-                target={social.href !== "#" ? "_blank" : undefined}
-                rel={social.href !== "#" ? "noopener noreferrer" : undefined}
+              <div
                 className={`group flex h-full flex-col items-center gap-4 rounded-2xl border border-primary/10 bg-surface px-8 py-10 text-center ${cardHover}`}
               >
                 <span className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-accent/5 text-accent-text transition-colors duration-300 group-hover:bg-accent/10">
                   <social.Icon size={24} strokeWidth={1.5} />
                 </span>
                 <span className="font-heading text-xl text-primary">{social.label}</span>
-                <p className="text-sm leading-relaxed text-ink-muted text-body">{social.invite}</p>
-              </a>
+                <p className="flex-1 text-sm leading-relaxed text-ink-muted text-body">{social.invite}</p>
+                <Button href={social.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm" className="w-full">
+                  Seguir en {social.label}
+                </Button>
+              </div>
             </Reveal>
           ))}
         </div>
