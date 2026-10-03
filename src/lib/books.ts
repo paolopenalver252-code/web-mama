@@ -40,6 +40,7 @@ export const BOOKS: Book[] = [
     description: "El Código de Transformación.",
     category: "Método PSAI FLOW®",
     cover: "/images/libro-codigo-cuantico.jpg",
+    purchaseHref: "https://www.amazon.es/dp/132673461X",
   },
   {
     slug: "el-codigo-de-jesus",
