@@ -1,84 +1,86 @@
-import { CalendarClock, GraduationCap, ListChecks, Repeat, Laptop } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Eyebrow from "@/components/ui/Eyebrow";
 import Button from "@/components/ui/Button";
+import PlaceholderImage from "@/components/ui/PlaceholderImage";
 import Reveal from "@/components/ui/Reveal";
 import Watermark from "@/components/ui/Watermark";
 import { getFeaturedCourse } from "@/lib/courses";
 
-// Sin dato de "Certificado" (pendiente de confirmar por la clienta): se omite
-// el hecho en vez de mostrar "Pendiente de confirmar" en la web.
-const COURSE_FACTS = [
-  { icon: CalendarClock, label: "Duración", value: "6 meses" },
-  { icon: Laptop, label: "Modalidad", value: "Online" },
-  { icon: GraduationCap, label: "Nivel", value: "Formación profesional" },
-  {
-    icon: Repeat,
-    label: "Continuidad del programa",
-    value: "Recorrido de tres años de especialización",
-  },
-];
-
+/**
+ * "Formación destacada": presentación editorial de un programa concreto
+ * (no una tarjeta de curso ni una página de venta). Responde a "¿qué puedo
+ * estudiar aquí?" justo después de que "La Academia" presente el espacio
+ * en general — por eso no repite esa explicación, y tampoco anticipa el
+ * desglose completo de "Qué encontrarás en la Academia" (la sección
+ * siguiente). Todo el contenido (título, nivel, descripción, duración,
+ * modalidad) sale de lib/courses.ts, única fuente real del curso.
+ */
 export default function CourseSpotlight() {
   const course = getFeaturedCourse();
 
   return (
     <section className="relative overflow-hidden bg-primary py-16 sm:py-24">
       <Watermark className="-bottom-24 -right-6 z-0" />
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Curso destacado"
-            title="Curso de Magia Universal Cuántica"
-            tone="dark"
-            align="left"
-            description="El programa más importante de PSAI FLOW ACADEMY."
-          />
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-2">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2 md:gap-12 lg:gap-20 lg:px-8">
+        <div className="flex flex-col items-start gap-6">
           <Reveal>
-            <ul className="flex flex-col gap-6">
-              {COURSE_FACTS.map((fact) => (
-                <li key={fact.label} className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10">
-                    <fact.icon className="text-accent" size={20} strokeWidth={1.5} />
-                  </span>
-                  <div>
-                    <div className="text-sm uppercase tracking-[0.2em] text-mist-subtle">{fact.label}</div>
-                    <div className="mt-1 font-heading text-lg text-white/90">{fact.value}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <Eyebrow tone="dark">Formación destacada</Eyebrow>
           </Reveal>
 
-          <Reveal delay={150}>
-            <div className="flex h-full flex-col gap-6 rounded-2xl border border-white/10 bg-white/5 p-8">
-              <div className="flex items-center gap-3">
-                <ListChecks className="text-accent" size={22} strokeWidth={1.5} />
-                <h3 className="font-heading text-xl text-white">Qué aprenderás</h3>
-              </div>
-              <p className="text-sm leading-relaxed text-mist text-body">
-                Aprende una metodología integral para armonizar cuerpo, mente,
-                emociones, espacios y conciencia desde una visión ética,
-                profesional y transformadora.
-              </p>
-              <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
-                <Button href={`/cursos/${course.slug}`} variant="accent" size="md">
-                  Conocer la formación
-                </Button>
-                <Button
-                  href="/contacto#formulario-contacto"
-                  variant="ghost"
-                  size="md"
-                  className="text-white hover:text-accent"
-                >
-                  Solicitar información por WhatsApp
-                </Button>
-              </div>
+          <Reveal delay={80}>
+            <h2 className="font-heading text-4xl uppercase leading-tight tracking-wide text-white sm:text-5xl">
+              Magia Universal Cuántica
+            </h2>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <p className="font-heading text-lg text-accent sm:text-xl">Nivel I · Formación Profesional</p>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <p className="max-w-md text-base leading-relaxed text-mist text-body sm:text-lg">
+              {course.summary}
+            </p>
+          </Reveal>
+
+          <Reveal delay={260}>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.25em] text-mist-subtle sm:text-sm">
+              <span className="whitespace-nowrap">{course.duration}</span>
+              <span aria-hidden className="text-accent">
+                ·
+              </span>
+              <span className="whitespace-nowrap">{course.modality}</span>
+              <span aria-hidden className="text-accent">
+                ·
+              </span>
+              <span className="whitespace-nowrap">Formación profesional</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={320}>
+            <div className="mt-2 flex flex-wrap items-center gap-4">
+              <Button href={`/cursos/${course.slug}`} variant="accent" size="md">
+                Conocer la formación
+              </Button>
+              <Button
+                href="/contacto#formulario-contacto"
+                variant="ghost"
+                size="md"
+                className="text-white hover:text-accent"
+              >
+                Solicitar información por WhatsApp
+              </Button>
             </div>
           </Reveal>
         </div>
+
+        <Reveal delay={200}>
+          <PlaceholderImage
+            src={course.image}
+            alt={course.imageAlt ?? course.title}
+            tone="dark"
+            className="aspect-[4/5] w-full shadow-soft"
+          />
+        </Reveal>
       </div>
     </section>
   );
