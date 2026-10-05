@@ -11,7 +11,7 @@ export default function BooksSection() {
     <section className="bg-surface py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Publicaciones" title="Libros" />
+          <SectionHeading eyebrow="Recursos" title="Continúa explorando." />
         </Reveal>
 
         <div className="mt-14">
@@ -41,7 +41,7 @@ export default function BooksSection() {
                 href="/libros"
                 className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors duration-300 hover:text-accent-text"
               >
-                Ver todos los libros
+                Explorar recursos
                 <ArrowRight size={16} strokeWidth={1.75} />
               </Link>
             </div>

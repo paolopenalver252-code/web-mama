@@ -1,33 +1,32 @@
 import Hero from "@/components/sections/Hero";
-import SpecialtiesSection from "@/components/sections/SpecialtiesSection";
-import CourseSpotlight from "@/components/sections/CourseSpotlight";
 import PsaiExplainer from "@/components/sections/PsaiExplainer";
+import AcademyIntro from "@/components/sections/AcademyIntro";
+import CourseSpotlight from "@/components/sections/CourseSpotlight";
+import AcademyFeatures from "@/components/sections/AcademyFeatures";
+import SpecialtiesSection from "@/components/sections/SpecialtiesSection";
+import LearnOrConsult from "@/components/sections/LearnOrConsult";
 import FounderSpotlight from "@/components/sections/FounderSpotlight";
-import BigStatement from "@/components/sections/BigStatement";
 import BooksSection from "@/components/sections/BooksSection";
-import CentersSection from "@/components/sections/CentersSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import FaqSection from "@/components/sections/FaqSection";
 import FinalCta from "@/components/sections/FinalCta";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <SpecialtiesSection />
-      <CourseSpotlight />
       <PsaiExplainer />
+      <AcademyIntro />
+      <CourseSpotlight />
+      <AcademyFeatures />
+      <SpecialtiesSection />
+      <LearnOrConsult />
       <FounderSpotlight />
-      <BigStatement />
       <BooksSection />
-      <CentersSection />
-      <TestimonialsSection />
-      <FaqSection />
       <FinalCta
-        heading="Transformando cuerpo, mente, emociones y conciencia."
-        description="Da el siguiente paso: reserva una consulta o descubre todo lo que PSAI FLOW ACADEMY tiene preparado para ti."
-        primaryCta={{ label: "Reservar una consulta", href: "/contacto#formulario-contacto" }}
-        secondaryCta={{ label: "Conocer la Academia", href: "/academia" }}
+        heading="Tu camino comienza con el conocimiento."
+        description="Explora nuestras formaciones, descubre el Método PSAI FLOW® o habla directamente con nosotros."
+        primaryCta={{ label: "Explorar Academia", href: "/academia" }}
+        secondaryCta={{ label: "Conocer el método", href: "/metodo-psai-flow" }}
+        tertiaryCta={{ label: "WhatsApp", href: "/contacto#formulario-contacto" }}
       />
     </>
   );

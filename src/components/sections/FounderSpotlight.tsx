@@ -21,14 +21,20 @@ export default function FounderSpotlight() {
           <div className="flex flex-col items-start gap-5 sm:gap-7">
             <Eyebrow>Fundadora</Eyebrow>
             <h2 className="font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
-              Conoce a Solimar
+              Conoce a Solimar Rengel.
             </h2>
             <p className="text-xs uppercase tracking-[0.15em] text-ink-subtle">{ROLES.join(" · ")}</p>
 
             <StatBlock value="35+" label="Años de trayectoria" />
 
+            <p className="max-w-md text-base leading-relaxed text-ink-muted text-body">
+              Solimar Rengel es terapeuta holística, formadora y creadora de metodologías propias,
+              con más de 35 años de experiencia en el ámbito de la conciencia, la espiritualidad,
+              la energía y la transformación personal.
+            </p>
+
             <Button href="/academia#solimar-rengel" variant="outline" size="md">
-              Conocer su historia
+              Conocer su trayectoria
             </Button>
           </div>
         </Reveal>

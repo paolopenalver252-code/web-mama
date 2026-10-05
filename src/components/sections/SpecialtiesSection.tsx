@@ -42,8 +42,8 @@ export default function SpecialtiesSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Especialidades"
-            title="Tres caminos, un mismo método"
+            eyebrow="El universo PSAI FLOW®"
+            title="Explora nuestras disciplinas."
             description="Cada especialidad de PSAI FLOW ACADEMY responde a una necesidad distinta del proceso de transformación."
           />
         </Reveal>

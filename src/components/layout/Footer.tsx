@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-mist">
       <Reveal className="mx-auto max-w-7xl px-6 py-14 sm:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-5">
           {/* Marca */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
@@ -70,6 +70,21 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Alumnos — puerta de entrada visual a la futura zona privada */}
+          <div>
+            <h3 className="font-heading text-lg text-white">Alumnos</h3>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link
+                  href="/acceso-alumnos"
+                  className="text-sm text-mist transition-colors duration-300 hover:text-accent"
+                >
+                  Acceso alumnos
+                </Link>
+              </li>
             </ul>
           </div>
 

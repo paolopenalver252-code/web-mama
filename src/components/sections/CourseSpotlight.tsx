@@ -1,4 +1,4 @@
-import { CalendarClock, ListChecks, Repeat, Laptop } from "lucide-react";
+import { CalendarClock, GraduationCap, ListChecks, Repeat, Laptop } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
@@ -10,6 +10,7 @@ import { getFeaturedCourse } from "@/lib/courses";
 const COURSE_FACTS = [
   { icon: CalendarClock, label: "Duración", value: "6 meses" },
   { icon: Laptop, label: "Modalidad", value: "Online" },
+  { icon: GraduationCap, label: "Nivel", value: "Formación profesional" },
   {
     icon: Repeat,
     label: "Continuidad del programa",
@@ -62,9 +63,17 @@ export default function CourseSpotlight() {
                 emociones, espacios y conciencia desde una visión ética,
                 profesional y transformadora.
               </p>
-              <div className="mt-auto pt-4">
+              <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
                 <Button href={`/cursos/${course.slug}`} variant="accent" size="md">
-                  Inscribirme
+                  Conocer la formación
+                </Button>
+                <Button
+                  href="/contacto#formulario-contacto"
+                  variant="ghost"
+                  size="md"
+                  className="text-white hover:text-accent"
+                >
+                  Solicitar información por WhatsApp
                 </Button>
               </div>
             </div>

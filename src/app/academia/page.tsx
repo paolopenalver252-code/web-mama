@@ -4,6 +4,7 @@ import MeetSolimar from "@/components/sections/academia/MeetSolimar";
 import OurMission from "@/components/sections/academia/OurMission";
 import ValuesGrid from "@/components/sections/academia/ValuesGrid";
 import WhyChooseAcademy from "@/components/sections/academia/WhyChooseAcademy";
+import CentersSection from "@/components/sections/CentersSection";
 import FinalCta from "@/components/sections/FinalCta";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildPageMetadata } from "@/lib/seo";
@@ -33,6 +34,7 @@ export default function AcademiaPage() {
       <OurMission />
       <ValuesGrid />
       <WhyChooseAcademy />
+      <CentersSection />
       <FinalCta
         heading="Sigue conociendo PSAI FLOW ACADEMY"
         description="Descubre nuestras formaciones o da el primer paso reservando una consulta personalizada."

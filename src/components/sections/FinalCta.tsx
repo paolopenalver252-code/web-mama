@@ -13,14 +13,17 @@ type FinalCtaProps = {
   description: string;
   primaryCta: CtaLink;
   secondaryCta: CtaLink;
+  /** Opcional: un tercer CTA más discreto (p. ej. WhatsApp), solo usado hoy en la Home. */
+  tertiaryCta?: CtaLink;
 };
 
 /**
  * Bloque de cierre reutilizable (fondo navy + resplandor dorado sutil).
- * Cada página le pasa su propio mensaje y pareja de CTAs — la estructura
- * y el tono visual se mantienen idénticos en toda la web.
+ * Cada página le pasa su propio mensaje y pareja (u opcionalmente trío) de
+ * CTAs — la estructura y el tono visual se mantienen idénticos en toda la
+ * web.
  */
-export default function FinalCta({ heading, description, primaryCta, secondaryCta }: FinalCtaProps) {
+export default function FinalCta({ heading, description, primaryCta, secondaryCta, tertiaryCta }: FinalCtaProps) {
   return (
     <section className="relative overflow-hidden bg-primary py-16 sm:py-24">
       <div
@@ -49,6 +52,11 @@ export default function FinalCta({ heading, description, primaryCta, secondaryCt
             >
               {secondaryCta.label}
             </Button>
+            {tertiaryCta ? (
+              <Button href={tertiaryCta.href} variant="ghost" size="md" className="text-white hover:text-accent">
+                {tertiaryCta.label}
+              </Button>
+            ) : null}
           </div>
         </Reveal>
       </div>

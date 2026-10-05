@@ -114,12 +114,23 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* CTA desktop — orientado a conversión (motor comercial: servicios
-            1:1), coherente con el CTA principal del Hero de la Home. Antes
-            era "Contacto", genérico; ver docs/estrategia-comunicacion.md §6. */}
-        <div className="hidden shrink-0 xl:block">
+        {/* Acciones desktop: "Acceso alumnos" como puerta de entrada visual a
+            la futura zona privada (hoy /acceso-alumnos, un aviso honesto —
+            no hay login todavía) + CTA de conversión por WhatsApp, coherente
+            con el resto de CTAs del sitio (todos llevan al mismo formulario
+            que prepara el mensaje de WhatsApp). */}
+        <div className="hidden shrink-0 items-center gap-5 xl:flex">
+          <Link
+            href="/acceso-alumnos"
+            prefetch={false}
+            className={`whitespace-nowrap text-[13px] font-medium transition-colors duration-300 ${
+              transparent ? "text-white/75 hover:text-white" : "text-primary/70 hover:text-accent-text"
+            }`}
+          >
+            Acceso alumnos
+          </Link>
           <Button href="/contacto#formulario-contacto" variant="accent" size="sm">
-            Reservar una consulta
+            WhatsApp
           </Button>
         </div>
 
@@ -178,9 +189,12 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-7">
+          <div className="mt-6 flex flex-col gap-3">
+            <Button href="/acceso-alumnos" variant="outline" size="sm" className="w-full">
+              Acceso alumnos
+            </Button>
             <Button href="/contacto#formulario-contacto" variant="accent" size="sm" className="w-full">
-              Reservar una consulta
+              WhatsApp
             </Button>
           </div>
         </nav>

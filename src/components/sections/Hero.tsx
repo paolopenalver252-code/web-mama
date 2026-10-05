@@ -121,7 +121,7 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-[100svh] flex-col justify-center px-6 pb-14 pt-32 sm:justify-start sm:px-10 sm:pb-12 lg:px-16 lg:pb-16 lg:pt-40">
         <div className="max-w-xl">
           <div ref={eyebrowRef}>
-            <Eyebrow tone="dark">Academia Internacional</Eyebrow>
+            <Eyebrow tone="dark">PSAI FLOW® ACADEMY</Eyebrow>
           </div>
 
           <SplitText
@@ -129,24 +129,19 @@ export default function Hero() {
             delay={450}
             className="mt-5 block font-heading text-[2.75rem] leading-[1.05] tracking-tight text-white sm:mt-6 sm:text-6xl lg:text-[5.75rem]"
           >
-            PSAI FLOW ACADEMY
+            Transformando cuerpo, mente, emociones y conciencia.
           </SplitText>
 
           <div ref={metaRef} className="mt-5 flex flex-col gap-3 sm:mt-7 sm:gap-4">
-            <p className="font-heading text-lg text-white/90 sm:text-2xl">
-              Academia Internacional de Psicotransformación Integral
-            </p>
-            <p className="hidden max-w-md text-base leading-relaxed text-mist text-body sm:block">
-              Especialistas en Magia Universal, Limpieza Energética y Protección.
-            </p>
-            <p className="border-l-2 border-accent pl-4 font-heading text-base italic text-white/80 sm:text-lg">
-              Transformando cuerpo, mente, emociones y conciencia.
+            <p className="max-w-md text-base leading-relaxed text-mist text-body sm:text-lg">
+              Un espacio de formación y conocimiento dedicado a la Psicotransformación Integral y
+              al desarrollo de las disciplinas que forman parte del Método PSAI FLOW®.
             </p>
           </div>
 
           <div ref={ctasRef} className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
-            <Button href="/contacto#formulario-contacto" variant="accent" size="md">
-              Reservar una consulta
+            <Button href="/academia" variant="accent" size="md">
+              Explorar la Academia
             </Button>
             <Button
               href="/metodo-psai-flow"
@@ -154,7 +149,7 @@ export default function Hero() {
               size="md"
               className="border-white/40 text-white hover:border-accent hover:text-accent"
             >
-              Conocer el Método PSAI FLOW®
+              Conocer PSAI FLOW®
             </Button>
           </div>
         </div>
