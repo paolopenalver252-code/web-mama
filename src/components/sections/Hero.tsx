@@ -50,14 +50,18 @@ export default function Hero() {
     return () => mql.removeEventListener("change", syncFromQuery);
   }, []);
 
+  // Secuencia de entrada ligeramente más lenta y con desplazamientos más
+  // cortos que antes: la misma coreografía (imagen → overlay → eyebrow →
+  // texto → CTAs → estadística), pero el movimiento se nota menos y se lee
+  // más como un fundido cinematográfico que como una animación de interfaz.
   useIsomorphicLayoutEffect(() => {
     playEntranceTimeline([
-      { target: imageRef.current, translateY: 0, duration: 1600 },
-      { target: overlayRef.current, translateY: 0, duration: 900, offset: "-=1300" },
-      { target: eyebrowRef.current, offset: "-=650" },
-      { target: metaRef.current, translateY: 18, offset: "-=400" },
-      { target: ctasRef.current, staggerChildren: true, staggerMs: 100, offset: "-=350" },
-      { target: statRef.current, translateY: 14, offset: "-=250" },
+      { target: imageRef.current, translateY: 0, duration: 1800 },
+      { target: overlayRef.current, translateY: 0, duration: 1000, offset: "-=1400" },
+      { target: eyebrowRef.current, duration: 800, offset: "-=700" },
+      { target: metaRef.current, translateY: 14, duration: 800, offset: "-=450" },
+      { target: ctasRef.current, staggerChildren: true, staggerMs: 120, duration: 750, offset: "-=400" },
+      { target: statRef.current, translateY: 10, duration: 750, offset: "-=300" },
     ]);
   }, []);
 
@@ -103,43 +107,50 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Degradados azul profundo — muy sutiles: el propio vídeo (silueta a
-          contraluz, ya oscuro) aporta la mayor parte del contraste. Solo se
-          refuerza donde hace falta: bajo el texto (izquierda) y bajo la
-          estadística (abajo), dejando naturaleza y persona bien visibles
-          en el resto del encuadre. */}
+      {/* Degradados azul profundo — el propio vídeo (silueta a contraluz, ya
+          oscuro) aporta la mayor parte del contraste. Se refuerza algo más
+          que antes bajo el texto (izquierda) y bajo la estadística (abajo),
+          con un alcance un poco más largo para una lectura inmediata del
+          H1, sin convertir el vídeo en un fondo plano: naturaleza y persona
+          siguen bien visibles en el resto del encuadre. */}
       <div
         ref={overlayRef}
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(100deg,rgba(11,27,49,0.55)_0%,rgba(11,27,49,0.28)_38%,rgba(11,27,49,0.12)_60%,transparent_80%)]"
+        className="absolute inset-0 bg-[linear-gradient(100deg,rgba(11,27,49,0.66)_0%,rgba(11,27,49,0.38)_42%,rgba(11,27,49,0.16)_65%,transparent_85%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,rgba(11,27,49,0.4)_0%,transparent_100%)]"
+        className="absolute inset-x-0 bottom-0 h-2/5 bg-[linear-gradient(0deg,rgba(11,27,49,0.5)_0%,transparent_100%)]"
       />
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center px-6 pb-14 pt-32 sm:justify-start sm:px-10 sm:pb-12 lg:px-16 lg:pb-16 lg:pt-40">
-        <div className="max-w-xl">
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-center px-6 pb-14 pt-32 sm:justify-start sm:px-10 sm:pb-14 lg:px-16 lg:pb-20 lg:pt-44">
+        {/* max-w-2xl (antes max-w-xl): el H1 a gran escala necesitaba más
+            anchura para que las palabras se agrupen en líneas más largas y
+            seguras — menos "apilado", más titular editorial. El párrafo
+            conserva su propio max-w-md más abajo, a propósito más estrecho
+            que el titular, para que la longitud de línea de lectura siga
+            siendo cómoda. */}
+        <div className="max-w-2xl">
           <div ref={eyebrowRef}>
             <Eyebrow tone="dark">PSAI FLOW® ACADEMY</Eyebrow>
           </div>
 
           <SplitText
             as="h1"
-            delay={450}
-            className="mt-5 block font-heading text-[2.75rem] leading-[1.05] tracking-tight text-white sm:mt-6 sm:text-6xl lg:text-[5.75rem]"
+            delay={500}
+            className="mt-6 block font-heading text-[2.75rem] leading-[1.05] tracking-tight text-white sm:mt-7 sm:text-6xl lg:text-[5.75rem]"
           >
             Transformando cuerpo, mente, emociones y conciencia.
           </SplitText>
 
-          <div ref={metaRef} className="mt-5 flex flex-col gap-3 sm:mt-7 sm:gap-4">
+          <div ref={metaRef} className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4">
             <p className="max-w-md text-base leading-relaxed text-mist text-body sm:text-lg">
               Un espacio de formación y conocimiento dedicado a la Psicotransformación Integral y
               al desarrollo de las disciplinas que forman parte del Método PSAI FLOW®.
             </p>
           </div>
 
-          <div ref={ctasRef} className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
+          <div ref={ctasRef} className="mt-9 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4">
             <Button href="/academia" variant="accent" size="md">
               Explorar la Academia
             </Button>
