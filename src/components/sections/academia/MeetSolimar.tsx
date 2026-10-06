@@ -19,11 +19,16 @@ export default function MeetSolimar() {
   return (
     <section id="solimar-rengel" className="scroll-mt-24 bg-surface py-16 sm:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-6 md:grid-cols-2 md:gap-12 lg:px-8">
-        <Reveal className="-mx-6 md:mx-0">
+        {/* Sticky en el hijo directo del grid (no en la imagen interior, cuyo
+            contenedor mide lo mismo que ella y no le deja recorrido): así la
+            foto acompaña a la biografía y se suelta sola al final de la
+            sección. Solo desde lg. El max-w por altura de ventana mantiene
+            el 4:5 y evita que la foto se corte en portátiles bajos. */}
+        <Reveal className="-mx-6 md:mx-0 lg:sticky lg:top-28">
           <PlaceholderImage
             src="/images/solimar-rengel.jpg"
             alt="Solimar Rengel, fundadora de PSAI FLOW ACADEMY"
-            className="aspect-[4/5] w-full shadow-soft md:sticky md:top-24"
+            className="aspect-[4/5] w-full shadow-soft lg:max-w-[calc((100svh-9rem)*0.8)]"
           />
         </Reveal>
 
@@ -36,11 +41,11 @@ export default function MeetSolimar() {
 
             <StatBlock value="35+" label="Años de experiencia" />
 
-            <ul className="block sm:flex sm:flex-wrap sm:gap-3">
+            <ul className="block w-full sm:flex sm:flex-wrap sm:gap-3">
               {ROLES.map((role) => (
                 <li
                   key={role}
-                  className="inline text-xs uppercase tracking-[0.15em] text-ink-subtle after:mx-2 after:text-accent-text after:content-['·'] last:after:content-none sm:inline-block sm:rounded-full sm:border sm:border-primary/10 sm:bg-surface-alt sm:px-4 sm:py-2 sm:text-sm sm:normal-case sm:tracking-normal sm:text-primary/80 sm:after:content-none"
+                  className="inline text-xs uppercase tracking-[0.15em] text-ink-subtle after:ml-2 after:mr-1 after:text-accent-text after:content-['·_'] last:after:content-none sm:inline-block sm:rounded-full sm:border sm:border-primary/10 sm:bg-surface-alt sm:px-4 sm:py-2 sm:text-sm sm:normal-case sm:tracking-normal sm:text-primary/80 sm:after:content-none"
                 >
                   {role}
                 </li>
