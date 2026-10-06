@@ -4,9 +4,10 @@ import { connection } from "next/server";
 import { notFound, redirect } from "next/navigation";
 import { STUDENT_COURSES } from "../catalog/courses";
 import type { Course, CourseProgress } from "../catalog/types";
+import { COURSE_ACCESS_MODE } from "../config";
 import { alumnosRoutes } from "../routes";
 import type { StudentProfile, StudentSession } from "../types";
-import { authProvider } from "./auth-provider";
+import { getAuthProvider } from "./auth-provider";
 import { isPreviewMode } from "./preview";
 import { studentStore } from "./student-store";
 
@@ -15,19 +16,25 @@ import { studentStore } from "./student-store";
  * leer la sesión y cualquier dato privado. Sigue la guía de autenticación
  * de Next.js: la comprobación vive junto a los datos, no solo en el layout
  * (que no se vuelve a renderizar en cada navegación), así que cada página
- * privada y cada Server Action llama aquí por su cuenta.
+ * privada, cada metadato y cada Server Action llama aquí por su cuenta.
  *
  * `import "server-only"` hace que importar este archivo desde un Client
  * Component rompa el build: nada de esto puede llegar al navegador.
  */
 
-/** Sesión de la petición actual (memorizada durante un mismo render). */
+/**
+ * Sesión de la petición actual (memorizada durante un mismo render).
+ * Primero la sesión real de Supabase; la vista previa de desarrollo solo
+ * entra si no hay sesión real, y nunca en producción.
+ */
 export const getSession = cache(async (): Promise<StudentSession | null> => {
   // Las páginas privadas siempre se renderizan por petición, nunca se
   // pre-generan en el build con el resultado de una comprobación de sesión.
   await connection();
+  const session = await getAuthProvider().getSession();
+  if (session) return session;
   if (isPreviewMode()) return { kind: "preview" };
-  return authProvider.getSession();
+  return null;
 });
 
 /** Exige sesión: sin ella, redirige a la pantalla de acceso. */
@@ -39,14 +46,20 @@ export async function requireSession(): Promise<StudentSession> {
 
 export const getStudentProfile = cache(async (session: StudentSession): Promise<StudentProfile | null> => {
   if (session.kind === "preview") return null;
-  return studentStore.getProfile(session.studentId);
+  const stored = await studentStore.getProfileData(session.studentId);
+  return {
+    email: session.email,
+    firstName: stored?.firstName ?? null,
+    lastName: stored?.lastName ?? null,
+    phone: stored?.phone ?? null,
+  };
 });
 
 /** Formaciones a las que el alumno de la sesión tiene acceso (autorización por alumno). */
 export const getAccessibleCourses = cache(async (session: StudentSession): Promise<Course[]> => {
   // La vista previa de desarrollo muestra el catálogo completo para poder
   // revisar todas las pantallas; no existe en producción.
-  if (session.kind === "preview") return STUDENT_COURSES;
+  if (session.kind === "preview" || COURSE_ACCESS_MODE === "all-students") return STUDENT_COURSES;
   const enrolled = new Set(await studentStore.getEnrolledCourseSlugs(session.studentId));
   return STUDENT_COURSES.filter((course) => enrolled.has(course.slug));
 });
@@ -69,7 +82,7 @@ export async function getCourseProgress(session: StudentSession, courseSlug: str
   return studentStore.getCourseProgress(session.studentId, courseSlug);
 }
 
-/** true si hay un sistema de autenticación real conectado. */
+/** true si hay un sistema de autenticación real configurado. */
 export function isAuthConfigured(): boolean {
-  return authProvider.configured;
+  return getAuthProvider().configured;
 }

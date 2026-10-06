@@ -9,21 +9,21 @@ export const metadata: Metadata = {
 };
 
 /**
- * Mi cuenta. Los datos personales se muestran tal como estén en la base de
- * datos (hoy no hay ninguna conectada, así que aparecen como no
- * disponibles). La edición de datos, la foto, el teléfono y las
- * preferencias se añadirán como nuevas secciones de esta misma página.
+ * Mi cuenta. El correo viene de la cuenta de Supabase Auth del alumno;
+ * nombre y apellidos, de la futura tabla `students` (hasta entonces se
+ * muestran como pendientes, nunca inventados). Teléfono, foto, edición de
+ * datos y preferencias se añadirán como nuevas filas o secciones aquí.
  */
 export default async function MiCuentaPage() {
   const session = await requireSession();
   const profile = await getStudentProfile(session);
-  const sessionEmail = session.kind === "student" ? session.email : null;
 
   const personalData = [
     { label: "Nombre", value: profile?.firstName ?? null },
     { label: "Apellidos", value: profile?.lastName ?? null },
-    { label: "Correo electrónico", value: profile?.email ?? sessionEmail },
+    { label: "Correo electrónico", value: profile?.email ?? null },
   ];
+  const missingData = personalData.some((item) => !item.value);
 
   return (
     <div className="flex flex-col gap-16">
@@ -34,12 +34,10 @@ export default async function MiCuentaPage() {
           <h2 id="datos-personales" className="font-heading text-3xl leading-tight text-primary">
             Datos personales
           </h2>
-          {!profile ? (
-            <p className="text-sm text-ink-subtle">
-              {session.kind === "preview"
-                ? "Vista previa de desarrollo: no hay ninguna cuenta real conectada."
-                : "Tus datos aparecerán aquí cuando el área de alumnos esté conectada a su base de datos."}
-            </p>
+          {session.kind === "preview" ? (
+            <p className="text-sm text-ink-subtle">Vista previa de desarrollo: no hay ninguna cuenta real conectada.</p>
+          ) : missingData ? (
+            <p className="text-sm text-ink-subtle">Los datos pendientes se completarán más adelante desde la Academia.</p>
           ) : null}
         </div>
         <dl className="border-t border-primary/10">
@@ -50,7 +48,7 @@ export default async function MiCuentaPage() {
             >
               <dt className="text-sm font-medium text-ink-muted">{item.label}</dt>
               <dd className={`min-w-0 break-words text-[15px] ${item.value ? "text-primary" : "text-ink-subtle"}`}>
-                {item.value ?? "No disponible"}
+                {item.value ?? (session.kind === "preview" ? "No disponible" : "Pendiente")}
               </dd>
             </div>
           ))}
