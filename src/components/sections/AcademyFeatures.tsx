@@ -50,13 +50,25 @@ export default function AcademyFeatures() {
           </div>
         </Reveal>
 
-        <ul className="mt-14 max-w-4xl divide-y divide-primary/10 border-y border-primary/10 sm:mt-16">
+        {/* Una sola columna hasta lg; desde lg, dos columnas que se rellenan
+            por columna (grid-flow-col + 2 filas): 01/02 a la izquierda,
+            03/04 a la derecha. Cada pilar lleva su filete superior y el
+            último de cada columna cierra con uno inferior (no el <ul>, que
+            cruzaría el hueco entre columnas). El número tiene ancho fijo
+            para que los títulos arranquen en la misma vertical aunque "01"
+            sea más estrecho que "02". */}
+        <ul className="mt-14 grid grid-cols-1 sm:mt-16 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:gap-x-16 xl:gap-x-24">
           {FEATURES.map((feature, index) => (
-            <Reveal key={feature.number} delay={index * 100}>
-              <li className="flex items-start gap-6 py-8 sm:gap-10 sm:py-10">
+            <li
+              key={feature.number}
+              className={`border-t border-primary/10 ${
+                index === FEATURES.length - 1 ? "border-b" : index === 1 ? "lg:border-b" : ""
+              }`}
+            >
+              <Reveal delay={index * 100} className="flex items-start gap-4 py-8 sm:gap-6 sm:py-10">
                 <span
                   aria-hidden
-                  className="shrink-0 pt-1 font-heading text-5xl leading-none text-primary/10 sm:text-6xl sm:pt-2 lg:text-7xl"
+                  className="w-16 shrink-0 pt-1 font-heading text-5xl leading-none text-primary/15 sm:w-20 sm:pt-2 sm:text-6xl lg:w-24 lg:text-7xl"
                 >
                   {feature.number}
                 </span>
@@ -66,8 +78,8 @@ export default function AcademyFeatures() {
                     {feature.description}
                   </p>
                 </div>
-              </li>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
         </ul>
       </div>
