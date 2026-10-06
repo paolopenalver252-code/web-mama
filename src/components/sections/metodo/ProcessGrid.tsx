@@ -51,11 +51,22 @@ export default function ProcessGrid() {
 
   return (
     <section className="bg-surface-alt py-16 sm:py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 sm:gap-14 lg:grid-cols-12 lg:gap-16 lg:px-8">
-        <Reveal className="lg:col-span-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 sm:gap-14 lg:grid-cols-12 lg:items-start lg:gap-16 lg:px-8">
+        {/* Sticky solo desde lg. `lg:items-start` es imprescindible: sin él,
+            el stretch por defecto de CSS Grid hace que este item ya mida lo
+            mismo que su propia área de anclaje (la altura de toda la
+            columna de la lista), así que no le queda recorrido para fijarse
+            y se movería 1:1 con el scroll. Con items-start el bloque
+            conserva su altura natural (compacta) dentro de un área tan alta
+            como la lista, y entonces sí puede quedar "anclado" mientras se
+            recorren los 6 puntos y soltarse justo al terminar esa columna
+            — sin invadir la siguiente sección. Mismo top (112px, bajo el
+            header) que ya usa la foto sticky de "Conoce a Solimar
+            Rengel", que sigue el mismo patrón. */}
+        <Reveal className="lg:col-span-4 lg:sticky lg:top-28">
           <div className="flex flex-col items-start gap-5">
             <Eyebrow>El proceso</Eyebrow>
-            <h2 className="max-w-md font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
+            <h2 className="max-w-md font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-5xl">
               ¿Qué se trabaja durante el proceso?
             </h2>
           </div>
