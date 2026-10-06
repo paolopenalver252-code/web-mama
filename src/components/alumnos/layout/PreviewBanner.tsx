@@ -4,10 +4,12 @@
  */
 export default function PreviewBanner() {
   return (
-    <div role="note" className="border-b border-accent/30 bg-accent/[0.12] px-5 py-2.5 text-center text-xs leading-relaxed text-primary sm:px-8">
-      <strong className="font-semibold">Vista previa de desarrollo — sin autenticación real.</strong>{" "}
-      Solo existe en local con ALUMNOS_PREVIEW=1; en producción el área privada no es accesible sin un
-      sistema de acceso real.
+    <div
+      role="note"
+      className="border-b border-campus-gold/25 bg-campus-gold/10 px-5 py-2 text-center text-xs leading-relaxed text-campus-ink sm:px-8"
+    >
+      <strong className="font-semibold">Vista previa de desarrollo — sin sesión real.</strong>{" "}
+      <span className="text-campus-muted">Solo existe en local con ALUMNOS_PREVIEW=1; nunca en producción.</span>
     </div>
   );
 }

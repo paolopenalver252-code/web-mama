@@ -7,9 +7,15 @@ type FormMessageProps = {
 };
 
 const toneClasses: Record<FormMessageProps["tone"], string> = {
-  error: "border-red-700/25 bg-red-50 text-red-800",
-  success: "border-emerald-700/25 bg-emerald-50 text-emerald-900",
-  info: "border-accent/30 bg-accent/[0.07] text-primary",
+  error: "border-campus-danger/30 bg-campus-danger/10 text-campus-ink",
+  success: "border-campus-success/30 bg-campus-success/10 text-campus-ink",
+  info: "border-campus-gold/30 bg-campus-gold/10 text-campus-ink",
+};
+
+const barClasses: Record<FormMessageProps["tone"], string> = {
+  error: "bg-campus-danger",
+  success: "bg-campus-success",
+  info: "bg-campus-gold",
 };
 
 /**
@@ -21,8 +27,9 @@ export default function FormMessage({ tone, children, id }: FormMessageProps) {
     <div
       id={id}
       role={tone === "error" ? "alert" : "status"}
-      className={`rounded-xl border px-4 py-3 text-sm leading-relaxed ${toneClasses[tone]}`}
+      className={`relative overflow-hidden rounded-xl border py-3 pl-5 pr-4 text-sm leading-relaxed ${toneClasses[tone]}`}
     >
+      <span aria-hidden className={`absolute inset-y-0 left-0 w-1 ${barClasses[tone]}`} />
       {children}
     </div>
   );

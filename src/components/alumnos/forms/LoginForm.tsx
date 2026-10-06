@@ -78,7 +78,7 @@ export default function LoginForm() {
         {PASSWORD_RECOVERY_ENABLED ? (
           <Link
             href={alumnosRoutes.passwordRecovery}
-            className="self-end text-sm text-ink-muted underline-offset-4 transition-colors duration-300 hover:text-accent-text hover:underline"
+            className="self-end text-sm text-campus-muted underline-offset-4 transition-colors duration-300 hover:text-campus-ink hover:underline"
           >
             ¿Has olvidado tu contraseña?
           </Link>

@@ -1,25 +1,23 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import PageHeader from "@/components/alumnos/ui/PageHeader";
+import { buttonStyles } from "@/components/alumnos/ui/styles";
 import { alumnosRoutes } from "@/lib/alumnos/routes";
 
 /**
- * 404 dentro del área privada. Se usa tanto para lo que no existe como para
- * lo que existe pero no pertenece al alumno: los dos casos responden igual.
+ * 404 dentro del campus. Se usa tanto para lo que no existe como para lo
+ * que existe pero no pertenece al alumno: los dos casos responden igual.
  */
 export default function AreaNotFound() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="campus-enter mx-auto flex w-full max-w-4xl flex-col gap-8">
       <PageHeader
-        eyebrow="Área de alumnos"
+        eyebrow="Error 404"
         title="No encontramos esta página"
         description={<p>Puede que el enlace no sea correcto o que este contenido no esté disponible en tu cuenta.</p>}
       />
-      <Link
-        href={alumnosRoutes.courses}
-        className="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-medium text-primary transition-colors duration-300 hover:text-accent-text"
-      >
-        <ArrowLeft size={16} strokeWidth={1.5} aria-hidden />
+      <Link href={alumnosRoutes.courses} className={`${buttonStyles.secondary} self-start`}>
+        <ArrowLeft size={16} strokeWidth={1.75} aria-hidden />
         Ir a Mis formaciones
       </Link>
     </div>

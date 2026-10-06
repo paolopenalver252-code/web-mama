@@ -1,33 +1,63 @@
 import type { Metadata } from "next";
-import { GraduationCap } from "lucide-react";
-import CourseIndex from "@/components/alumnos/courses/CourseIndex";
+import CourseRow from "@/components/alumnos/courses/CourseRow";
+import EmptyState from "@/components/alumnos/ui/EmptyState";
 import PageHeader from "@/components/alumnos/ui/PageHeader";
-import EmptyState from "@/components/ui/EmptyState";
-import { getAccessibleCourses, requireSession } from "@/lib/alumnos/server/dal";
+import { monoLabel } from "@/components/alumnos/ui/styles";
+import { getLearningState, type LearningState } from "@/lib/alumnos/catalog/helpers";
+import { getCoursesWithProgress, requireSession } from "@/lib/alumnos/server/dal";
 
 export const metadata: Metadata = {
   title: "Mis formaciones",
 };
 
+/** Agrupación por estado real; "untracked" (sin progreso) va sin encabezado. */
+const GROUPS: { state: LearningState; label: string | null }[] = [
+  { state: "in_progress", label: "En curso" },
+  { state: "not_started", label: "Sin empezar" },
+  { state: "completed", label: "Completadas" },
+  { state: "untracked", label: null },
+];
+
 export default async function MisFormacionesPage() {
   const session = await requireSession();
-  const courses = await getAccessibleCourses(session);
+  const entries = await getCoursesWithProgress(session);
+
+  const groups = GROUPS.map((group) => ({
+    ...group,
+    entries: entries.filter((entry) => getLearningState(entry.course, entry.progress) === group.state),
+  })).filter((group) => group.entries.length > 0);
+  const showGroupLabels = groups.length > 1;
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="campus-enter mx-auto flex w-full max-w-5xl flex-col gap-10 sm:gap-14">
       <PageHeader
-        eyebrow="Área de alumnos"
+        eyebrow="Biblioteca"
         title="Mis formaciones"
-        description={<p>Las formaciones a las que tienes acceso. Entra en cada una para ver su contenido.</p>}
+        description={<p>Todas las formaciones a las que tienes acceso. Entra en cada una para ver su recorrido.</p>}
       />
-      {courses.length > 0 ? (
-        <CourseIndex courses={courses} />
-      ) : (
+
+      {groups.length === 0 ? (
         <EmptyState
-          icon={GraduationCap}
           title="Todavía no tienes formaciones"
-          description="Cuando se te asigne una formación, aparecerá aquí."
+          description="Cuando la Academia te asigne una formación, aparecerá aquí."
         />
+      ) : (
+        groups.map((group) => (
+          <section key={group.state} aria-label={group.label ?? "Formaciones"}>
+            {showGroupLabels && group.label ? (
+              <h2 className={`${monoLabel} mb-1 text-campus-subtle`}>
+                {group.label} · {group.entries.length}
+              </h2>
+            ) : null}
+            <ul className="border-t border-campus-line">
+              {group.entries.map(({ course, progress }) => (
+                <li key={course.slug}>
+                  <CourseRow course={course} progress={progress} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
       )}
     </div>
   );

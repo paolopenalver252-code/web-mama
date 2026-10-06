@@ -1,5 +1,5 @@
 import { LoaderCircle } from "lucide-react";
-import Button from "@/components/ui/Button";
+import { buttonStyles } from "@/components/alumnos/ui/styles";
 
 type SubmitButtonProps = {
   pending: boolean;
@@ -11,14 +11,7 @@ type SubmitButtonProps = {
 /** Botón de envío con estado de carga (deshabilitado y anunciado mientras envía). */
 export default function SubmitButton({ pending, label, pendingLabel, className = "" }: SubmitButtonProps) {
   return (
-    <Button
-      type="submit"
-      variant="primary"
-      size="md"
-      disabled={pending}
-      aria-disabled={pending}
-      className={`disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:bg-primary ${className}`}
-    >
+    <button type="submit" disabled={pending} aria-disabled={pending} className={`${buttonStyles.primary} ${className}`}>
       {pending ? (
         <>
           <LoaderCircle size={18} strokeWidth={1.75} className="animate-spin motion-reduce:animate-none" aria-hidden />
@@ -27,6 +20,6 @@ export default function SubmitButton({ pending, label, pendingLabel, className =
       ) : (
         label
       )}
-    </Button>
+    </button>
   );
 }

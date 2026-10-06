@@ -56,6 +56,16 @@ export type CourseModule = {
   placeholder?: boolean;
 };
 
+/**
+ * Imagen de portada de una formación (archivo en /public o URL permitida en
+ * next.config). Sin portada, el campus pinta un visual abstracto de marca
+ * que no se hace pasar por una imagen oficial.
+ */
+export type CourseCover = {
+  src: string;
+  alt: string;
+};
+
 export type CourseStatus =
   /** Formación definida, con su contenido aún por cargar en la plataforma. */
   | "preparing"
@@ -73,6 +83,7 @@ export type Course = {
   subtitle: string | null;
   description: string | null;
   status: CourseStatus;
+  cover: CourseCover | null;
   modules: CourseModule[];
   /** El título es un marcador provisional, no el nombre real. */
   placeholder?: boolean;
@@ -85,4 +96,9 @@ export type Course = {
  */
 export type CourseProgress =
   | { tracking: false }
-  | { tracking: true; completedLessonSlugs: string[] };
+  | {
+      tracking: true;
+      completedLessonSlugs: string[];
+      /** Última lección abierta por el alumno, para "continuar" donde lo dejó. */
+      lastLessonSlug: string | null;
+    };

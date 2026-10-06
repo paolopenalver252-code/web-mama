@@ -1,69 +1,87 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import CourseIndex from "@/components/alumnos/courses/CourseIndex";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import CourseTile from "@/components/alumnos/courses/CourseTile";
+import FeaturedCourse from "@/components/alumnos/courses/FeaturedCourse";
+import EmptyState from "@/components/alumnos/ui/EmptyState";
 import PageHeader from "@/components/alumnos/ui/PageHeader";
+import { buttonStyles, monoLabel } from "@/components/alumnos/ui/styles";
+import { pickFeaturedCourse } from "@/lib/alumnos/catalog/helpers";
 import { alumnosRoutes } from "@/lib/alumnos/routes";
-import { getAccessibleCourses, getStudentProfile, requireSession } from "@/lib/alumnos/server/dal";
+import { getCoursesWithProgress, getStudentProfile, requireSession } from "@/lib/alumnos/server/dal";
 
 export const metadata: Metadata = {
   title: "Inicio",
 };
 
+/**
+ * Inicio del campus — "tu espacio de aprendizaje": bienvenida, una
+ * formación protagonista a gran formato y, debajo, el resto de formaciones.
+ */
 export default async function AlumnosDashboardPage() {
   const session = await requireSession();
-  const [profile, courses] = await Promise.all([getStudentProfile(session), getAccessibleCourses(session)]);
+  const [profile, entries] = await Promise.all([getStudentProfile(session), getCoursesWithProgress(session)]);
 
   // El nombre solo aparece si existe en la base de datos; sin él, el saludo
   // queda en "Bienvenido/a" en lugar de usar un nombre inventado.
   const greeting = profile?.firstName ? `Bienvenido/a, ${profile.firstName}` : "Bienvenido/a";
+  const featured = pickFeaturedCourse(entries);
+  const others = entries.filter((entry) => entry.course.slug !== featured?.course.slug);
 
   return (
-    <div className="flex flex-col gap-16 sm:gap-20">
+    <div className="campus-enter mx-auto flex w-full max-w-6xl flex-col gap-14 sm:gap-20">
       <PageHeader
-        eyebrow="Área de alumnos"
+        eyebrow="Campus PSAI FLOW"
         title={greeting}
-        description={
-          <p>
-            Este es tu espacio privado en PSAI FLOW ACADEMY. Desde aquí accedes a tus formaciones y a la
-            configuración de tu cuenta.
-          </p>
-        }
+        description={<p>Tu espacio de aprendizaje en PSAI FLOW ACADEMY.</p>}
       />
 
-      <section aria-labelledby="dashboard-formaciones">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <h2 id="dashboard-formaciones" className="font-heading text-3xl leading-tight text-primary">
-            Mis formaciones
-          </h2>
-          <Link
-            href={alumnosRoutes.courses}
-            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 text-sm font-medium text-ink-muted transition-colors duration-300 hover:text-accent-text"
-          >
-            Ver todas
-            <ArrowRight size={16} strokeWidth={1.5} aria-hidden />
-          </Link>
-        </div>
-        {courses.length > 0 ? (
-          <CourseIndex courses={courses} headingLevel="h3" />
-        ) : (
-          <p className="border-t border-primary/10 pt-6 text-ink-muted text-body">
-            Todavía no tienes formaciones asignadas.
-          </p>
-        )}
-      </section>
+      {featured ? (
+        <FeaturedCourse course={featured.course} progress={featured.progress} mode={featured.mode} />
+      ) : (
+        <EmptyState
+          title="Todavía no tienes formaciones"
+          description="Cuando la Academia te asigne una formación, aparecerá aquí."
+        />
+      )}
 
-      <section aria-labelledby="dashboard-cuenta" className="border-t border-primary/10 pt-10">
-        <h2 id="dashboard-cuenta" className="font-heading text-3xl leading-tight text-primary">
-          Mi cuenta
-        </h2>
-        <p className="mt-3 text-ink-muted text-body">Tus datos personales y la seguridad de tu acceso.</p>
-        <Link
-          href={alumnosRoutes.account}
-          className="mt-5 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-primary transition-colors duration-300 hover:text-accent-text"
-        >
-          Ir a Mi cuenta
-          <ArrowRight size={16} strokeWidth={1.5} aria-hidden />
+      {others.length > 0 ? (
+        <section aria-labelledby="mis-formaciones">
+          <div className="mb-6 flex items-end justify-between gap-4 border-b border-campus-line pb-5">
+            <div>
+              <p className={`${monoLabel} text-campus-subtle`}>Biblioteca</p>
+              <h2 id="mis-formaciones" className="mt-2 text-2xl font-medium tracking-tight text-campus-ink sm:text-[1.75rem]">
+                Mis formaciones
+              </h2>
+            </div>
+            <Link href={alumnosRoutes.courses} className={buttonStyles.text}>
+              Ver todas
+              <ArrowRight size={16} strokeWidth={1.75} aria-hidden />
+            </Link>
+          </div>
+          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {others.map(({ course, progress }) => (
+              <li key={course.slug} className="flex">
+                <CourseTile course={course} progress={progress} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <section
+        aria-labelledby="ayuda"
+        className="flex flex-col gap-4 border-t border-campus-line pt-8 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <h2 id="ayuda" className="text-base font-medium text-campus-ink">
+            ¿Necesitas ayuda con tu formación?
+          </h2>
+          <p className="mt-1 text-sm text-campus-muted">El equipo de la Academia te atiende personalmente.</p>
+        </div>
+        <Link href="/contacto#formulario-contacto" className={`${buttonStyles.secondary} self-start sm:self-auto`}>
+          Escribir a la Academia
+          <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden />
         </Link>
       </section>
     </div>

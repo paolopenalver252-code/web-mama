@@ -42,6 +42,7 @@ export const STUDENT_COURSES: Course[] = [
     subtitle: null,
     description: null,
     status: "preparing",
+    cover: null,
     modules: placeholderModule(),
   },
   {
@@ -51,6 +52,7 @@ export const STUDENT_COURSES: Course[] = [
     subtitle: null,
     description: null,
     status: "preparing",
+    cover: null,
     modules: placeholderModule(),
   },
   {
@@ -60,6 +62,7 @@ export const STUDENT_COURSES: Course[] = [
     subtitle: "Método PSAI FLOW® Código Fuente",
     description: null,
     status: "preparing",
+    cover: null,
     modules: placeholderModule(),
   },
   {
@@ -71,6 +74,7 @@ export const STUDENT_COURSES: Course[] = [
     subtitle: null,
     description: null,
     status: "undefined",
+    cover: null,
     modules: [],
     placeholder: true,
   },

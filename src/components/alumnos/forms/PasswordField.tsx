@@ -46,7 +46,7 @@ export default function PasswordField({ id, label, error, hint, ...inputProps }:
           aria-pressed={visible}
           aria-label={visible ? "Ocultar contraseña" : "Mostrar contraseña"}
           aria-controls={id}
-          className="absolute inset-y-0 right-1 my-auto flex h-11 w-11 items-center justify-center rounded-lg text-ink-subtle transition-colors duration-300 hover:text-primary"
+          className="absolute inset-y-0 right-1 my-auto flex h-11 w-11 items-center justify-center rounded-lg text-campus-subtle transition-colors duration-300 hover:text-campus-ink"
         >
           {visible ? <EyeOff size={18} strokeWidth={1.5} /> : <Eye size={18} strokeWidth={1.5} />}
         </button>

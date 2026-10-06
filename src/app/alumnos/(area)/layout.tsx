@@ -1,5 +1,6 @@
-import AreaShell from "@/components/alumnos/layout/AreaShell";
-import { requireSession } from "@/lib/alumnos/server/dal";
+import CampusShell from "@/components/alumnos/layout/CampusShell";
+import { courseTone } from "@/components/alumnos/courses/CourseVisual";
+import { getAccessibleCourses, requireSession } from "@/lib/alumnos/server/dal";
 
 /**
  * Estructura común de todas las pantallas privadas. La comprobación de
@@ -10,5 +11,23 @@ import { requireSession } from "@/lib/alumnos/server/dal";
  */
 export default async function AreaLayout({ children }: { children: React.ReactNode }) {
   const session = await requireSession();
-  return <AreaShell preview={session.kind === "preview"}>{children}</AreaShell>;
+  const courses = await getAccessibleCourses(session);
+
+  // Solo lo imprescindible viaja al componente cliente de la barra lateral.
+  const sidebarCourses = courses.map((course) => ({
+    slug: course.slug,
+    title: course.title,
+    tone: courseTone(course),
+    placeholder: Boolean(course.placeholder),
+  }));
+  const account =
+    session.kind === "student"
+      ? { label: session.email, initial: session.email.charAt(0).toUpperCase() }
+      : { label: "Vista previa", initial: "·" };
+
+  return (
+    <CampusShell preview={session.kind === "preview"} courses={sidebarCourses} account={account}>
+      {children}
+    </CampusShell>
+  );
 }

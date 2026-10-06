@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import CourseContents from "@/components/alumnos/courses/CourseContents";
+import CourseHero from "@/components/alumnos/courses/CourseHero";
+import ModuleList from "@/components/alumnos/courses/ModuleList";
 import Breadcrumbs from "@/components/alumnos/ui/Breadcrumbs";
-import PageHeader from "@/components/alumnos/ui/PageHeader";
-import PendingTag from "@/components/alumnos/ui/PendingTag";
-import { COURSE_STATUS_LABEL, formatOrder } from "@/lib/alumnos/catalog/helpers";
+import { monoLabel } from "@/components/alumnos/ui/styles";
 import { alumnosRoutes } from "@/lib/alumnos/routes";
 import { getCourseProgress, requireCourse, requireSession } from "@/lib/alumnos/server/dal";
 
@@ -27,48 +26,23 @@ export default async function FormacionPage({ params }: Props) {
   const progress = await getCourseProgress(session, course.slug);
 
   return (
-    <div className="flex flex-col gap-14 sm:gap-16">
-      <PageHeader
-        before={<Breadcrumbs trail={[{ label: "Mis formaciones", href: alumnosRoutes.courses }]} current={course.title} />}
-        eyebrow={`Formación ${formatOrder(course.order)}`}
-        title={<span className={course.placeholder ? "text-primary/55" : undefined}>{course.title}</span>}
-        description={
-          <>
-            {course.subtitle ? <p className="font-medium text-primary">{course.subtitle}</p> : null}
-            {course.description ? (
-              <p className={course.subtitle ? "mt-3" : undefined}>{course.description}</p>
-            ) : (
-              <p className={`text-ink-subtle ${course.subtitle ? "mt-3" : ""}`}>Descripción pendiente de incorporar.</p>
-            )}
-          </>
-        }
-      />
+    <div className="campus-enter mx-auto flex w-full max-w-6xl flex-col gap-6">
+      <Breadcrumbs trail={[{ label: "Mis formaciones", href: alumnosRoutes.courses }]} current={course.title} />
 
-      <dl className="grid grid-cols-1 gap-y-5 border-y border-primary/10 py-6 sm:grid-cols-2 sm:gap-x-10">
-        <div className="flex flex-col gap-1">
-          <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-subtle">Estado</dt>
-          <dd className="flex flex-wrap items-center gap-2 text-[15px] text-primary">
-            {COURSE_STATUS_LABEL[course.status]}
-            {course.placeholder ? <PendingTag>Nombre pendiente</PendingTag> : null}
-          </dd>
-        </div>
-        <div className="flex flex-col gap-1">
-          <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-subtle">Tu progreso</dt>
-          <dd className="text-[15px] text-primary">
-            {progress.tracking ? (
-              `${progress.completedLessonSlugs.length} lecciones completadas`
-            ) : (
-              <span className="text-ink-subtle">Sin registrar todavía</span>
-            )}
-          </dd>
-        </div>
-      </dl>
+      <CourseHero course={course} progress={progress} />
 
-      <section aria-labelledby="contenido-formacion" className="flex flex-col gap-8">
-        <h2 id="contenido-formacion" className="font-heading text-3xl leading-tight text-primary">
-          Contenido de la formación
-        </h2>
-        <CourseContents course={course} />
+      <section id="recorrido" aria-labelledby="recorrido-titulo" className="mt-10 scroll-mt-24 sm:mt-14">
+        <div className="mb-6 flex flex-col gap-2 border-b border-campus-line pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className={`${monoLabel} text-campus-subtle`}>Contenido de la formación</p>
+            <h2 id="recorrido-titulo" className="mt-2 text-2xl font-medium tracking-tight text-campus-ink sm:text-[1.75rem]">
+              Tu recorrido
+            </h2>
+          </div>
+        </div>
+        <div className="max-w-4xl">
+          <ModuleList course={course} progress={progress} />
+        </div>
       </section>
     </div>
   );

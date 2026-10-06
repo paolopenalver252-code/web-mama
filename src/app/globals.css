@@ -170,3 +170,111 @@ textarea:focus-visible {
     transform: none;
   }
 }
+
+/* ==========================================================================
+   CAMPUS DE ALUMNOS (/alumnos/*) — sistema visual propio del área privada.
+   Todo vive bajo nombres `campus-*` que la web pública no usa: añadir este
+   bloque no cambia ninguna página pública. Las fuentes (Instrument Sans +
+   Geist Mono) solo se cargan en el layout de /alumnos, que define las
+   variables --font-instrument y --font-geist-mono.
+   ========================================================================== */
+/* `static`: las variables se publican siempre en :root, así que también
+   se pueden usar con var() en CSS propio (foco, autorrelleno, SVG). */
+@theme static {
+  /* Superficies: obsidiana con matiz azul, en tres niveles de profundidad. */
+  --color-campus-bg: #090c12;
+  --color-campus-surface: #0e131c;
+  --color-campus-raised: #141b27;
+  --color-campus-overlay: #1b2433;
+  /* Azul profundo de marca, para visuales y fondos de formación. */
+  --color-campus-deep: #0f2d52;
+  /* Filetes: marfil a baja opacidad. */
+  --color-campus-line: rgb(237 232 223 / 0.08);
+  --color-campus-line-strong: rgb(237 232 223 / 0.16);
+  /* Texto (contraste AA verificado sobre bg/surface/raised). */
+  --color-campus-ink: #ede8df;
+  --color-campus-muted: #a7afbc;
+  --color-campus-subtle: #8791a1;
+  /* Acento eléctrico, SOLO para estados interactivos y progreso. */
+  --color-campus-accent: #6e9bff;
+  --color-campus-accent-strong: #9ab9ff;
+  /* Oro apagado: pequeño detalle de identidad PSAI FLOW. */
+  --color-campus-gold: #c8a35f;
+  --color-campus-danger: #f2a39a;
+  --color-campus-success: #8fd6b0;
+}
+
+/* Fuentes en `inline`: sus variables (--font-instrument, --font-geist-mono)
+   solo existen dentro del campus, donde las define next/font. */
+@theme inline {
+  --font-campus: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-campus-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* Fondo del documento acorde al campus (evita destellos blancos al hacer
+   overscroll en móvil) sin afectar a ninguna página pública. */
+html:has(.campus),
+body:has(.campus) {
+  background: var(--color-campus-bg);
+}
+
+.campus {
+  color-scheme: dark;
+}
+
+/* La regla global h1–h6 (serif, fuera de capas) se impone a las utilidades
+   de Tailwind. En el campus los títulos usan la sans de la interfaz salvo
+   que pidan expresamente la serif de marca (.font-heading) o la mono. */
+.campus :is(h1, h2, h3, h4, h5, h6):not(.font-heading) {
+  font-family: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.campus :is(h1, h2, h3, h4, h5, h6).font-campus-mono {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* Foco de teclado del campus: el dorado accesible de la web pública no
+   contrasta sobre fondo oscuro; aquí se usa el acento azul. */
+.campus a:focus-visible,
+.campus button:focus-visible,
+.campus summary:focus-visible,
+.campus input:focus-visible,
+.campus select:focus-visible,
+.campus textarea:focus-visible {
+  outline: 2px solid var(--color-campus-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Autorrelleno del navegador coherente con los campos oscuros. */
+.campus input:-webkit-autofill,
+.campus input:-webkit-autofill:hover,
+.campus input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-campus-ink);
+  caret-color: var(--color-campus-ink);
+  box-shadow: 0 0 0 1000px var(--color-campus-raised) inset;
+  transition: background-color 9999s ease-out;
+}
+
+/* Entrada de cada pantalla: una sola aparición corta (opacidad + 6px),
+   solo transform/opacity → sin layout shift. Con reduced-motion queda
+   instantánea por la regla global de más arriba. */
+@keyframes campus-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.campus-enter {
+  animation: campus-enter 420ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* <details> de los módulos: sin el triángulo nativo (se usa un icono propio). */
+.campus summary::-webkit-details-marker {
+  display: none;
+}

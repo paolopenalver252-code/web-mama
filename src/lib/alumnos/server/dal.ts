@@ -82,6 +82,16 @@ export async function getCourseProgress(session: StudentSession, courseSlug: str
   return studentStore.getCourseProgress(session.studentId, courseSlug);
 }
 
+/** Formaciones accesibles junto con el progreso del alumno en cada una. */
+export const getCoursesWithProgress = cache(
+  async (session: StudentSession): Promise<{ course: Course; progress: CourseProgress }[]> => {
+    const courses = await getAccessibleCourses(session);
+    return Promise.all(
+      courses.map(async (course) => ({ course, progress: await getCourseProgress(session, course.slug) }))
+    );
+  }
+);
+
 /** true si hay un sistema de autenticación real configurado. */
 export function isAuthConfigured(): boolean {
   return getAuthProvider().configured;
