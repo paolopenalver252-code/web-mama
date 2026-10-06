@@ -6,6 +6,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // Área privada de alumnos: además de `noindex` en cada página.
+      disallow: "/alumnos",
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

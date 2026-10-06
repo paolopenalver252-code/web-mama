@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, Manrope } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import JsonLd from "@/components/seo/JsonLd";
 import { DEFAULT_LOCALE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { jsonLdGraph, organizationSchema, websiteSchema } from "@/lib/schema";
@@ -93,9 +94,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-surface text-ink font-sans">
         <JsonLd data={jsonLdGraph(organizationSchema(), websiteSchema())} />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome header={<Header />} footer={<Footer />}>
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );

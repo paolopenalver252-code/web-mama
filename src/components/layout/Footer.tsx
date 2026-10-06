@@ -73,13 +73,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Alumnos — puerta de entrada visual a la futura zona privada */}
+          {/* Alumnos — entrada al Área de Alumnos */}
           <div>
             <h3 className="font-heading text-lg text-white">Alumnos</h3>
             <ul className="mt-4 space-y-3">
               <li>
                 <Link
-                  href="/acceso-alumnos"
+                  href="/alumnos/acceso"
                   className="text-sm text-mist transition-colors duration-300 hover:text-accent"
                 >
                   Acceso alumnos
